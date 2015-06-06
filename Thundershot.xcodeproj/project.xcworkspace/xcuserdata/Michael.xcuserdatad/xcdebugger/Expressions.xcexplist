@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[ThundershotAVController brightnessChange:]:ThundershotAVController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "device.activeFormat.maxExposureDuration">
+            </PersistentString>
+            <PersistentString
+               value = "device.activeFormat.minExposureDuration">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "getImageMetadata:ThundershotAVController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "(char*)new_s">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

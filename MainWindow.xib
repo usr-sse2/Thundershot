@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment version="2048" identifier="iOS"/>
+        <development version="5000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIApplication">
+            <connections>
+                <outlet property="delegate" destination="3" id="4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <customObject id="3" userLabel="Thundershot App Delegate" customClass="ThundershotAppDelegate">
+            <connections>
+                <outlet property="avController" destination="4st-wb-WTp" id="8QW-PG-EzG"/>
+                <outlet property="window" destination="12" id="14"/>
+            </connections>
+        </customObject>
+        <viewController modalTransitionStyle="crossDissolve" hidesBottomBarWhenPushed="YES" id="4st-wb-WTp" customClass="ThundershotAVController">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="jgq-5t-6TZ"/>
+                <viewControllerLayoutGuide type="bottom" id="aQW-l3-1aJ"/>
+            </layoutGuides>
+            <view key="view" opaque="NO" contentMode="scaleToFill" id="NTV-Uo-mmO" customClass="PTDrawableView">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="M91-Jf-xei">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <items>
+                            <barButtonItem style="plain" id="xFx-ut-fFk">
+                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="PFG-Th-AaN" customClass="UIDeselectableSegmentedControl">
+                                    <rect key="frame" x="6" y="9" width="95" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="Auto"/>
+                                        <segment title="Manual"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="brightnessSwitchValueChanged:" destination="4st-wb-WTp" eventType="valueChanged" id="Xys-No-QvA"/>
+                                    </connections>
+                                </segmentedControl>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="QV7-Ie-QZx"/>
+                            <barButtonItem style="plain" systemItem="camera" id="hPq-YL-a7J">
+                                <connections>
+                                    <action selector="takePhoto:" destination="4st-wb-WTp" id="OdI-Nk-ZQ7"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="4bU-13-EVw"/>
+                            <barButtonItem style="plain" id="cFJ-en-37U">
+                                <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Znh-3r-UJz">
+                                    <rect key="frame" x="229" y="9" width="51" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="onTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="lightDetectionEnabledSwitch:" destination="4st-wb-WTp" eventType="valueChanged" id="OQp-OZ-8jO"/>
+                                    </connections>
+                                </switch>
+                            </barButtonItem>
+                        </items>
+                        <color key="tintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
+                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="8lM-PL-JSV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <items>
+                            <barButtonItem style="plain" id="Tta-JB-euC">
+                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="yJ7-Wp-h17" customClass="UIDeselectableSegmentedControl">
+                                    <rect key="frame" x="16" y="0.0" width="89" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="Auto" width="36"/>
+                                        <segment title="Torch"/>
+                                        <segment title="Flash"/>
+                                        <segment title="Off"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="flashLightSwitchClick:" destination="4st-wb-WTp" eventType="valueChanged" id="9um-sw-uSe"/>
+                                    </connections>
+                                </segmentedControl>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="mef-7L-GgC"/>
+                            <barButtonItem title="Item" style="plain" id="b8w-aB-wbn">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="RzV-Zu-NfY">
+                                    <rect key="frame" x="145" y="5" width="22" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="openHelp" destination="4st-wb-WTp" eventType="touchUpInside" id="VMw-pj-pyg"/>
+                                    </connections>
+                                </button>
+                                <connections>
+                                    <action selector="openHelp:" destination="4st-wb-WTp" id="GnH-nf-dVn"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="Qlm-T6-caK"/>
+                            <barButtonItem style="plain" id="zai-Jt-8M1">
+                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="IpM-ll-Kef" customClass="UIDeselectableSegmentedControl">
+                                    <rect key="frame" x="225" y="9" width="89" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="Auto" width="36"/>
+                                        <segment title="Manual"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="whiteSwitchValueChanged:" destination="4st-wb-WTp" eventType="valueChanged" id="F7B-J3-fJ9"/>
+                                    </connections>
+                                </segmentedControl>
+                            </barButtonItem>
+                        </items>
+                        <color key="tintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="d35-w8-OoI">
+                        <rect key="frame" x="176" y="439" width="37" height="37"/>
+                    </activityIndicatorView>
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zq7-fb-DB1">
+                        <rect key="frame" x="0.0" y="44" width="320" height="392"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="1" maxValue="1200" translatesAutoresizingMaskIntoConstraints="NO" id="I24-UF-CoI" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
+                                <rect key="frame" x="14" y="278" width="292" height="31"/>
+                                <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                        <real key="value" value="1200"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="brightnessChange:" destination="4st-wb-WTp" eventType="valueChanged" id="uCk-B8-cYj"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="Une-Hu-lmp" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
+                                <rect key="frame" x="14" y="316" width="292" height="31"/>
+                                <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="brightnessChange:" destination="4st-wb-WTp" eventType="valueChanged" id="tWi-gd-Bye"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nnN-1P-Shq" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
+                                <rect key="frame" x="14" y="354" width="292" height="31"/>
+                                <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="whiteChange:" destination="4st-wb-WTp" eventType="valueChanged" id="ik7-Sy-DqW"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-0.050000000000000003" minValue="-0.29999999999999999" maxValue="-0.01" translatesAutoresizingMaskIntoConstraints="NO" id="bmD-oT-dvF">
+                                <rect key="frame" x="14" y="8" width="292" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="jyp-59-r1P"/>
+                                </constraints>
+                                <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </slider>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3A-Qo-PS3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="392"/>
+                                <view key="contentView" hidden="YES" opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="WTG-oB-hCw">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="392"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swipe down to hide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oKE-9X-1jl">
+                                            <rect key="frame" x="84" y="185" width="153" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="dark"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2WI-Eb-Ij1" appends="YES" id="kDw-6D-6IG"/>
+                                </connections>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nnN-1P-Shq" firstAttribute="bottom" secondItem="zq7-fb-DB1" secondAttribute="bottomMargin" id="3EU-zf-G8B"/>
+                            <constraint firstItem="I24-UF-CoI" firstAttribute="leading" secondItem="bmD-oT-dvF" secondAttribute="leading" id="GCa-Uo-mgz"/>
+                            <constraint firstItem="bmD-oT-dvF" firstAttribute="top" secondItem="zq7-fb-DB1" secondAttribute="topMargin" id="JIj-he-NE8"/>
+                            <constraint firstAttribute="bottom" secondItem="Une-Hu-lmp" secondAttribute="bottom" priority="500" constant="20" symbolic="YES" id="M26-ra-ap5"/>
+                            <constraint firstItem="I24-UF-CoI" firstAttribute="trailing" secondItem="bmD-oT-dvF" secondAttribute="trailing" id="MSU-fT-5ph"/>
+                            <constraint firstItem="nnN-1P-Shq" firstAttribute="top" secondItem="I24-UF-CoI" secondAttribute="bottom" priority="500" constant="8" symbolic="YES" id="O9j-cc-NzD"/>
+                            <constraint firstItem="nnN-1P-Shq" firstAttribute="leading" secondItem="Une-Hu-lmp" secondAttribute="leading" id="SiG-EL-Zf7"/>
+                            <constraint firstAttribute="bottom" secondItem="L3A-Qo-PS3" secondAttribute="bottom" id="cyT-TA-dyL"/>
+                            <constraint firstItem="nnN-1P-Shq" firstAttribute="top" secondItem="Une-Hu-lmp" secondAttribute="bottom" constant="8" symbolic="YES" id="d4P-co-Igs"/>
+                            <constraint firstItem="Une-Hu-lmp" firstAttribute="trailing" secondItem="nnN-1P-Shq" secondAttribute="trailing" id="dJD-17-ZOR"/>
+                            <constraint firstItem="nnN-1P-Shq" firstAttribute="centerX" secondItem="zq7-fb-DB1" secondAttribute="centerX" id="eIZ-b3-R9c"/>
+                            <constraint firstItem="bmD-oT-dvF" firstAttribute="leading" secondItem="zq7-fb-DB1" secondAttribute="leading" constant="16" id="ffP-vb-8r7"/>
+                            <constraint firstItem="Une-Hu-lmp" firstAttribute="leading" secondItem="I24-UF-CoI" secondAttribute="leading" id="h58-rf-gUB"/>
+                            <constraint firstAttribute="bottom" secondItem="I24-UF-CoI" secondAttribute="bottom" priority="250" constant="20" symbolic="YES" id="pMD-RA-h5M"/>
+                            <constraint firstItem="L3A-Qo-PS3" firstAttribute="centerX" secondItem="I24-UF-CoI" secondAttribute="centerX" id="tR0-lv-jBT"/>
+                            <constraint firstItem="L3A-Qo-PS3" firstAttribute="top" secondItem="zq7-fb-DB1" secondAttribute="top" id="uhT-5f-z5V"/>
+                            <constraint firstItem="I24-UF-CoI" firstAttribute="trailing" secondItem="Une-Hu-lmp" secondAttribute="trailing" id="wj2-Qn-9Oo"/>
+                            <constraint firstItem="L3A-Qo-PS3" firstAttribute="leading" secondItem="zq7-fb-DB1" secondAttribute="leading" id="xQI-k9-m5I"/>
+                            <constraint firstItem="Une-Hu-lmp" firstAttribute="top" secondItem="I24-UF-CoI" secondAttribute="bottom" constant="8" symbolic="YES" id="xzw-aB-M6j"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Qdv-9v-cne" appends="YES" id="q1W-4m-SYl"/>
+                            <outletCollection property="gestureRecognizers" destination="il0-cn-uxX" appends="YES" id="Dpp-gv-7E9"/>
+                        </connections>
+                    </view>
+                </subviews>
+                <accessibility key="accessibilityConfiguration">
+                    <accessibilityTraits key="traits" none="YES" updatesFrequently="YES"/>
+                </accessibility>
+                <gestureRecognizers/>
+                <constraints>
+                    <constraint firstItem="8lM-PL-JSV" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leading" id="0OM-qT-qSK"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="top" secondItem="8lM-PL-JSV" secondAttribute="bottom" id="1QN-Sd-s9a"/>
+                    <constraint firstItem="8lM-PL-JSV" firstAttribute="leading" secondItem="M91-Jf-xei" secondAttribute="leading" id="3Dt-1S-dvz"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="trailing" secondItem="8lM-PL-JSV" secondAttribute="trailing" id="3Rr-8n-IUv"/>
+                    <constraint firstAttribute="trailing" secondItem="d35-w8-OoI" secondAttribute="trailing" constant="107" id="49c-Yg-qhx"/>
+                    <constraint firstItem="8lM-PL-JSV" firstAttribute="top" secondItem="NTV-Uo-mmO" secondAttribute="top" id="HKR-1d-tCU"/>
+                    <constraint firstAttribute="bottom" secondItem="M91-Jf-xei" secondAttribute="bottom" id="Y4G-xU-lfZ"/>
+                    <constraint firstAttribute="bottom" secondItem="d35-w8-OoI" secondAttribute="bottom" constant="4" id="aWd-Kp-F92"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="bottom" secondItem="M91-Jf-xei" secondAttribute="top" id="h7a-o1-Il8"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="leading" secondItem="8lM-PL-JSV" secondAttribute="leading" id="hkt-cN-LJ2"/>
+                    <constraint firstItem="8lM-PL-JSV" firstAttribute="trailing" secondItem="M91-Jf-xei" secondAttribute="trailing" id="n2i-VH-VAQ"/>
+                    <constraint firstAttribute="trailing" secondItem="M91-Jf-xei" secondAttribute="trailing" id="yNi-zf-Hiw"/>
+                </constraints>
+            </view>
+            <extendedEdge key="edgesForExtendedLayout"/>
+            <toolbarItems/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="activity" destination="d35-w8-OoI" id="fqw-TY-hTm"/>
+                <outlet property="bottomBar" destination="8lM-PL-JSV" id="aWE-p0-Nje"/>
+                <outlet property="exposureSlider" destination="I24-UF-CoI" id="car-Av-n37"/>
+                <outlet property="exposureSwitch" destination="PFG-Th-AaN" id="IXS-lR-iyq"/>
+                <outlet property="flashLightSwitch" destination="yJ7-Wp-h17" id="k4O-Pj-Kxr"/>
+                <outlet property="gainSlider" destination="Une-Hu-lmp" id="bKT-4H-cA4"/>
+                <outlet property="helpView" destination="L3A-Qo-PS3" id="SMJ-ZG-KVF"/>
+                <outlet property="imageView" destination="NTV-Uo-mmO" id="ike-dq-Ebi"/>
+                <outlet property="sensitivity" destination="bmD-oT-dvF" id="TDn-jA-gKf"/>
+                <outlet property="topBar" destination="M91-Jf-xei" id="36Q-UF-f6U"/>
+                <outlet property="whiteSlider" destination="nnN-1P-Shq" id="Dcd-O1-7k9"/>
+                <outlet property="whiteSwitch" destination="IpM-ll-Kef" id="DCf-EB-5WM"/>
+            </connections>
+        </viewController>
+        <window opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" visibleAtLaunch="YES" id="12">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </window>
+        <tapGestureRecognizer id="Qdv-9v-cne">
+            <connections>
+                <action selector="tap:" destination="4st-wb-WTp" id="Adi-bg-SeE"/>
+            </connections>
+        </tapGestureRecognizer>
+        <swipeGestureRecognizer direction="down" id="2WI-Eb-Ij1">
+            <connections>
+                <action selector="closeHelp:" destination="4st-wb-WTp" id="nOJ-cs-KIH"/>
+            </connections>
+        </swipeGestureRecognizer>
+        <tapGestureRecognizer numberOfTapsRequired="2" id="il0-cn-uxX">
+            <connections>
+                <action selector="doubleTap:" destination="4st-wb-WTp" id="3ZC-oO-Aah"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

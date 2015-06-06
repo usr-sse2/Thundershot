@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D7489AEF-198C-4A43-B6DB-0C64491C0DBC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Thundershot</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F5B45752-B5A3-4D55-BC4D-6A005BC5F7AC</key>
+		<string>file:///Users/Michael/Documents/Xcode/SVN</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Thundershot/Thundershot.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F5B45752-B5A3-4D55-BC4D-6A005BC5F7AC</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>F5B45752-B5A3-4D55-BC4D-6A005BC5F7AC</key>
+		<string>file:///Users/Michael/Documents/Xcode/SVN</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>file:///Users/Michael/Documents/Xcode/SVN/Thundershot/Thundershot.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F5B45752-B5A3-4D55-BC4D-6A005BC5F7AC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F5B45752-B5A3-4D55-BC4D-6A005BC5F7AC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SVN</string>
+		</dict>
+	</array>
+</dict>
+</plist>
