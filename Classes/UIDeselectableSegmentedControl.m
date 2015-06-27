@@ -7,22 +7,33 @@
 //
 
 #import "UIDeselectableSegmentedControl.h"
-#import "UIView+LayerShot.h"
+#import "UIImage+TextWithImage.h"
 #import "UIButtonRight.h"
 
+@interface UIDeselectableSegmentedControl ()
 
+@property (nonatomic) NSInteger current;
+@property (strong, nonatomic) NSMutableArray* titleStrings;
+@property (nonatomic) NSInteger selectedSegmentNumber;
+@property (nonatomic) CGRect maxFrame;
+
+@end
 
 @implementation UIDeselectableSegmentedControl
-@synthesize theButton;
 
+
+- (NSInteger) selectedSegmentIndex {
+	return self.selectedSegmentNumber; // а не Index
+}
 
 - (void) setSelectedSegmentIndex:(NSInteger)toValue {
     if (toValue != UISegmentedControlNoSegment) { // show toValue
         [super removeAllSegments];
         [self insertSegmentWithTitle:[self.titleStrings objectAtIndex:toValue] andImage:self.image atIndex:0 animated:NO];
         [self sizeToFit];
-        [super setSelectedSegmentIndex:0];
+		super.selectedSegmentIndex = 0;
         self.selectedSegmentNumber = toValue;
+		[self sendActionsForControlEvents:UIControlEventValueChanged];
     }
     else if (!self.right) { // show all
         //[super setTitle:[self.titleStrings objectAtIndex:0] forSegmentAtIndex:0];
@@ -35,7 +46,7 @@
             [self sizeToFit];
         }
         
-        [super setSelectedSegmentIndex:UISegmentedControlNoSegment];
+		super.selectedSegmentIndex = UISegmentedControlNoSegment;
         self.selectedSegmentNumber = UISegmentedControlNoSegment;
     }
     else { // show all
@@ -48,43 +59,28 @@
             [self insertSegmentWithTitle:[self.titleStrings objectAtIndex:i] andImage:nil atIndex:0 animated:NO];
             [self sizeToFit];
         }
-        [super setSelectedSegmentIndex:UISegmentedControlNoSegment];
+		
+		super.selectedSegmentIndex= UISegmentedControlNoSegment;
         self.selectedSegmentNumber = UISegmentedControlNoSegment;
     }
 
     //[self sizeToFit];
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
-/*
-- (NSInteger)getSelectedSegmentNumber {
-    if (self.selectedSegmentIndex == UISegmentedControlNoSegment)
-        return UISegmentedControlNoSegment;
-    NSString* s = [self titleForSegmentAtIndex:self.selectedSegmentIndex];
-    for (NSInteger i = 0; i < self.titleStrings.count; ++i)
-        if ([s isEqualToString:[self.titleStrings objectAtIndex:i]])
-            return i;
-    return UISegmentedControlNoSegment;
-}
-*/
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    self.current = self.selectedSegmentIndex;//[super valueForKey:@"_selectedSegment"];
+    self.current = super.selectedSegmentIndex;
     [super touchesBegan:touches withEvent:event];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
-    if (self.current == self.selectedSegmentIndex) { // было ничего не выбрано и стало тоже???
-        [self setSelectedSegmentIndex:UISegmentedControlNoSegment];
-    }
-    else {
-        [self setSelectedSegmentIndex:self.selectedSegmentIndex];
-    }
+    if (self.current == super.selectedSegmentIndex) // было ничего не выбрано и стало тоже???
+		self.selectedSegmentIndex = UISegmentedControlNoSegment;
+    else
+        self.selectedSegmentIndex = super.selectedSegmentIndex;
 }
 
 - (void) setTitles:(NSString*)first, ... NS_REQUIRES_NIL_TERMINATION {
-    if (!self.theButton)
-        self.theButton = [self.right ? [UIButtonRight alloc] : [UIButton alloc] init];
-    
     self.titleStrings = [[NSMutableArray alloc] init];
     va_list args;
     va_start(args, first);
@@ -107,56 +103,10 @@
     [self setSelectedSegmentIndex:0];
     [self sizeToFit];
     va_end(args);
-    
-    
 }
 
 -(void)insertSegmentWithTitle:(NSString*)title andImage:(UIImage*)image atIndex:(NSUInteger)index animated:(BOOL)animated {
-    NSMutableAttributedString* attributedTitle = [[NSMutableAttributedString alloc] initWithString:(title ?: @"")]; // ух ты, разве так можно?
-    [attributedTitle addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [title length])];
-    [attributedTitle addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Helvetica" size:11.0f] range:NSMakeRange(0, [title length])];
-    
-    [self.theButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-    //[self.theButton setTitle:title forState:UIControlStateNormal];
-    [self.theButton setImage:image forState:UIControlStateNormal];
-    [self.theButton sizeToFit];
-    
-    
-    
-    [self insertSegmentWithImage:[self.theButton imageFromLayer] atIndex:index animated:animated];
-    //[self insertSegmentWithTitle:title atIndex:index animated:animated];
+	[self insertSegmentWithImage:[UIImage imageFromText:title andImage:image andRight:self.right] atIndex:index animated:animated];
 }
-
-/*- (void) setImagesAndTitles:(id)firstImage, ... NS_REQUIRES_NIL_TERMINATION {
-    if (!self.theButton)
-        self.theButton = [[UIButton alloc] init];
-    id firstTitle = nil;
-    NSUInteger i = 0;
-    self.titleStrings = [[NSMutableArray alloc] init];
-    va_list args;
-    va_start(args, firstImage);
-    for (id arg = firstImage; arg != nil; arg = va_arg(args, id), ++i) {
-        [self.titleStrings addObject:arg];
-        if (i == 1)
-            firstTitle = arg;
-    }
-    [self removeAllSegments];
-    self.apportionsSegmentWidthsByContent = YES;
-    
-    
-    [self insertSegmentWithTitle:firstTitle andImage:firstImage atIndex:0 animated:NO];
-    [self setSelectedSegmentIndex:0];
-    [self sizeToFit];
-    va_end(args);
-}*/
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

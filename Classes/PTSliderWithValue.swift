@@ -53,14 +53,14 @@ public class PTSliderWithValue: UISlider {
 		if example == nil {
 			
 			let minString = toStringLambda(minimumValue), maxString = toStringLambda(maximumValue);
-			let minSize = count(minString), maxSize = count(maxString);
+			let minSize = minString.characters.count, maxSize = maxString.characters.count;
 			
 			label.text = minSize > maxSize ? minString : maxString
 			maxLen = max(minSize, maxSize)
 		}
 		else {
 			label.text = example
-			maxLen = count(example!)
+			maxLen = (example!).characters.count
 		}
 		label.sizeToFit()
 	}
@@ -77,8 +77,8 @@ public class PTSliderWithValue: UISlider {
 	
 	@IBAction func onValueChanged () {
 		label.text = toStringLambda(value)
-		if count(label.text!) > maxLen {
-			recalcSize(example: label.text)
+		if (label.text!).characters.count > maxLen {
+			recalcSize(label.text)
 		}
 		minimumValueImage = label.imageFromLayer()
 	}

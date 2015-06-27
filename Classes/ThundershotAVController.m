@@ -5,7 +5,7 @@
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "UIDeselectableSegmentedControl.h"
-#import "UIView+LayerShot.h"
+#import "UIImage+TextWithImage.h"
 #import "Thundershot-Swift.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #include <math.h>
@@ -14,12 +14,23 @@ static float prev_brightness;
 static bool isDetecting = false;
 static bool isFirst = true;
 static CGColorSpaceRef colorSpace;
+static CMTimeScale timescale = 1000000;
 
-CMTimeScale timescale = 1;
 
-// TOOD: change exposure slider to denominator, use fixed nominator
-// TOOD: help screen
-// TODO: deactivating constraints on UI elements hide
+// TODO: show focus points
+// TODO: manual focus (really?)
+// TODO: show help on first launch
+// TODO: rotate UI elements
+// TODO: check image orientation
+// TOOD: check UI on iPad
+
+static double f(double x) {
+	return cbrt(x);
+}
+
+static double inversef(double y) {
+	return y * y * y;
+}
 
 
 @interface ThundershotAVController () <AVCaptureVideoDataOutputSampleBufferDelegate>
@@ -27,9 +38,8 @@ CMTimeScale timescale = 1;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *layer;
 @property (nonatomic, strong) AVCaptureConnection *videoConnection;
-@property (nonatomic, strong) UIButton *tempButton;
 @property (strong, nonatomic) IBOutlet UISlider *sensitivity;
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIView *imageView;
 @property (strong, nonatomic) IBOutlet PTSliderWithValue *exposureSlider;
 @property (strong, nonatomic) IBOutlet PTSliderWithValue *gainSlider;
 @property (strong, nonatomic) AVCaptureVideoDataOutput *captureOutput;
@@ -38,10 +48,13 @@ CMTimeScale timescale = 1;
 @property (strong, nonatomic) IBOutlet UIDeselectableSegmentedControl *flashLightSwitch;
 @property (strong, nonatomic) IBOutlet UIDeselectableSegmentedControl *exposureSwitch;
 @property (strong, nonatomic) IBOutlet UIDeselectableSegmentedControl *whiteSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *lightningSwitch;
 @property (strong, nonatomic) IBOutlet UIToolbar *bottomBar;
 @property (strong, nonatomic) IBOutlet UIToolbar *topBar;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (strong, nonatomic) IBOutlet UIView *helpView;
+@property (strong, nonatomic) IBOutlet UIImageView *exampleView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintToDisable;
 
 - (void)setupCapture;
 
@@ -49,48 +62,24 @@ CMTimeScale timescale = 1;
 
 @implementation ThundershotAVController
 
-@synthesize tempButton;
 
 - (BOOL)shouldAutorotate {
-	return NO;
+	return YES;
 }
 
-- (IBAction)closeHelp:(id)sender {
+- (IBAction)closeHelp {
 	self.helpView.hidden = true;
 }
 
 - (IBAction)openHelp {
-	self.helpView.hidden = false;
+	self.helpView.hidden = !self.helpView.hidden;
 }
-
-
-- (UIImage*) imageFromText:(NSString*)title {
-	if (!self.tempButton) {
-		self.tempButton = [[UIButton alloc] init];
-		NSString* title = @"Warm";
-		NSMutableAttributedString* attributedTitle = [[NSMutableAttributedString alloc] initWithString:title];
-		[attributedTitle addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [title length])];
-		[attributedTitle addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Helvetica" size:11.0f] range:NSMakeRange(0, [title length])];
-		
-		[self.tempButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-		[self.tempButton sizeToFit];
-	}
-	
-	
-	NSMutableAttributedString* attributedTitle = [[NSMutableAttributedString alloc] initWithString:title];
-	[attributedTitle addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [title length])];
-	[attributedTitle addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Helvetica" size:11.0f] range:NSMakeRange(0, [title length])];
-	
-	[self.tempButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-	return [self.tempButton imageFromLayer];
-}
-
 
 - (IBAction)flashLightSwitchClick:(UIDeselectableSegmentedControl*)sender {
 	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	[device lockForConfiguration:nil];
-	[device setTorchMode:(sender.selectedSegmentNumber == 1) ? AVCaptureTorchModeOn : AVCaptureTorchModeOff];
-	switch (sender.selectedSegmentNumber) {
+	[device setTorchMode:(sender.selectedSegmentIndex == 1) ? AVCaptureTorchModeOn : AVCaptureTorchModeOff];
+	switch (sender.selectedSegmentIndex) {
 		case 0: [device setFlashMode:AVCaptureFlashModeAuto]; break;
 		case 1:
 		case 3: [device setFlashMode:AVCaptureFlashModeOff]; break;
@@ -104,7 +93,6 @@ CMTimeScale timescale = 1;
 	self.saveOperationsCount = 0;
 	[self setupCapture];
 	
-	[super viewDidAppear:animated];
 	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	if (device == nil) {
 		//return;
@@ -113,8 +101,9 @@ CMTimeScale timescale = 1;
 	
 	if ([device hasTorch] && [device hasFlash]) { // FIXME: бывают ли устройства без вспышки, но с фонариком?
 		self.flashLightSwitch.right = NO;
-		self.flashLightSwitch.image = [UIImage imageNamed:@"Lightning"];
+		self.flashLightSwitch.image = nil;
 		[self.flashLightSwitch setTitles:@"Auto", @"Torch", @"Flash", @"Off", nil];
+		self.flashLightSwitch.selectedSegmentIndex = 3;
 	}
 	else
 		[self.flashLightSwitch removeFromSuperview];
@@ -127,18 +116,19 @@ CMTimeScale timescale = 1;
 			return [NSString stringWithFormat:@"ISO %d", (int)v];
 		};
 		
-		//timescale = device.activeFormat.minExposureDuration.timescale;
+		timescale = device.activeFormat.minExposureDuration.timescale;
 		
 		// 1 / minvalue = value / timescale
 		
 		//self.exposureSlider.minValue = (double)device.activeFormat.minExposureDuration.timescale / (double)device.activeFormat.minExposureDuration.value;
 		
-		self.exposureSlider.minValue = device.activeFormat.minExposureDuration.value;
-		self.exposureSlider.maxValue =
-		MIN((long double)device.activeFormat.maxExposureDuration.value / (long double)device.activeFormat.maxExposureDuration.timescale, 0.2) * (long double)timescale;
+		self.exposureSlider.minValue = f(device.activeFormat.minExposureDuration.value);
+		self.exposureSlider.maxValue = f(
+										 MIN((long double)device.activeFormat.maxExposureDuration.value / (long double)device.activeFormat.maxExposureDuration.timescale, 0.2) * (long double)timescale
+										 );
 		
 		self.exposureSlider.toStringLambda = ^NSString*(float v) {
-			return [NSString stringWithFormat:@"Exposure 1/%d", (int)((double)timescale / (double)v)];
+			return [NSString stringWithFormat:@"Exposure 1/%d", (int)((double)timescale / inversef(v))];
 		};
 		
 		self.exposureSwitch.right = NO;
@@ -164,10 +154,11 @@ CMTimeScale timescale = 1;
 	self.topBar.hidden = NO;
 	self.bottomBar.hidden = NO;
 	
-	self.sensitivity.minimumValueImage = [self imageFromText:@"Low"];
-	self.sensitivity.maximumValueImage = [self imageFromText:@"High"];
-	self.whiteSlider.minimumValueImage = [self imageFromText:@"Cold"];
-	self.whiteSlider.maximumValueImage = [self imageFromText:@"Warm"];
+	self.sensitivity.minimumValueImage = [UIImage imageFromText:@"Low"];
+	self.sensitivity.maximumValueImage = [UIImage imageFromText:@"High"];
+	self.whiteSlider.minimumValueImage = [UIImage imageFromText:@"Cold"];
+	self.whiteSlider.maximumValueImage = [UIImage imageFromText:@"Warm"];
+	
 	
 	for (AVCaptureConnection *connection in self.photoOutput.connections)
 	{
@@ -180,6 +171,11 @@ CMTimeScale timescale = 1;
 		if (self.videoConnection)
 			break;
 	}
+	
+	if (self.videoConnection)
+		self.exampleView.hidden = YES;
+	
+	[super viewDidAppear:animated];
 }
 
 - (IBAction)tap:(UITapGestureRecognizer*)sender {
@@ -206,19 +202,24 @@ CMTimeScale timescale = 1;
 	
 }
 
-- (IBAction)lightDetectionEnabledSwitch:(id)sender {
+- (IBAction)layout {
+	self.constraintToDisable.active = self.exposureSwitch.selectedSegmentIndex; // 0 - auto, 1 - manual
+}
+
+- (IBAction)switchLightningDetection:(id)sender {
 	UISwitch* sw = sender;
 	isDetecting = sw.on;
 	self.sensitivity.hidden = !sw.on;
-	if (isDetecting) { // disable flashlight!
+	self.flashLightSwitch.hidden = sw.on;
+	if (isDetecting) {
 		firstFrame = true;
-		self.flashLightSwitch.selectedSegmentIndex = 3;
+		self.flashLightSwitch.selectedSegmentIndex = 3; // disable flashlight
 	}
 }
 
 - (IBAction)brightnessSwitchValueChanged:(UIDeselectableSegmentedControl *)sender {
 	AVCaptureDevice* device;
-	switch (sender.selectedSegmentNumber) {
+	switch (sender.selectedSegmentIndex) {
 		case 0:
 			self.exposureSlider.hidden = self.gainSlider.hidden = YES;
 			device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -238,24 +239,24 @@ CMTimeScale timescale = 1;
 - (IBAction)brightnessChange:(id)sender {
 	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	[device lockForConfiguration:nil];
-	CMTime s = {self.exposureSlider.value, timescale, 1, 0};
+	CMTime s = { ceil(inversef(self.exposureSlider.value)), timescale, 1, 0};
 	
 	
 	if (s.value / s.timescale < device.activeFormat.minExposureDuration.value / device.activeFormat.minExposureDuration.timescale)
 		s = device.activeFormat.minExposureDuration;
-		
-		if (s.value / s.timescale > device.activeFormat.maxExposureDuration.value / device.activeFormat.maxExposureDuration.timescale)
-			s = device.activeFormat.maxExposureDuration;
-		[device setExposureModeCustomWithDuration:s ISO:self.gainSlider.value completionHandler:^void(CMTime s){
-			AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-			[device unlockForConfiguration];
-		}];
+	
+	if (s.value / s.timescale > device.activeFormat.maxExposureDuration.value / device.activeFormat.maxExposureDuration.timescale)
+		s = device.activeFormat.maxExposureDuration;
+	[device setExposureModeCustomWithDuration:s ISO:self.gainSlider.value completionHandler:^void(CMTime s){
+		AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+		[device unlockForConfiguration];
+	}];
 }
 
 
 - (IBAction)whiteSwitchValueChanged:(UIDeselectableSegmentedControl *)sender {
 	AVCaptureDevice* device;
-	switch (sender.selectedSegmentNumber) {
+	switch (sender.selectedSegmentIndex) {
 		case 0:
 			device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 			[device lockForConfiguration:nil];
@@ -332,6 +333,12 @@ CMTimeScale timescale = 1;
 }
 
 
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo: (void *) contextInfo {
+	self.saveOperationsCount--;
+	if (!self.saveOperationsCount)
+		[self.activity stopAnimating];
+}
+
 - (IBAction)takePhoto:(id)sender {
 	
 	// Flash the screen white and fade it out
@@ -347,11 +354,7 @@ CMTimeScale timescale = 1;
 		 
 		 self.saveOperationsCount++;
 		 [self.activity startAnimating];
-		 UIImageWriteToSavedPhotosAlbum([self orientedImageFromImage:[[UIImage alloc] initWithData:imageData].CGImage], nil, nil, nil);
-		 // FIXME: нужно вычитать, когда сохранение завершилось
-		 self.saveOperationsCount--;
-		 if (!self.saveOperationsCount)
-			 [self.activity stopAnimating];
+		 UIImageWriteToSavedPhotosAlbum([self orientedImageFromImage:[[UIImage alloc] initWithData:imageData].CGImage], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 	 }];
 }
 
