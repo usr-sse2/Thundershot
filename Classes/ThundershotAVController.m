@@ -60,11 +60,27 @@ static double inversef(double y) {
 
 @end
 
+enum FlashSwitchSection {
+	kFlashSwitchSectionAuto = 0,
+	kFlashSwitchSectionTorch = 1,
+	kFlashSwitchSectionOn = 2,
+	kFlashSwitchSectionOff = 3
+};
+
+enum AutoManualSwitchSection {
+	kSwitchSectionAuto = 0,
+	kSwitchSectionManual = 1
+};
+
 @implementation ThundershotAVController
 
 
 - (BOOL)shouldAutorotate {
 	return YES;
+}
+
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations {
+	return UIInterfaceOrientationMaskAll;
 }
 
 - (IBAction)closeHelp {
@@ -78,12 +94,12 @@ static double inversef(double y) {
 - (IBAction)flashLightSwitchClick:(UIDeselectableSegmentedControl*)sender {
 	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	[device lockForConfiguration:nil];
-	[device setTorchMode:(sender.selectedSegmentIndex == 1) ? AVCaptureTorchModeOn : AVCaptureTorchModeOff];
+	[device setTorchMode:(sender.selectedSegmentIndex == kFlashSwitchSectionTorch) ? AVCaptureTorchModeOn : AVCaptureTorchModeOff];
 	switch (sender.selectedSegmentIndex) {
-		case 0: [device setFlashMode:AVCaptureFlashModeAuto]; break;
-		case 1:
-		case 3: [device setFlashMode:AVCaptureFlashModeOff]; break;
-		case 2: [device setFlashMode:AVCaptureFlashModeOn]; break;
+		case kFlashSwitchSectionAuto: [device setFlashMode:AVCaptureFlashModeAuto]; break;
+		case kFlashSwitchSectionTorch:
+		case kFlashSwitchSectionOff: [device setFlashMode:AVCaptureFlashModeOff]; break;
+		case kFlashSwitchSectionOn: [device setFlashMode:AVCaptureFlashModeOn]; break;
 	}
 	[device unlockForConfiguration];
 }
@@ -101,9 +117,9 @@ static double inversef(double y) {
 	
 	if ([device hasTorch] && [device hasFlash]) { // FIXME: бывают ли устройства без вспышки, но с фонариком?
 		self.flashLightSwitch.right = NO;
-		self.flashLightSwitch.image = nil;
+		self.flashLightSwitch.image = [UIImage imageNamed:@"Light Bulb"];
 		[self.flashLightSwitch setTitles:@"Auto", @"Torch", @"Flash", @"Off", nil];
-		self.flashLightSwitch.selectedSegmentIndex = 3;
+		self.flashLightSwitch.selectedSegmentIndex = kFlashSwitchSectionOff;
 	}
 	else
 		[self.flashLightSwitch removeFromSuperview];
@@ -142,7 +158,7 @@ static double inversef(double y) {
 		[self.gainSlider removeFromSuperview];
 	}
 	
-	self.whiteSlider.minimumValue = 1500;
+	self.whiteSlider.minimumValue = 2000;
 	self.whiteSlider.maximumValue = 20000;
 	
 	self.whiteSwitch.right = YES;
@@ -311,25 +327,22 @@ static double inversef(double y) {
 //}
 
 - (UIImage*)orientedImageFromImage:(CGImageRef)image {
-	UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
 	UIImageOrientation imageOrientation;
-	switch (deviceOrientation) {
-		case UIDeviceOrientationPortraitUpsideDown:
-			imageOrientation = UIImageOrientationLeft;
+	switch ([self interfaceOrientation]) {
+		case UIInterfaceOrientationPortraitUpsideDown:
+			imageOrientation = UIImageOrientationUp;
 			break;
-		case UIDeviceOrientationLandscapeLeft:
+		case UIInterfaceOrientationLandscapeLeft:
 			imageOrientation = UIImageOrientationDown;
 			break;
-		case UIDeviceOrientationLandscapeRight:
-			imageOrientation = UIImageOrientationUp;
-		case UIDeviceOrientationPortrait:
+		case UIInterfaceOrientationLandscapeRight:
+			imageOrientation = UIImageOrientationLeft;
+		case UIInterfaceOrientationPortrait:
 		default:
 			imageOrientation = UIImageOrientationRight;
 			break;
 	}
-	
 	return [UIImage imageWithCGImage:image scale:1.0f orientation:imageOrientation];
-	
 }
 
 
@@ -388,13 +401,41 @@ static double inversef(double y) {
 	[self.captureSession addOutput:self.photoOutput];
 	
 	self.layer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
-	self.layer.frame = self.imageView.bounds;
+	self.layer.frame = self.view.bounds;
 	self.layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+	
+	
 	[self.view.layer insertSublayer:self.layer atIndex:0];
+	
 	if ([self.layer.connection isVideoOrientationSupported]) {
-		[self.layer.connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
+		[self.layer.connection setVideoOrientation:[ThundershotAVController videoOrientationFromInterfaceOrientation:[self interfaceOrientation]]];
 	}
 	[self.captureSession startRunning];
+}
+
++ (AVCaptureVideoOrientation) videoOrientationFromInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+	switch (interfaceOrientation) {
+		case UIInterfaceOrientationLandscapeLeft:
+			return AVCaptureVideoOrientationLandscapeLeft;
+		case UIInterfaceOrientationLandscapeRight:
+			return AVCaptureVideoOrientationLandscapeRight;
+		case UIInterfaceOrientationPortraitUpsideDown:
+			return AVCaptureVideoOrientationPortraitUpsideDown;
+		default:
+			return AVCaptureVideoOrientationPortrait;
+	}
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	if (!self.layer) return;
+	self.layer.connection.videoOrientation = [ThundershotAVController videoOrientationFromInterfaceOrientation:toInterfaceOrientation];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+	if (self.layer)
+		self.layer.frame = CGRectMake(0, 0, size.width, size.height);
 }
 
 #pragma mark -
@@ -500,17 +541,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 			self.saveOperationsCount++;
 			[self.activity startAnimating];
 			
-			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-				UIImageWriteToSavedPhotosAlbum(orientedImage, nil, nil, nil);
-				// FIXME: wrong time
-				dispatch_async(dispatch_get_main_queue(), ^{
-					self.saveOperationsCount--;
-					if (!self.saveOperationsCount)
-						[self.activity stopAnimating];
-				});
-			});
-			
-			
+			UIImageWriteToSavedPhotosAlbum(orientedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 		}
 		else {
 			//NSLog(@"frame processed");

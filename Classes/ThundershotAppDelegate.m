@@ -3,10 +3,6 @@
 
 @implementation ThundershotAppDelegate
 
-@synthesize window;
-@synthesize avController;
-
-
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -16,9 +12,9 @@
     NSDictionary *appDefaults = [NSDictionary dictionary];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     // Add the view controller's view to the window and display.
-    [window setRootViewController:avController];
-	[window makeKeyAndVisible];
-    return YES;
+	self.window.rootViewController = self.avController;
+	[self.window makeKeyAndVisible];
+	return YES;
 }
 
 
