@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <development version="5000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -29,59 +27,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0136.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="Uo6-x5-HnT">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0136" translatesAutoresizingMaskIntoConstraints="NO" id="Uo6-x5-HnT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
-                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="8lM-PL-JSV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <items>
-                            <barButtonItem style="plain" id="Tta-JB-euC">
-                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="yJ7-Wp-h17" customClass="UIDeselectableSegmentedControl">
-                                    <rect key="frame" x="16" y="7" width="89" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="Auto" width="36"/>
-                                        <segment title="Torch"/>
-                                        <segment title="Flash"/>
-                                        <segment title="Off"/>
-                                    </segments>
-                                    <connections>
-                                        <action selector="flashLightSwitchClick:" destination="4st-wb-WTp" eventType="valueChanged" id="9um-sw-uSe"/>
-                                    </connections>
-                                </segmentedControl>
-                            </barButtonItem>
-                            <barButtonItem style="plain" systemItem="flexibleSpace" id="mef-7L-GgC"/>
-                            <barButtonItem title="Item" style="plain" id="b8w-aB-wbn">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="RzV-Zu-NfY">
-                                    <rect key="frame" x="149" y="11" width="22" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <connections>
-                                        <action selector="openHelp" destination="4st-wb-WTp" eventType="touchUpInside" id="VMw-pj-pyg"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem style="plain" systemItem="flexibleSpace" id="Qlm-T6-caK"/>
-                            <barButtonItem style="plain" id="zai-Jt-8M1">
-                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="IpM-ll-Kef" customClass="UIDeselectableSegmentedControl">
-                                    <rect key="frame" x="215" y="7.5" width="89" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="Auto" width="36"/>
-                                        <segment title="Manual"/>
-                                    </segments>
-                                    <connections>
-                                        <action selector="whiteSwitchValueChanged:" destination="4st-wb-WTp" eventType="valueChanged" id="F7B-J3-fJ9"/>
-                                    </connections>
-                                </segmentedControl>
-                            </barButtonItem>
-                        </items>
-                        <color key="tintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                    </toolbar>
                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="d35-w8-OoI">
                         <rect key="frame" x="176" y="439" width="37" height="37"/>
                     </activityIndicatorView>
-                    <slider hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="1" maxValue="1200" translatesAutoresizingMaskIntoConstraints="NO" id="I24-UF-CoI" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
+                    <slider hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="500" minValue="1" maxValue="1200" translatesAutoresizingMaskIntoConstraints="NO" id="I24-UF-CoI" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
                         <rect key="frame" x="14" y="360" width="292" height="31"/>
                         <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
@@ -93,7 +45,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="brightnessChange:" destination="4st-wb-WTp" eventType="valueChanged" id="uCk-B8-cYj"/>
+                            <action selector="exposureChange:" destination="4st-wb-WTp" eventType="valueChanged" id="18c-Ns-b4y"/>
                         </connections>
                     </slider>
                     <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="Une-Hu-lmp" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
@@ -108,7 +60,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="brightnessChange:" destination="4st-wb-WTp" eventType="valueChanged" id="tWi-gd-Bye"/>
+                            <action selector="exposureChange:" destination="4st-wb-WTp" eventType="valueChanged" id="lIA-6M-l1I"/>
                         </connections>
                     </slider>
                     <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nnN-1P-Shq" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
@@ -126,9 +78,13 @@
                             <action selector="whiteChange:" destination="4st-wb-WTp" eventType="valueChanged" id="ik7-Sy-DqW"/>
                         </connections>
                     </slider>
-                    <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-0.050000000000000003" minValue="-0.29999999999999999" maxValue="-0.01" translatesAutoresizingMaskIntoConstraints="NO" id="bmD-oT-dvF">
+                    <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-0.050000000000000003" minValue="-0.29999999999999999" maxValue="-0.01" translatesAutoresizingMaskIntoConstraints="NO" id="bmD-oT-dvF" customClass="PTSliderWithRotatableLabel" customModule="Thundershot" customModuleProvider="target">
                         <rect key="frame" x="14" y="322" width="292" height="31"/>
                         <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="minimumValueText" value="Low"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="maximumValueText" value="High"/>
+                        </userDefinedRuntimeAttributes>
                     </slider>
                     <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zq7-fb-DB1">
                         <rect key="frame" x="0.0" y="44" width="320" height="392"/>
@@ -142,94 +98,106 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="392"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe down to hide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydc-7y-U62">
-                                                    <rect key="frame" x="93" y="117" width="134.5" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="xqe-ao-7Nn"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lightning detection" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="84" translatesAutoresizingMaskIntoConstraints="NO" id="2rI-Xu-CXH">
-                                                    <rect key="frame" x="228" y="348" width="84" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flashlight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLC-tU-cBA">
-                                                    <rect key="frame" x="8" y="8" width="74" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="ZJk-cI-Bhg"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White balance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgj-uY-Dgy">
-                                                    <rect key="frame" x="202" y="8" width="110" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exposure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4i-V3-O6R">
-                                                    <rect key="frame" x="8" y="355" width="72" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Lzo-jX-SuH"/>
-                                                        <constraint firstAttribute="width" constant="72" id="Uvt-6m-zfQ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDk-gQ-rSi">
-                                                    <rect key="frame" x="110" y="355" width="99" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdu-oV-53a">
-                                                    <rect key="frame" x="139" y="8" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="42" id="IYB-3R-CoU"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use sliders to adjust parameters. Sliders appear when manual adjustment or lightning detection is enabled." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="226" translatesAutoresizingMaskIntoConstraints="NO" id="ysq-M3-NBZ">
-                                                    <rect key="frame" x="47" y="179" width="226" height="72"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YwJ-Ul-EfY" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="55" height="15"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Flashlight"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6XW-Fr-1x8" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
+                                                    <rect key="frame" x="231" y="8" width="81" height="15"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="White balance"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EW5-c3-yV2" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
+                                                    <rect key="frame" x="258" y="355" width="54" height="29"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Lightning detection"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLq-EM-4o3" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
+                                                    <rect key="frame" x="67" y="160" width="187" height="72"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Swipe down to hide  Use sliders to adjust parameters. Sliders appear when manual adjustment is enabled."/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIn-GY-n6G" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
+                                                    <rect key="frame" x="147" y="8" width="27" height="15"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Help"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qu4-QW-gmG" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
+                                                    <rect key="frame" x="138" y="355" width="44" height="29"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Take a photo"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7q-AI-BqL" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="355" width="53" height="29"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Exposure and ISO"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ysq-M3-NBZ" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="47" id="2j4-sS-LoN"/>
-                                                <constraint firstItem="fgj-uY-Dgy" firstAttribute="leading" secondItem="gdu-oV-53a" secondAttribute="trailing" constant="21" id="40o-LP-AMr"/>
-                                                <constraint firstItem="gdu-oV-53a" firstAttribute="firstBaseline" secondItem="fgj-uY-Dgy" secondAttribute="firstBaseline" id="CtG-8C-tOC"/>
-                                                <constraint firstItem="gdu-oV-53a" firstAttribute="baseline" secondItem="gLC-tU-cBA" secondAttribute="baseline" id="Gk4-5b-4x5"/>
-                                                <constraint firstItem="gdu-oV-53a" firstAttribute="centerX" secondItem="ydc-7y-U62" secondAttribute="centerX" id="GpD-o9-1jx"/>
-                                                <constraint firstItem="ydc-7y-U62" firstAttribute="top" secondItem="gdu-oV-53a" secondAttribute="bottom" constant="88" id="GyP-HU-P32"/>
-                                                <constraint firstItem="zDk-gQ-rSi" firstAttribute="firstBaseline" secondItem="y4i-V3-O6R" secondAttribute="firstBaseline" id="IM9-4d-YWW"/>
-                                                <constraint firstItem="fgj-uY-Dgy" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="topMargin" id="Mko-Ej-tYv"/>
-                                                <constraint firstItem="2rI-Xu-CXH" firstAttribute="trailing" secondItem="jbk-VP-fnB" secondAttribute="trailingMargin" id="Mmy-mr-cDw"/>
-                                                <constraint firstItem="zDk-gQ-rSi" firstAttribute="baseline" secondItem="y4i-V3-O6R" secondAttribute="baseline" id="P6K-yW-1jt"/>
-                                                <constraint firstItem="2rI-Xu-CXH" firstAttribute="bottom" secondItem="jbk-VP-fnB" secondAttribute="bottomMargin" id="WEN-Ft-WMo"/>
-                                                <constraint firstItem="gdu-oV-53a" firstAttribute="baseline" secondItem="fgj-uY-Dgy" secondAttribute="baseline" id="X7i-vb-S2x"/>
-                                                <constraint firstItem="gLC-tU-cBA" firstAttribute="leading" secondItem="y4i-V3-O6R" secondAttribute="leading" id="YYJ-Yl-B2z"/>
-                                                <constraint firstItem="2rI-Xu-CXH" firstAttribute="leading" secondItem="zDk-gQ-rSi" secondAttribute="trailing" constant="19" id="and-Cx-eik"/>
-                                                <constraint firstItem="ysq-M3-NBZ" firstAttribute="centerX" secondItem="ydc-7y-U62" secondAttribute="centerX" id="bYB-6t-r9c"/>
-                                                <constraint firstItem="ydc-7y-U62" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="be7-o0-Mlv"/>
-                                                <constraint firstItem="gLC-tU-cBA" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leadingMargin" id="dHR-6F-wzK"/>
-                                                <constraint firstItem="zDk-gQ-rSi" firstAttribute="centerX" secondItem="ysq-M3-NBZ" secondAttribute="centerX" id="g3i-lj-7X7"/>
-                                                <constraint firstItem="zDk-gQ-rSi" firstAttribute="centerY" secondItem="2rI-Xu-CXH" secondAttribute="centerY" id="hpW-l7-Mcb"/>
-                                                <constraint firstItem="gdu-oV-53a" firstAttribute="leading" secondItem="gLC-tU-cBA" secondAttribute="trailing" constant="57" id="i3U-XG-ZFa"/>
-                                                <constraint firstItem="gLC-tU-cBA" firstAttribute="firstBaseline" secondItem="gdu-oV-53a" secondAttribute="firstBaseline" id="kHv-xC-sw7"/>
-                                                <constraint firstItem="fgj-uY-Dgy" firstAttribute="trailing" secondItem="2rI-Xu-CXH" secondAttribute="trailing" id="mgB-3h-Kvl"/>
-                                                <constraint firstAttribute="trailing" secondItem="ysq-M3-NBZ" secondAttribute="trailing" constant="47" id="r94-Sm-vKx"/>
-                                                <constraint firstItem="ysq-M3-NBZ" firstAttribute="top" secondItem="ydc-7y-U62" secondAttribute="bottom" constant="41" id="vOZ-uK-juE"/>
-                                                <constraint firstItem="zDk-gQ-rSi" firstAttribute="leading" secondItem="y4i-V3-O6R" secondAttribute="trailing" constant="30" id="zXs-ze-3em"/>
+                                                <constraint firstItem="YwJ-Ul-EfY" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="0BJ-Xd-Vco"/>
+                                                <constraint firstAttribute="bottom" secondItem="Qu4-QW-gmG" secondAttribute="bottom" constant="8" id="29q-19-fXc"/>
+                                                <constraint firstItem="mLq-EM-4o3" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="3vs-Pi-PkC"/>
+                                                <constraint firstItem="6XW-Fr-1x8" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="626-7N-xlC"/>
+                                                <constraint firstAttribute="bottom" secondItem="z7q-AI-BqL" secondAttribute="bottom" constant="8" id="7N1-Pl-fQ8"/>
+                                                <constraint firstItem="Qu4-QW-gmG" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="87A-Cb-cdg"/>
+                                                <constraint firstItem="mLq-EM-4o3" firstAttribute="centerY" secondItem="jbk-VP-fnB" secondAttribute="centerY" id="BEd-5r-7W3"/>
+                                                <constraint firstAttribute="trailing" secondItem="EW5-c3-yV2" secondAttribute="trailing" constant="8" id="FFa-cd-NmH"/>
+                                                <constraint firstItem="GIn-GY-n6G" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="TJU-HV-CfS"/>
+                                                <constraint firstItem="GIn-GY-n6G" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="UqN-kW-wTH"/>
+                                                <constraint firstItem="YwJ-Ul-EfY" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="Uzs-lb-vLH"/>
+                                                <constraint firstItem="z7q-AI-BqL" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="jhs-Tk-W0E"/>
+                                                <constraint firstAttribute="trailing" secondItem="6XW-Fr-1x8" secondAttribute="trailing" constant="8" id="s6W-Hf-f1a"/>
+                                                <constraint firstAttribute="bottom" secondItem="EW5-c3-yV2" secondAttribute="bottom" constant="8" id="wQe-oR-eGU"/>
                                             </constraints>
                                         </view>
                                         <blurEffect style="light"/>
@@ -260,49 +228,110 @@
                             <outletCollection property="gestureRecognizers" destination="il0-cn-uxX" appends="YES" id="Dpp-gv-7E9"/>
                         </connections>
                     </view>
-                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="M91-Jf-xei">
-                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="yIg-Qe-0Q6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <items>
-                            <barButtonItem style="plain" id="xFx-ut-fFk">
-                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="PFG-Th-AaN" customClass="UIDeselectableSegmentedControl">
-                                    <rect key="frame" x="16" y="7.5" width="95" height="29"/>
+                            <barButtonItem style="plain" id="U8Z-t9-Mla">
+                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" id="r2t-uw-9Ix" customClass="UIDeselectableSegmentedControl">
+                                    <rect key="frame" x="16" y="8" width="176" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <segments>
                                         <segment title="Auto"/>
-                                        <segment title="Manual"/>
+                                        <segment title="Torch"/>
+                                        <segment title="Flash"/>
+                                        <segment title="Off"/>
                                     </segments>
                                     <connections>
-                                        <action selector="brightnessSwitchValueChanged:" destination="4st-wb-WTp" eventType="valueChanged" id="Xys-No-QvA"/>
-                                        <action selector="layout" destination="4st-wb-WTp" eventType="valueChanged" id="YeB-Ct-PpO"/>
+                                        <action selector="flashLightSwitchClick:" destination="4st-wb-WTp" eventType="valueChanged" id="wXX-Jh-P3Y"/>
                                     </connections>
                                 </segmentedControl>
                             </barButtonItem>
-                            <barButtonItem style="plain" systemItem="flexibleSpace" id="QV7-Ie-QZx"/>
-                            <barButtonItem style="plain" systemItem="camera" id="hPq-YL-a7J">
-                                <connections>
-                                    <action selector="takePhoto:" destination="4st-wb-WTp" id="OdI-Nk-ZQ7"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem style="plain" systemItem="flexibleSpace" id="4bU-13-EVw"/>
-                            <barButtonItem style="plain" id="Me2-E3-fMO">
-                                <button key="customView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ehO-Su-dcn">
-                                    <rect key="frame" x="225" y="11" width="20" height="22"/>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="Qav-4v-45K"/>
+                            <barButtonItem style="plain" id="1a6-NZ-FKt">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="j5y-WF-Cxs" customClass="UISwitchButton" customModule="Thundershot" customModuleProvider="target">
+                                    <rect key="frame" x="223" y="11" width="22" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <state key="normal" image="Lightning"/>
-                                    <state key="disabled" image="Lightning"/>
+                                    <state key="normal" title="?"/>
+                                    <state key="selected">
+                                        <color key="titleColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="openHelp" destination="4st-wb-WTp" eventType="touchUpInside" id="wdu-aK-ZE4"/>
+                                    </connections>
                                 </button>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="cFJ-en-37U">
-                                <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Znh-3r-UJz">
-                                    <rect key="frame" x="255" y="6.5" width="51" height="31"/>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="v11-cm-MLy"/>
+                            <barButtonItem style="plain" id="ffb-f6-NF7">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="P7w-QD-Z3t" customClass="UISwitchButton" customModule="Thundershot" customModuleProvider="target">
+                                    <rect key="frame" x="275" y="11" width="29" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="onTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="WB"/>
+                                    <state key="selected" title="WB">
+                                        <color key="titleColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
                                     <connections>
-                                        <action selector="layout" destination="4st-wb-WTp" eventType="valueChanged" id="ieb-af-G4I"/>
-                                        <action selector="switchLightningDetection:" destination="4st-wb-WTp" eventType="valueChanged" id="4zn-Te-CWr"/>
+                                        <action selector="whiteSwitchValueChanged:" destination="4st-wb-WTp" eventType="valueChanged" id="Kzi-DB-m7D"/>
                                     </connections>
-                                </switch>
+                                </button>
+                            </barButtonItem>
+                        </items>
+                        <color key="tintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
+                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="M91-Jf-xei">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <items>
+                            <barButtonItem style="plain" id="Pyx-n0-jJe">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="HsH-RA-ltn" customClass="UISwitchButton" customModule="Thundershot" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="11" width="20" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" image="Brightness White">
+                                        <color key="titleColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="selected" image="Brightness Yellow">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="exposureSwitchValueChanged:" destination="4st-wb-WTp" eventType="valueChanged" id="wlC-xX-RE9"/>
+                                        <action selector="layout" destination="4st-wb-WTp" eventType="valueChanged" id="LAd-tE-L3J"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="QV7-Ie-QZx"/>
+                            <barButtonItem style="plain" id="8fg-cV-VSZ">
+                                <button key="customView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="e5k-Hv-8PM">
+                                    <rect key="frame" x="146" y="8" width="28" height="28"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="Camera White"/>
+                                    <state key="selected">
+                                        <color key="titleColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="highlighted" image="Camera Yellow">
+                                        <color key="titleColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="takePhoto:" destination="4st-wb-WTp" eventType="touchUpInside" id="oXv-8s-pnu"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="4bU-13-EVw"/>
+                            <barButtonItem style="plain" id="sL3-8t-jp2">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="jPi-mg-bTC" customClass="UISwitchButton" customModule="Thundershot" customModuleProvider="target">
+                                    <rect key="frame" x="284" y="11" width="20" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" image="Lightning White"/>
+                                    <state key="selected" image="Lightning Yellow"/>
+                                    <connections>
+                                        <action selector="layout" destination="4st-wb-WTp" eventType="valueChanged" id="LGq-vv-QTi"/>
+                                        <action selector="switchLightningDetection:" destination="4st-wb-WTp" eventType="valueChanged" id="Jon-75-bTC"/>
+                                    </connections>
+                                </button>
                             </barButtonItem>
                         </items>
                         <color key="tintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -313,34 +342,33 @@
                 </accessibility>
                 <gestureRecognizers/>
                 <constraints>
-                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="bottom" secondItem="aQW-l3-1aJ" secondAttribute="top" id="17M-1o-var"/>
-                    <constraint firstItem="zq7-fb-DB1" firstAttribute="leading" secondItem="8lM-PL-JSV" secondAttribute="leading" id="3Yd-Tl-AJR"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="centerY" secondItem="NTV-Uo-mmO" secondAttribute="centerY" id="1QD-jJ-v6S"/>
+                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="centerY" secondItem="NTV-Uo-mmO" secondAttribute="centerY" id="2gi-lM-wtG"/>
                     <constraint firstItem="nnN-1P-Shq" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leadingMargin" id="3mn-lB-0BL"/>
                     <constraint firstAttribute="trailingMargin" secondItem="nnN-1P-Shq" secondAttribute="trailing" id="99F-qt-fsb"/>
-                    <constraint firstItem="nnN-1P-Shq" firstAttribute="top" secondItem="8lM-PL-JSV" secondAttribute="bottom" constant="8" id="AI6-or-ZY1"/>
-                    <constraint firstItem="M91-Jf-xei" firstAttribute="leading" secondItem="Uo6-x5-HnT" secondAttribute="leading" id="BOt-8g-zNg"/>
                     <constraint firstItem="M91-Jf-xei" firstAttribute="top" secondItem="Une-Hu-lmp" secondAttribute="bottom" constant="8" id="CA0-8h-OuY"/>
                     <constraint firstItem="d35-w8-OoI" firstAttribute="centerY" secondItem="M91-Jf-xei" secondAttribute="centerY" id="CWm-xu-jDW"/>
-                    <constraint firstItem="zq7-fb-DB1" firstAttribute="trailing" secondItem="M91-Jf-xei" secondAttribute="trailing" id="D0U-rO-q2i"/>
+                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="Cvv-Lq-Nza"/>
                     <constraint firstItem="Une-Hu-lmp" firstAttribute="top" secondItem="I24-UF-CoI" secondAttribute="bottom" constant="8" symbolic="YES" id="ELY-H8-zzZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="d35-w8-OoI" secondAttribute="trailing" constant="91" id="Gyo-Sa-9hf"/>
-                    <constraint firstItem="d35-w8-OoI" firstAttribute="top" secondItem="zq7-fb-DB1" secondAttribute="bottom" constant="3" id="Iie-6y-ymc"/>
                     <constraint firstItem="bmD-oT-dvF" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leadingMargin" id="Jln-eS-mDV"/>
-                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="top" secondItem="8lM-PL-JSV" secondAttribute="top" id="KU8-xS-uE6"/>
-                    <constraint firstItem="zq7-fb-DB1" firstAttribute="leading" secondItem="M91-Jf-xei" secondAttribute="leading" id="WhA-k6-FbK"/>
-                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="trailing" secondItem="M91-Jf-xei" secondAttribute="trailing" id="ZSh-OD-Vb5"/>
-                    <constraint firstItem="zq7-fb-DB1" firstAttribute="trailing" secondItem="8lM-PL-JSV" secondAttribute="trailing" id="ZYg-CW-e81"/>
+                    <constraint firstItem="M91-Jf-xei" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="LKB-3R-Fjw"/>
+                    <constraint firstItem="nnN-1P-Shq" firstAttribute="top" secondItem="yIg-Qe-0Q6" secondAttribute="bottom" constant="8" id="OeK-UW-zIT"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="VYC-1a-XN5"/>
                     <constraint firstItem="I24-UF-CoI" firstAttribute="top" secondItem="bmD-oT-dvF" secondAttribute="bottom" constant="8" symbolic="YES" id="aWF-2b-WVn"/>
+                    <constraint firstItem="yIg-Qe-0Q6" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="bE9-BG-ruH"/>
+                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="bmP-Bh-FQM"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bmD-oT-dvF" secondAttribute="trailing" id="dRD-JN-99r"/>
                     <constraint firstItem="M91-Jf-xei" firstAttribute="top" secondItem="bmD-oT-dvF" secondAttribute="bottom" priority="500" constant="8" id="eum-Wc-Q7B"/>
                     <constraint firstAttribute="trailingMargin" secondItem="I24-UF-CoI" secondAttribute="trailing" id="fnP-xd-Uqd"/>
-                    <constraint firstAttribute="trailing" secondItem="Uo6-x5-HnT" secondAttribute="trailing" id="jJV-Lw-d81"/>
+                    <constraint firstItem="M91-Jf-xei" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="ghk-2A-HYC"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="hBV-ok-IMb"/>
+                    <constraint firstItem="yIg-Qe-0Q6" firstAttribute="top" secondItem="jgq-5t-6TZ" secondAttribute="bottom" id="iBK-tf-HaA"/>
+                    <constraint firstItem="yIg-Qe-0Q6" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="l52-rm-E92"/>
                     <constraint firstItem="Une-Hu-lmp" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leadingMargin" id="p4e-Hv-Dbm"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Une-Hu-lmp" secondAttribute="trailing" id="p9P-kq-x1C"/>
-                    <constraint firstItem="zq7-fb-DB1" firstAttribute="centerY" secondItem="Uo6-x5-HnT" secondAttribute="centerY" id="qTt-aq-biv"/>
-                    <constraint firstItem="8lM-PL-JSV" firstAttribute="top" secondItem="jgq-5t-6TZ" secondAttribute="bottom" id="spe-JH-Z8W"/>
                     <constraint firstItem="M91-Jf-xei" firstAttribute="bottom" secondItem="aQW-l3-1aJ" secondAttribute="top" id="tUJ-oy-EeJ"/>
-                    <constraint firstItem="8lM-PL-JSV" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leading" id="ut4-He-lNw"/>
+                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="height" secondItem="NTV-Uo-mmO" secondAttribute="height" id="uRI-fO-Rne"/>
                     <constraint firstItem="I24-UF-CoI" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leadingMargin" id="xUm-F7-ZNN"/>
                     <constraint firstItem="M91-Jf-xei" firstAttribute="top" secondItem="zq7-fb-DB1" secondAttribute="bottom" id="zNn-fx-pol"/>
                 </constraints>
@@ -348,33 +376,40 @@
             <extendedEdge key="edgesForExtendedLayout"/>
             <toolbarItems/>
             <nil key="simulatedStatusBarMetrics"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="activity" destination="d35-w8-OoI" id="fqw-TY-hTm"/>
                 <outlet property="bottomBar" destination="M91-Jf-xei" id="pDT-h5-8rw"/>
+                <outlet property="cameraButton" destination="e5k-Hv-8PM" id="cvc-ZE-Dgm"/>
                 <outlet property="constraintToDisable" destination="aWF-2b-WVn" id="HQx-Aa-Bfu"/>
                 <outlet property="exampleView" destination="Uo6-x5-HnT" id="OJN-sr-5sn"/>
+                <outlet property="exposureLabel" destination="z7q-AI-BqL" id="dyn-1E-8R3"/>
                 <outlet property="exposureSlider" destination="I24-UF-CoI" id="car-Av-n37"/>
-                <outlet property="exposureSwitch" destination="PFG-Th-AaN" id="IXS-lR-iyq"/>
-                <outlet property="flashLightSwitch" destination="yJ7-Wp-h17" id="k4O-Pj-Kxr"/>
+                <outlet property="exposureSwitch" destination="HsH-RA-ltn" id="Tb5-R5-WLA"/>
+                <outlet property="flashLightSwitch" destination="r2t-uw-9Ix" id="Oqy-tG-A0C"/>
+                <outlet property="flashlightLabel" destination="YwJ-Ul-EfY" id="oYO-Mv-kpR"/>
                 <outlet property="gainSlider" destination="Une-Hu-lmp" id="bKT-4H-cA4"/>
+                <outlet property="helpButton" destination="j5y-WF-Cxs" id="2mi-VP-03O"/>
+                <outlet property="helpLabel" destination="GIn-GY-n6G" id="W3a-ur-sYu"/>
                 <outlet property="helpView" destination="zq7-fb-DB1" id="AMm-WL-0O9"/>
                 <outlet property="imageView" destination="NTV-Uo-mmO" id="eNk-od-1nS"/>
-                <outlet property="lightningSwitch" destination="Znh-3r-UJz" id="DJC-Gh-Tou"/>
+                <outlet property="lightningLabel" destination="EW5-c3-yV2" id="64L-Nj-Ak9"/>
+                <outlet property="lightningSwitch" destination="jPi-mg-bTC" id="jTl-ib-eKa"/>
                 <outlet property="sensitivity" destination="bmD-oT-dvF" id="TDn-jA-gKf"/>
-                <outlet property="topBar" destination="8lM-PL-JSV" id="dG5-7r-Nch"/>
+                <outlet property="takeAPhotoLabel" destination="Qu4-QW-gmG" id="128-Ie-Iul"/>
+                <outlet property="topBar" destination="yIg-Qe-0Q6" id="mDU-Qi-fR8"/>
+                <outlet property="useSlidersLabel" destination="mLq-EM-4o3" id="JcW-gu-ajN"/>
+                <outlet property="wbLabel" destination="6XW-Fr-1x8" id="6L2-b2-tD8"/>
                 <outlet property="whiteSlider" destination="nnN-1P-Shq" id="Dcd-O1-7k9"/>
-                <outlet property="whiteSwitch" destination="IpM-ll-Kef" id="DCf-EB-5WM"/>
+                <outlet property="whiteSwitch" destination="P7w-QD-Z3t" id="BEo-wy-JTn"/>
             </connections>
-            <point key="canvasLocation" x="105" y="223"/>
+            <point key="canvasLocation" x="-83" y="259"/>
         </viewController>
         <window opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" visibleAtLaunch="YES" id="12">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </window>
         <tapGestureRecognizer id="Qdv-9v-cne">
@@ -394,7 +429,12 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="IMG_0136.JPG" width="852" height="640"/>
-        <image name="Lightning" width="20" height="20"/>
+        <image name="Brightness White" width="20" height="20"/>
+        <image name="Brightness Yellow" width="20" height="20"/>
+        <image name="Camera White" width="25" height="25"/>
+        <image name="Camera Yellow" width="25" height="25"/>
+        <image name="IMG_0136" width="852" height="640"/>
+        <image name="Lightning White" width="20" height="20"/>
+        <image name="Lightning Yellow" width="20" height="20"/>
     </resources>
 </document>

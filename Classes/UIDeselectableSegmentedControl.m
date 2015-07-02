@@ -27,7 +27,7 @@
 }
 
 - (void) setSelectedSegmentIndex:(NSInteger)toValue {
-    if (toValue != UISegmentedControlNoSegment) { // show toValue
+	if (toValue != UISegmentedControlNoSegment) { // show toValue
         [super removeAllSegments];
         [self insertSegmentWithTitle:[self.titleStrings objectAtIndex:toValue] andImage:self.image atIndex:0 animated:NO];
         [self sizeToFit];
@@ -63,7 +63,10 @@
 		super.selectedSegmentIndex= UISegmentedControlNoSegment;
         self.selectedSegmentNumber = UISegmentedControlNoSegment;
     }
-
+	[self setNeedsLayout];
+	[self layoutIfNeeded];
+	[self setNeedsUpdateConstraints];
+	
     //[self sizeToFit];
 }
 

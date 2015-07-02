@@ -8,12 +8,25 @@
 
 import UIKit
 
+@IBDesignable
 public class PTSliderWithValue: UISlider {
 	private var maxLen = 0
 	private var label = UILabel()
 	private var _toStringLambda : ((Float) -> String) = {
 		(v : Float) -> String in
 		return String(format: "%f", v)
+	}
+	
+	private var tran = CGAffineTransformIdentity
+	
+	public var labelTransform : CGAffineTransform {
+		get {
+			return tran
+		}
+		set (newTransform) {
+			tran = newTransform
+			onValueChanged()
+		}
 	}
 	
 	public var toStringLambda : ((Float) -> String) {
@@ -62,13 +75,30 @@ public class PTSliderWithValue: UISlider {
 			label.text = example
 			maxLen = (example!).characters.count
 		}
+		label.bounds = CGRectMake(label.bounds.origin.x, label.bounds.origin.y, 0, label.bounds.height)
 		label.sizeToFit()
 	}
 	
 	required public init(coder aDecoder: NSCoder) {
-		label.font = UIFont(name: "Helvetica", size: 11)
+		label.font = UIFont(name: "Helvetica", size: 12)
 		label.textColor = UIColor(white: 1, alpha: 1)
+		label.textAlignment = NSTextAlignment.Center
+		label.lineBreakMode = NSLineBreakMode.ByTruncatingMiddle
+		label.numberOfLines = 2
 		super.init(coder: aDecoder)
+		continuous = true
+		recalcSize()
+		onValueChanged()
+		self.addTarget(self, action:"onValueChanged", forControlEvents: UIControlEvents.ValueChanged)
+	}
+	
+	override public init(frame : CGRect) {
+		label.font = UIFont(name: "Helvetica", size: 12)
+		label.textColor = UIColor(white: 1, alpha: 1)
+		label.textAlignment = NSTextAlignment.Center
+		label.lineBreakMode = NSLineBreakMode.ByTruncatingMiddle
+		label.numberOfLines = 2
+		super.init(frame : frame)
 		continuous = true
 		recalcSize()
 		onValueChanged()
@@ -80,6 +110,6 @@ public class PTSliderWithValue: UISlider {
 		if (label.text!).characters.count > maxLen {
 			recalcSize(label.text)
 		}
-		minimumValueImage = label.imageFromLayer()
+		minimumValueImage = label.imageFromLayerWithTransform(tran)
 	}
 }

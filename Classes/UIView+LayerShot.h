@@ -8,4 +8,5 @@
 
 @interface UIView (LayerShot)
 - (UIImage *)imageFromLayer;
+- (UIImage *)imageFromLayerWithTransform: (CGAffineTransform) transform;
 @end

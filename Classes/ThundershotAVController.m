@@ -9,18 +9,11 @@
 #import "Thundershot-Swift.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #include <math.h>
-static bool firstFrame = true;
-static float prev_brightness;
-static bool isDetecting = false;
-static bool isFirst = true;
-static CGColorSpaceRef colorSpace;
-static CMTimeScale timescale = 1000000;
 
 
 // TODO: show focus points
 // TODO: manual focus (really?)
 // TODO: show help on first launch
-// TODO: rotate UI elements
 // TODO: check image orientation
 // TOOD: check UI on iPad
 
@@ -34,27 +27,48 @@ static double inversef(double y) {
 
 
 @interface ThundershotAVController () <AVCaptureVideoDataOutputSampleBufferDelegate>
+@property (nonatomic, strong) UIView* flashView;
+@property (nonatomic) bool firstFrame;
+@property (nonatomic) float prev_brightness;
+@property (nonatomic) bool isDetecting;
+@property (nonatomic) bool isFirst;
+@property (nonatomic) CGColorSpaceRef colorSpace;
+@property (nonatomic) CMTimeScale timescale;
+@property (nonatomic) UIInterfaceOrientation orientation;
 @property (nonatomic) NSInteger saveOperationsCount;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *layer;
 @property (nonatomic, strong) AVCaptureConnection *videoConnection;
-@property (strong, nonatomic) IBOutlet UISlider *sensitivity;
+@property (strong, nonatomic) IBOutlet PTSliderWithRotatableLabel *sensitivity;
 @property (strong, nonatomic) IBOutlet UIView *imageView;
 @property (strong, nonatomic) IBOutlet PTSliderWithValue *exposureSlider;
 @property (strong, nonatomic) IBOutlet PTSliderWithValue *gainSlider;
 @property (strong, nonatomic) AVCaptureVideoDataOutput *captureOutput;
 @property (strong, nonatomic) AVCaptureStillImageOutput *photoOutput;
-@property (strong, nonatomic) IBOutlet UISlider *whiteSlider;
+@property (strong, nonatomic) IBOutlet PTSliderWithValue *whiteSlider;
 @property (strong, nonatomic) IBOutlet UIDeselectableSegmentedControl *flashLightSwitch;
-@property (strong, nonatomic) IBOutlet UIDeselectableSegmentedControl *exposureSwitch;
-@property (strong, nonatomic) IBOutlet UIDeselectableSegmentedControl *whiteSwitch;
-@property (strong, nonatomic) IBOutlet UISwitch *lightningSwitch;
+@property (strong, nonatomic) IBOutlet UISwitchButton *exposureSwitch;
+@property (strong, nonatomic) IBOutlet UISwitchButton *whiteSwitch;
+@property (strong, nonatomic) IBOutlet UISwitchButton *lightningSwitch;
 @property (strong, nonatomic) IBOutlet UIToolbar *bottomBar;
 @property (strong, nonatomic) IBOutlet UIToolbar *topBar;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (strong, nonatomic) IBOutlet UIView *helpView;
 @property (strong, nonatomic) IBOutlet UIImageView *exampleView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintToDisable;
+@property (strong, nonatomic) IBOutlet UIButton *helpButton;
+@property (strong, nonatomic) IBOutlet UIButton *cameraButton;
+
+
+// Help labels
+@property (strong, nonatomic) IBOutlet PTRotatableLabel *wbLabel;
+@property (strong, nonatomic) IBOutlet PTRotatableLabel *useSlidersLabel;
+@property (strong, nonatomic) IBOutlet PTRotatableLabel *helpLabel;
+@property (strong, nonatomic) IBOutlet PTRotatableLabel *takeAPhotoLabel;
+@property (strong, nonatomic) IBOutlet PTRotatableLabel *exposureLabel;
+@property (strong, nonatomic) IBOutlet PTRotatableLabel *flashlightLabel;
+@property (strong, nonatomic) IBOutlet PTRotatableLabel *lightningLabel;
+
 
 - (void)setupCapture;
 
@@ -67,28 +81,24 @@ enum FlashSwitchSection {
 	kFlashSwitchSectionOff = 3
 };
 
-enum AutoManualSwitchSection {
-	kSwitchSectionAuto = 0,
-	kSwitchSectionManual = 1
-};
 
 @implementation ThundershotAVController
 
-
 - (BOOL)shouldAutorotate {
-	return YES;
+	return NO;
 }
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
-	return UIInterfaceOrientationMaskAll;
+	return UIInterfaceOrientationMaskPortrait;
 }
 
 - (IBAction)closeHelp {
+	self.helpButton.selected = false;
 	self.helpView.hidden = true;
 }
 
 - (IBAction)openHelp {
-	self.helpView.hidden = !self.helpView.hidden;
+	self.helpView.hidden = !self.helpButton.selected;
 }
 
 - (IBAction)flashLightSwitchClick:(UIDeselectableSegmentedControl*)sender {
@@ -105,34 +115,49 @@ enum AutoManualSwitchSection {
 }
 
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)  name:UIDeviceOrientationDidChangeNotification  object:nil];
+	
+	self.firstFrame = true;
+	self.isDetecting = false;
+	self.isFirst = true;
 	self.saveOperationsCount = 0;
+	
+	self.helpView.hidden = !self.helpButton.selected;
+	
+	self.exposureLabel	.label.textAlignment = NSTextAlignmentLeft;
+	self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentCenter;
+	self.lightningLabel	.label.textAlignment = NSTextAlignmentRight;
+	self.flashlightLabel.label.textAlignment = NSTextAlignmentLeft;
+	self.helpLabel		.label.textAlignment = NSTextAlignmentCenter;
+	self.wbLabel		.label.textAlignment = NSTextAlignmentRight;
+	self.useSlidersLabel.label.textAlignment = NSTextAlignmentCenter;
+	
 	[self setupCapture];
 	
 	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-	if (device == nil) {
-		//return;
-	}
 	[device lockForConfiguration:nil];
 	
 	if ([device hasTorch] && [device hasFlash]) { // FIXME: бывают ли устройства без вспышки, но с фонариком?
 		self.flashLightSwitch.right = NO;
-		self.flashLightSwitch.image = [UIImage imageNamed:@"Light Bulb"];
+		self.flashLightSwitch.image = [UIImage imageNamed:@"Light Bulb White"];
 		[self.flashLightSwitch setTitles:@"Auto", @"Torch", @"Flash", @"Off", nil];
 		self.flashLightSwitch.selectedSegmentIndex = kFlashSwitchSectionOff;
 	}
 	else
-		[self.flashLightSwitch removeFromSuperview];
+		self.flashLightSwitch.enabled = false;
 	
 	if ([device isExposureModeSupported:AVCaptureExposureModeCustom]) {
 		self.gainSlider.minimumValue = device.activeFormat.minISO;
 		self.gainSlider.maximumValue = device.activeFormat.maxISO;
 		
 		self.gainSlider.toStringLambda = ^NSString*(float v) {
-			return [NSString stringWithFormat:@"ISO %d", (int)v];
+			return [NSString stringWithFormat:@"ISO\n%d", (int)v];
 		};
 		
-		timescale = device.activeFormat.minExposureDuration.timescale;
+		self.timescale = device.activeFormat.minExposureDuration.timescale;
 		
 		// 1 / minvalue = value / timescale
 		
@@ -140,41 +165,29 @@ enum AutoManualSwitchSection {
 		
 		self.exposureSlider.minValue = f(device.activeFormat.minExposureDuration.value);
 		self.exposureSlider.maxValue = f(
-										 MIN((long double)device.activeFormat.maxExposureDuration.value / (long double)device.activeFormat.maxExposureDuration.timescale, 0.2) * (long double)timescale
+										 MIN((long double)device.activeFormat.maxExposureDuration.value / (long double)device.activeFormat.maxExposureDuration.timescale, 0.2) * (long double)self.timescale
 										 );
 		
 		self.exposureSlider.toStringLambda = ^NSString*(float v) {
-			return [NSString stringWithFormat:@"Exposure 1/%d", (int)((double)timescale / inversef(v))];
+			return [NSString stringWithFormat:@"Exposure\n1/%d", (int)((double)self.timescale / inversef(v))];
 		};
 		
-		self.exposureSwitch.right = NO;
-		self.exposureSwitch.image = [UIImage imageNamed:@"Brightness"];
-		[self.exposureSwitch setTitles:@"Auto", @"Manual", nil];
 		
 	}
-	else {
-		[self.exposureSwitch removeFromSuperview];
-		[self.exposureSlider removeFromSuperview];
-		[self.gainSlider removeFromSuperview];
+	else
+		self.exposureSwitch.enabled = false;
+	
+	if ([device isWhiteBalanceModeSupported:AVCaptureWhiteBalanceModeLocked]) {
+		self.whiteSlider.minimumValue = 2500;
+		self.whiteSlider.maximumValue = 20000;
+		self.whiteSlider.toStringLambda = ^NSString*(float v) {
+			return [NSString stringWithFormat:@"Temperature\n%d K", (int)roundf(v)];
+		};
 	}
-	
-	self.whiteSlider.minimumValue = 2000;
-	self.whiteSlider.maximumValue = 20000;
-	
-	self.whiteSwitch.right = YES;
-	self.whiteSwitch.image = [UIImage imageNamed:@"WB"];
-	[self.whiteSwitch setTitles:@"Auto", @"Manual", nil];
+	else
+		self.whiteSwitch.enabled = false;
 	
 	[device unlockForConfiguration];
-	
-	self.topBar.hidden = NO;
-	self.bottomBar.hidden = NO;
-	
-	self.sensitivity.minimumValueImage = [UIImage imageFromText:@"Low"];
-	self.sensitivity.maximumValueImage = [UIImage imageFromText:@"High"];
-	self.whiteSlider.minimumValueImage = [UIImage imageFromText:@"Cold"];
-	self.whiteSlider.maximumValueImage = [UIImage imageFromText:@"Warm"];
-	
 	
 	for (AVCaptureConnection *connection in self.photoOutput.connections)
 	{
@@ -190,8 +203,14 @@ enum AutoManualSwitchSection {
 	
 	if (self.videoConnection)
 		self.exampleView.hidden = YES;
-	
+}
+
+- (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	self.flashView = [[UIView alloc] initWithFrame:self.view.frame];
+	self.flashView.backgroundColor = [UIColor whiteColor];
+	self.flashView.hidden = true;
+	[self.view addSubview:self.flashView];
 }
 
 - (IBAction)tap:(UITapGestureRecognizer*)sender {
@@ -219,23 +238,23 @@ enum AutoManualSwitchSection {
 }
 
 - (IBAction)layout {
-	self.constraintToDisable.active = self.exposureSwitch.selectedSegmentIndex; // 0 - auto, 1 - manual
+	self.constraintToDisable.active = self.exposureSwitch.selected; // 0 - auto, 1 - manual
 }
 
 - (IBAction)switchLightningDetection:(id)sender {
-	UISwitch* sw = sender;
-	isDetecting = sw.on;
-	self.sensitivity.hidden = !sw.on;
-	self.flashLightSwitch.hidden = sw.on;
-	if (isDetecting) {
-		firstFrame = true;
-		self.flashLightSwitch.selectedSegmentIndex = 3; // disable flashlight
+	UISwitchButton* sw = sender;
+	self.isDetecting = sw.selected;
+	self.sensitivity.hidden = !sw.selected;
+	self.flashLightSwitch.enabled = !sw.selected;
+	if (self.isDetecting) {
+		self.firstFrame = true;
+		self.flashLightSwitch.selectedSegmentIndex = kFlashSwitchSectionOff; // disable flashlight
 	}
 }
 
-- (IBAction)brightnessSwitchValueChanged:(UIDeselectableSegmentedControl *)sender {
+- (IBAction)exposureSwitchValueChanged:(UISwitchButton *)sender {
 	AVCaptureDevice* device;
-	switch (sender.selectedSegmentIndex) {
+	switch (sender.selected) {
 		case 0:
 			self.exposureSlider.hidden = self.gainSlider.hidden = YES;
 			device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -246,16 +265,20 @@ enum AutoManualSwitchSection {
 			
 		case 1:
 			device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+			self.exposureSlider.value = f((double)device.exposureDuration.value * (double)self.timescale / (double)device.exposureDuration.timescale);
+			self.gainSlider.value = device.ISO;
 			self.exposureSlider.hidden = self.gainSlider.hidden = NO;
-			[self brightnessChange:sender];
+			[self.exposureSlider sendActionsForControlEvents:UIControlEventValueChanged];
+			[self.gainSlider sendActionsForControlEvents:UIControlEventValueChanged];
+			[self exposureChange:sender];
 			break;
 	}
 }
 
-- (IBAction)brightnessChange:(id)sender {
+- (IBAction)exposureChange:(id)sender {
 	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	[device lockForConfiguration:nil];
-	CMTime s = { ceil(inversef(self.exposureSlider.value)), timescale, 1, 0};
+	CMTime s = { ceil(inversef(self.exposureSlider.value)), self.timescale, 1, 0};
 	
 	
 	if (s.value / s.timescale < device.activeFormat.minExposureDuration.value / device.activeFormat.minExposureDuration.timescale)
@@ -270,9 +293,9 @@ enum AutoManualSwitchSection {
 }
 
 
-- (IBAction)whiteSwitchValueChanged:(UIDeselectableSegmentedControl *)sender {
+- (IBAction)whiteSwitchValueChanged:(UISwitchButton *)sender {
 	AVCaptureDevice* device;
-	switch (sender.selectedSegmentIndex) {
+	switch (sender.selected) {
 		case 0:
 			device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 			[device lockForConfiguration:nil];
@@ -311,32 +334,33 @@ enum AutoManualSwitchSection {
 	}];
 }
 
-//- (void)flashScreen {
-//	UIView *flashView = [[UIView alloc] initWithFrame:self.layer.frame];
-//	[flashView setBackgroundColor:[UIColor whiteColor]];
-//	[[[self view] window] addSubview:flashView];
-//	
-//	[UIView animateWithDuration:1.f
-//					 animations:^{
-//						 [flashView setAlpha:0.f];
-//					 }
-//					 completion:^(BOOL finished){
-//						 [flashView removeFromSuperview];
-//					 }
-//	 ];
-//}
+- (void)flashScreen {
+	self.flashView.alpha = 1.f;
+	self.flashView.hidden = false;
+	
+	[UIView animateWithDuration:1.f
+					 animations:^{
+						 self.flashView.alpha = 0.f;
+					 }
+					 completion:^(BOOL finished){
+						 self.flashView.hidden = true;
+					 }
+	 ];
+}
 
 - (UIImage*)orientedImageFromImage:(CGImageRef)image {
-	UIImageOrientation imageOrientation;
-	switch ([self interfaceOrientation]) {
+	UIImageOrientation imageOrientation = UIImageOrientationRight;
+	// FIXME: image orientation
+	switch (self.orientation) {
 		case UIInterfaceOrientationPortraitUpsideDown:
-			imageOrientation = UIImageOrientationUp;
+			imageOrientation = UIImageOrientationLeft;
 			break;
 		case UIInterfaceOrientationLandscapeLeft:
-			imageOrientation = UIImageOrientationDown;
+			imageOrientation = UIImageOrientationUp;
 			break;
 		case UIInterfaceOrientationLandscapeRight:
-			imageOrientation = UIImageOrientationLeft;
+			imageOrientation = UIImageOrientationDown;
+			break;
 		case UIInterfaceOrientationPortrait:
 		default:
 			imageOrientation = UIImageOrientationRight;
@@ -355,9 +379,9 @@ enum AutoManualSwitchSection {
 - (IBAction)takePhoto:(id)sender {
 	
 	// Flash the screen white and fade it out
-	//if (sender == self.cameraButton) {
-	
-	///}
+	if (sender == self.cameraButton) {
+		[self flashScreen];
+	}
 	
 	if (!self.videoConnection) return;
 	
@@ -374,7 +398,7 @@ enum AutoManualSwitchSection {
 - (void)setupCapture {
 	/*We setup the input*/
 	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-	colorSpace = CGColorSpaceCreateDeviceRGB(); // FIXME: never released
+	self.colorSpace = CGColorSpaceCreateDeviceRGB(); // FIXME: never released
 	
 	AVCaptureDeviceInput *captureInput = [AVCaptureDeviceInput
 										  deviceInputWithDevice:device
@@ -384,7 +408,6 @@ enum AutoManualSwitchSection {
 	/*We setup the output*/
 	self.captureOutput = [[AVCaptureVideoDataOutput alloc] init];
 	self.captureOutput.alwaysDiscardsLateVideoFrames = YES;
-	//captureOutput.minFrameDuration = CMTimeMake(1, 10);
 	[self.captureOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
 	// Set the video output to store frame in BGRA (It is supposed to be faster)
 	NSDictionary* videoSettings = @{(__bridge NSString*)kCVPixelBufferPixelFormatTypeKey: [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA]};
@@ -408,35 +431,11 @@ enum AutoManualSwitchSection {
 	[self.view.layer insertSublayer:self.layer atIndex:0];
 	
 	if ([self.layer.connection isVideoOrientationSupported]) {
-		[self.layer.connection setVideoOrientation:[ThundershotAVController videoOrientationFromInterfaceOrientation:[self interfaceOrientation]]];
+		[self.layer.connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
 	}
 	[self.captureSession startRunning];
 }
 
-+ (AVCaptureVideoOrientation) videoOrientationFromInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-	switch (interfaceOrientation) {
-		case UIInterfaceOrientationLandscapeLeft:
-			return AVCaptureVideoOrientationLandscapeLeft;
-		case UIInterfaceOrientationLandscapeRight:
-			return AVCaptureVideoOrientationLandscapeRight;
-		case UIInterfaceOrientationPortraitUpsideDown:
-			return AVCaptureVideoOrientationPortraitUpsideDown;
-		default:
-			return AVCaptureVideoOrientationPortrait;
-	}
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-	if (!self.layer) return;
-	self.layer.connection.videoOrientation = [ThundershotAVController videoOrientationFromInterfaceOrientation:toInterfaceOrientation];
-}
-
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
-	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-	if (self.layer)
-		self.layer.frame = CGRectMake(0, 0, size.width, size.height);
-}
 
 #pragma mark -
 #pragma mark AVCaptureSession delegate
@@ -444,15 +443,13 @@ enum AutoManualSwitchSection {
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	   fromConnection:(AVCaptureConnection *)connection
 {
-	if (!isDetecting) return;
+	if (!self.isDetecting) return;
 	/*if (saveNext) {
 	 [self captureOutputHigh:captureOutput didOutputSampleBuffer:sampleBuffer fromConnection:connection];
 	 saveNext = false;
 	 return;
 	 }*/
-	/*uint32_t histogram[256];
-	 
-	 uint8_t histogram_image[256*256];*/
+	
 	@autoreleasepool {
 		//CFDictionaryRef metadata = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate);
 		CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -464,22 +461,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 		size_t width = CVPixelBufferGetWidth(imageBuffer);
 		size_t height = CVPixelBufferGetHeight(imageBuffer);
 		size_t n = width*height;
-		/*  bzero(histogram, 256*sizeof(uint32_t));
-		 //bzero(histogram_image, 256*256);
-		 
-		 for (int i = 0; i < 4*n; i+=32) {
-		 histogram[(baseAddress[i]+baseAddress[i+1]+baseAddress[i+2])/3]++;
-		 }
-		 n /= 8;
-		 
-		 for (int i = 0; i < 256; i++) {
-		 //int j = (histogram[i] <= 256) ? histogram[i] : 256;
-		 int j = histogram[i] ? (log(histogram[i])/log(n)) * 256 : 0;
-		 memset(histogram_image + i*256, 255, j);
-		 bzero(histogram_image + i*256 + j, 256-j);
-		 }
-		 */
-		
 		uint64_t pixels_sum = 0;
 		
 #define SKIP 64
@@ -487,33 +468,12 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 			pixels_sum += (baseAddress[i]+baseAddress[i+1]+baseAddress[i+2]);
 		float avg_brightness = (float)pixels_sum / ((256 * 3 * n) / SKIP);
 		
-		/*  for (int i = 0; i < 256; i++) {
-		 //int j = (histogram[i] <= 256) ? histogram[i] : 256;
-		 int j = avg_brightness * 256.0f;
-		 memset(histogram_image + i*256, 255, j);
-		 bzero(histogram_image + i*256 + j, 256-j);
-		 }
-		 
-		 
-		 
-		 for (int i = 0; i < 50*bytesPerRow; i+=4) {
-		 baseAddress[i] = 128;
-		 baseAddress[i+1] = 128;
-		 baseAddress[i+2] = 0;
-		 }
-		 
-		 CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-		 CGContextRef newContext = CGBitmapContextCreate(histogram_image, 256, 256, 8, 256, colorSpace, kCGBitmapByteOrderDefault);
-		 CGImageRef histImage = CGBitmapContextCreateImage(newContext);
-		 
-		 CGContextRelease(newContext);
-		 CGColorSpaceRelease(colorSpace);*/
-		if (firstFrame) {
-			prev_brightness = avg_brightness;
-			firstFrame = false;
+		if (self.firstFrame) {
+			self.prev_brightness = avg_brightness;
+			self.firstFrame = false;
 		}
 		// sensitivity = -threshold
-		else if (avg_brightness - prev_brightness >= -self.sensitivity.value) {
+		else if (avg_brightness - self.prev_brightness >= -self.sensitivity.value) {
 			
 			// create suitable color space
 			CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -536,10 +496,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 			
 			[self takePhoto:self];
 			
-			UIImage *orientedImage = [self orientedImageFromImage:newImage];
-			CGImageRelease(newImage);
 			self.saveOperationsCount++;
 			[self.activity startAnimating];
+			UIImage *orientedImage = [self orientedImageFromImage:newImage];
+			CGImageRelease(newImage);
 			
 			UIImageWriteToSavedPhotosAlbum(orientedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 		}
@@ -549,39 +509,64 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 			/*We unlock the  image buffer*/
 			CVPixelBufferUnlockBaseAddress(imageBuffer,0);
 		}
-		prev_brightness = avg_brightness;
-		isFirst = false;
+		self.prev_brightness = avg_brightness;
+		self.isFirst = false;
 	}
 }
 
-
-// -(void)orientationChanged:(NSNotification *)notif {
-//	UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
-//	
-//	// Calculate rotation angle
-//	CGFloat angle;
-//	switch (deviceOrientation) {
-// case UIDeviceOrientationPortraitUpsideDown:
-// angle = M_PI;
-// break;
-// case UIDeviceOrientationLandscapeLeft:
-// angle = M_PI_2;
-// break;
-// case UIDeviceOrientationLandscapeRight:
-// angle = - M_PI_2;
-// break;
-// default:
-// angle = 0;
-// break;
-//	}
-//	[UIView animateWithDuration:.3 animations:^{
-// self.closeButton.transform = CGAffineTransformMakeRotation(angle);
-// self.gridButton.transform = CGAffineTransformMakeRotation(angle);
-// self.flashButton.transform = CGAffineTransformMakeRotation(angle);
-//	} completion:^(BOOL finished) {
-// 
-//	}];
-//	
-// }
+- (void) orientationChanged:(NSNotification *)notif {
+	// Calculate rotation angle
+	CGFloat angle;
+	switch ([[UIDevice currentDevice] orientation]) {
+		case UIDeviceOrientationPortraitUpsideDown:
+			angle = M_PI;
+			self.orientation = UIInterfaceOrientationPortraitUpsideDown;
+			break;
+		case UIDeviceOrientationLandscapeLeft:
+			angle = M_PI_2;
+			self.orientation = UIInterfaceOrientationLandscapeLeft;
+			break;
+		case UIDeviceOrientationLandscapeRight:
+			angle = - M_PI_2;
+			self.orientation = UIInterfaceOrientationLandscapeRight;
+			break;
+		case UIDeviceOrientationPortrait:
+			angle = 0;
+			self.orientation = UIInterfaceOrientationPortrait;
+			break;
+		default:
+			return;
+	}
+	
+	CGAffineTransform t = CGAffineTransformMakeRotation(angle);
+	[UIView animateWithDuration:.3 animations:^{
+		// segmented control
+		self.flashLightSwitch.transform = t;
+		
+		// buttons
+		self.whiteSwitch.transform = t;
+		self.exposureSwitch.transform = t;
+		self.lightningSwitch.transform = t;
+		self.helpButton.transform = t;
+		self.cameraButton.transform = t;
+		
+		// sliders
+		self.exposureSlider.labelTransform = t;
+		self.gainSlider.labelTransform = t;
+		self.whiteSlider.labelTransform = t;
+		self.sensitivity.labelTransform = t;
+		
+		// help labels
+		self.wbLabel.labelTransform = t;
+		self.useSlidersLabel.labelTransform = t;
+		self.helpLabel.labelTransform = t;
+		self.takeAPhotoLabel.labelTransform = t;
+		self.exposureLabel.labelTransform = t;
+		self.flashlightLabel.labelTransform = t;
+		self.lightningLabel.labelTransform = t;
+		
+	} completion:^(BOOL finished) {
+	}];
+}
 
 @end

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,6 @@
 		438CE43111D2766D00CF55BC /* ThundershotAVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438CE43011D2766D00CF55BC /* ThundershotAVController.m */; };
 		43D32BCE11D341F400AFA790 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D32BCD11D341F400AFA790 /* QuartzCore.framework */; };
 		43D32E3011D3A1DB00AFA790 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D32E2F11D3A1DB00AFA790 /* AudioToolbox.framework */; };
-		4C44C5161B32BF1800F16755 /* IMG_0136.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 4C44C5151B32BF1800F16755 /* IMG_0136.JPG */; };
 		4C5049A017A3A5AC000902CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C50499F17A3A5AC000902CA /* Images.xcassets */; };
 		4C77415B17AF7DB800916D43 /* UIDeselectableSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77415A17AF7DB800916D43 /* UIDeselectableSegmentedControl.m */; };
 		4C8476DC19C61BA700E2A977 /* PTDrawableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8476DB19C61BA700E2A977 /* PTDrawableView.m */; };
@@ -29,7 +28,11 @@
 		4C9C01A51B3E7B9A00DF24A4 /* UIImage+TextWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C01A41B3E7B9A00DF24A4 /* UIImage+TextWithImage.m */; };
 		4CA113A117AE722500D9B349 /* UIButtonRight.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA113A017AE722400D9B349 /* UIButtonRight.m */; };
 		4CAA72CB19B36782001CAA73 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAA72CA19B36782001CAA73 /* Default-568h@2x.png */; };
+		4CAF0DE61B412A8400DA3A0F /* PTRotatableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAF0DE51B412A8400DA3A0F /* PTRotatableLabel.swift */; };
+		4CAF0DE81B4144C900DA3A0F /* PTRotatableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAF0DE71B4144C900DA3A0F /* PTRotatableContainer.swift */; };
+		4CD3E5021B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3E5011B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift */; };
 		4CD9D2091B1EF2C200AF641D /* PTSliderWithValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9D2081B1EF2C200AF641D /* PTSliderWithValue.swift */; };
+		4CE13CB01B3FF97F000F6A07 /* UISwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE13CAF1B3FF97F000F6A07 /* UISwitchButton.swift */; };
 		4CEF61BA199F65E1003D83AD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CEF61B9199F65E1003D83AD /* AssetsLibrary.framework */; };
 		4CFE143217BCD05E00695556 /* UIView+LayerShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE143117BCD05E00695556 /* UIView+LayerShot.m */; };
 /* End PBXBuildFile section */
@@ -51,7 +54,6 @@
 		438CE43011D2766D00CF55BC /* ThundershotAVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThundershotAVController.m; sourceTree = "<group>"; };
 		43D32BCD11D341F400AFA790 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		43D32E2F11D3A1DB00AFA790 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		4C44C5151B32BF1800F16755 /* IMG_0136.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0136.JPG; sourceTree = "<group>"; };
 		4C50499F17A3A5AC000902CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Thundershot/Images.xcassets; sourceTree = "<group>"; };
 		4C5049A317A3A728000902CA /* Thundershot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Thundershot; sourceTree = "<group>"; };
 		4C77415917AF7DB800916D43 /* UIDeselectableSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeselectableSegmentedControl.h; sourceTree = "<group>"; };
@@ -66,8 +68,12 @@
 		4CA1139F17AE722400D9B349 /* UIButtonRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonRight.h; sourceTree = "<group>"; };
 		4CA113A017AE722400D9B349 /* UIButtonRight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonRight.m; sourceTree = "<group>"; };
 		4CAA72CA19B36782001CAA73 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4CAF0DE51B412A8400DA3A0F /* PTRotatableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTRotatableLabel.swift; sourceTree = "<group>"; };
+		4CAF0DE71B4144C900DA3A0F /* PTRotatableContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTRotatableContainer.swift; sourceTree = "<group>"; };
+		4CD3E5011B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTSliderWithRotatableLabel.swift; sourceTree = "<group>"; };
 		4CD9D2071B1EF2C100AF641D /* Thundershot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thundershot-Bridging-Header.h"; sourceTree = "<group>"; };
 		4CD9D2081B1EF2C200AF641D /* PTSliderWithValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTSliderWithValue.swift; sourceTree = "<group>"; };
+		4CE13CAF1B3FF97F000F6A07 /* UISwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchButton.swift; sourceTree = "<group>"; };
 		4CEF61B9199F65E1003D83AD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4CFE143017BCD05E00695556 /* UIView+LayerShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerShot.h"; sourceTree = "<group>"; };
 		4CFE143117BCD05E00695556 /* UIView+LayerShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerShot.m"; sourceTree = "<group>"; };
@@ -109,12 +115,16 @@
 				4CA113A017AE722400D9B349 /* UIButtonRight.m */,
 				4C77415917AF7DB800916D43 /* UIDeselectableSegmentedControl.h */,
 				4C77415A17AF7DB800916D43 /* UIDeselectableSegmentedControl.m */,
-				4CFE143017BCD05E00695556 /* UIView+LayerShot.h */,
 				4C9C01A31B3E7B9A00DF24A4 /* UIImage+TextWithImage.h */,
 				4C9C01A41B3E7B9A00DF24A4 /* UIImage+TextWithImage.m */,
+				4CFE143017BCD05E00695556 /* UIView+LayerShot.h */,
 				4CFE143117BCD05E00695556 /* UIView+LayerShot.m */,
-				4CD9D2081B1EF2C200AF641D /* PTSliderWithValue.swift */,
 				4CD9D2071B1EF2C100AF641D /* Thundershot-Bridging-Header.h */,
+				4CD9D2081B1EF2C200AF641D /* PTSliderWithValue.swift */,
+				4CE13CAF1B3FF97F000F6A07 /* UISwitchButton.swift */,
+				4CD3E5011B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift */,
+				4CAF0DE51B412A8400DA3A0F /* PTRotatableLabel.swift */,
+				4CAF0DE71B4144C900DA3A0F /* PTRotatableContainer.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -155,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				4C50499F17A3A5AC000902CA /* Images.xcassets */,
-				4C44C5151B32BF1800F16755 /* IMG_0136.JPG */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Thundershot-Info.plist */,
 			);
@@ -206,8 +215,10 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = PT;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = PaztalomTechnologiez;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = P5ZFLGLAFT;
@@ -215,7 +226,7 @@
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Thundershot" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -239,7 +250,6 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				4C8F1FB419BE15ED009F626A /* 1024x768.png in Resources */,
 				4C5049A017A3A5AC000902CA /* Images.xcassets in Resources */,
-				4C44C5161B32BF1800F16755 /* IMG_0136.JPG in Resources */,
 				4CAA72CB19B36782001CAA73 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,7 +262,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C8476DC19C61BA700E2A977 /* PTDrawableView.m in Sources */,
+				4CD3E5021B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift in Sources */,
+				4CE13CB01B3FF97F000F6A07 /* UISwitchButton.swift in Sources */,
+				4CAF0DE61B412A8400DA3A0F /* PTRotatableLabel.swift in Sources */,
 				4C9C01A51B3E7B9A00DF24A4 /* UIImage+TextWithImage.m in Sources */,
+				4CAF0DE81B4144C900DA3A0F /* PTRotatableContainer.swift in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				4CD9D2091B1EF2C200AF641D /* PTSliderWithValue.swift in Sources */,
 				4C77415B17AF7DB800916D43 /* UIDeselectableSegmentedControl.m in Sources */,
@@ -287,6 +301,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.PaztalomTechnologiez.Thundershot;
 				PRODUCT_NAME = Thundershot;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos8.4;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/Thundershot-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -312,6 +327,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.PaztalomTechnologiez.Thundershot;
 				PRODUCT_NAME = Thundershot;
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos8.4;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/Thundershot-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
@@ -322,7 +338,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -338,6 +354,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
