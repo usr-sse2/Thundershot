@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--LaunchScreenViewController-->
@@ -18,27 +17,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright © 2015 PaztalomTechnologiez. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
-                                <rect key="frame" x="20" y="439" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thundershot" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="20" y="140" width="280" height="43"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                <color key="textColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0136" translatesAutoresizingMaskIntoConstraints="NO" id="v2X-NA-atU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3t5-04-Vad">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
+                                        <rect key="frame" x="16" y="396" width="288" height="26"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="© 2015 Michael Belyaev Source code is available at http://github.com/Thundershot">
+                                                <attributes>
+                                                    <color key="NSColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="XCe-DZ-ueu">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <items/>
+                                        <color key="tintColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </toolbar>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="neE-U6-tpi">
+                                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                        <items/>
+                                        <color key="tintColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </toolbar>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thundershot" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+                                        <rect key="frame" x="20" y="148" width="280" height="43"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                        <color key="textColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerX" secondItem="3t5-04-Vad" secondAttribute="centerX" id="2Qg-Az-2wM"/>
+                                    <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="3t5-04-Vad" secondAttribute="leading" constant="16" id="6Sm-Dy-5c4"/>
+                                    <constraint firstItem="XCe-DZ-ueu" firstAttribute="centerX" secondItem="3t5-04-Vad" secondAttribute="centerX" id="Hcj-Na-CE6"/>
+                                    <constraint firstAttribute="bottom" secondItem="neE-U6-tpi" secondAttribute="bottom" id="OW9-6k-Eqe"/>
+                                    <constraint firstItem="neE-U6-tpi" firstAttribute="width" secondItem="3t5-04-Vad" secondAttribute="width" id="SXx-zy-Kqt"/>
+                                    <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="3t5-04-Vad" secondAttribute="leading" constant="20" id="Vk0-C9-5IX"/>
+                                    <constraint firstItem="obG-Y5-kRd" firstAttribute="centerX" secondItem="3t5-04-Vad" secondAttribute="centerX" id="YtF-AL-hcV"/>
+                                    <constraint firstItem="XCe-DZ-ueu" firstAttribute="top" secondItem="3t5-04-Vad" secondAttribute="top" id="bUL-zU-kZQ"/>
+                                    <constraint firstItem="XCe-DZ-ueu" firstAttribute="width" secondItem="3t5-04-Vad" secondAttribute="width" id="bav-pA-jMo"/>
+                                    <constraint firstItem="neE-U6-tpi" firstAttribute="top" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="14" id="gnt-e0-M2z"/>
+                                    <constraint firstItem="neE-U6-tpi" firstAttribute="centerX" secondItem="3t5-04-Vad" secondAttribute="centerX" id="knd-xV-LKo"/>
+                                    <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="3t5-04-Vad" secondAttribute="centerY" constant="-70.5" id="m9N-gH-AWe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
-                            <constraint firstAttribute="centerX" secondItem="GJd-Yh-RWb" secondAttribute="centerX" id="Q3B-4B-g5h"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
-                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="bottom" multiplier="1/3" constant="1" id="moa-c2-u7t"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="x7j-FC-K8j"/>
+                            <constraint firstItem="v2X-NA-atU" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0X9-6H-gox"/>
+                            <constraint firstItem="3t5-04-Vad" firstAttribute="width" secondItem="v2X-NA-atU" secondAttribute="width" id="ANw-Up-Q7J"/>
+                            <constraint firstItem="v2X-NA-atU" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="BJr-Gx-EOC"/>
+                            <constraint firstItem="3t5-04-Vad" firstAttribute="height" secondItem="v2X-NA-atU" secondAttribute="height" id="UaY-IY-k7C"/>
+                            <constraint firstItem="3t5-04-Vad" firstAttribute="centerY" secondItem="v2X-NA-atU" secondAttribute="centerY" id="dhy-mQ-hXA"/>
+                            <constraint firstItem="v2X-NA-atU" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="gxV-8b-lXX"/>
+                            <constraint firstItem="v2X-NA-atU" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="qn6-Jd-fil"/>
+                            <constraint firstItem="3t5-04-Vad" firstAttribute="centerX" secondItem="v2X-NA-atU" secondAttribute="centerX" id="wu2-K9-6k6"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -49,4 +89,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="IMG_0136" width="852" height="640"/>
+    </resources>
 </document>
