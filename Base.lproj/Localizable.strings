@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  Thundershot
+
+  Created by гык-sse2 on 18.07.15.
+  Copyright © 2015 PaztalomTechnologiez. All rights reserved.
+*/
+
+/* for slider lambda; 1/%d sec */
+"ExposureFormat" = "Exposure
+1/%d s";
+
+/* for slider lambda; %.2f */
+"FocusFormat" = "Focus
+%.2f";
+
+/* for slider lambda; %d K */
+"TemperatureFormat" = "Temperature
+%d K";
+
+"FlashlightStates" = "Auto;Torch;Flash;Off";
+
