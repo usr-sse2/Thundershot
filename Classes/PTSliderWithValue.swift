@@ -29,6 +29,18 @@ public class PTSliderWithValue: UISlider {
 		}
 	}
 	
+	public override var value : Float {
+		get {
+			return super.value
+		}
+		set (newValue) {
+			super.value = newValue
+			self.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+		}
+	}
+	
+	
+	
 	public var toStringLambda : ((Float) -> String) {
 		get {
 			return _toStringLambda
@@ -79,7 +91,7 @@ public class PTSliderWithValue: UISlider {
 		label.sizeToFit()
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		label.font = UIFont(name: "Helvetica", size: 12)
 		label.textColor = UIColor(white: 1, alpha: 1)
 		label.textAlignment = NSTextAlignment.Center

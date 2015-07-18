@@ -9,7 +9,7 @@
 import UIKit
 
 class UISwitchButton: UIButton {
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder:aDecoder)
 		self.addTarget(self, action:"onClick", forControlEvents: UIControlEvents.TouchUpInside)
 	}

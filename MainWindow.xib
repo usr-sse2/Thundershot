@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -20,8 +20,8 @@
         </customObject>
         <viewController modalTransitionStyle="crossDissolve" hidesBottomBarWhenPushed="YES" id="4st-wb-WTp" customClass="ThundershotAVController">
             <layoutGuides>
-                <viewControllerLayoutGuide type="top" id="jgq-5t-6TZ"/>
-                <viewControllerLayoutGuide type="bottom" id="aQW-l3-1aJ"/>
+                <viewControllerLayoutGuide type="top" id="xTx-X1-bhR"/>
+                <viewControllerLayoutGuide type="bottom" id="Aga-MZ-Zx1"/>
             </layoutGuides>
             <view key="view" opaque="NO" contentMode="scaleToFill" id="NTV-Uo-mmO">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -31,10 +31,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     </imageView>
                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="d35-w8-OoI">
-                        <rect key="frame" x="176" y="439" width="37" height="37"/>
+                        <rect key="frame" x="142" y="439" width="37" height="37"/>
                     </activityIndicatorView>
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="479-yZ-D09">
+                        <rect key="frame" x="0.0" y="44" width="320" height="392"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="il0-cn-uxX" appends="YES" id="tvE-vF-cff"/>
+                            <outletCollection property="gestureRecognizers" destination="Qdv-9v-cne" appends="YES" id="x5S-dw-8Y9"/>
+                        </connections>
+                    </view>
                     <slider hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="500" minValue="1" maxValue="1200" translatesAutoresizingMaskIntoConstraints="NO" id="I24-UF-CoI" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
-                        <rect key="frame" x="14" y="360" width="292" height="31"/>
+                        <rect key="frame" x="10" y="360" width="300" height="31"/>
                         <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
@@ -49,7 +56,7 @@
                         </connections>
                     </slider>
                     <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="Une-Hu-lmp" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
-                        <rect key="frame" x="14" y="398" width="292" height="31"/>
+                        <rect key="frame" x="10" y="398" width="300" height="31"/>
                         <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
@@ -64,7 +71,7 @@
                         </connections>
                     </slider>
                     <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nnN-1P-Shq" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
-                        <rect key="frame" x="14" y="52" width="292" height="31"/>
+                        <rect key="frame" x="10" y="52" width="300" height="31"/>
                         <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
@@ -79,14 +86,32 @@
                         </connections>
                     </slider>
                     <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-0.050000000000000003" minValue="-0.29999999999999999" maxValue="-0.01" translatesAutoresizingMaskIntoConstraints="NO" id="bmD-oT-dvF" customClass="PTSliderWithRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                        <rect key="frame" x="14" y="322" width="292" height="31"/>
+                        <rect key="frame" x="10" y="322" width="300" height="31"/>
                         <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="minimumValueText" value="Low"/>
                             <userDefinedRuntimeAttribute type="string" keyPath="maximumValueText" value="High"/>
                         </userDefinedRuntimeAttributes>
                     </slider>
-                    <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zq7-fb-DB1">
+                    <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NQv-ye-Jfg" customClass="PTSliderWithValue" customModule="Thundershot" customModuleProvider="target">
+                        <rect key="frame" x="10" y="90" width="300" height="31"/>
+                        <color key="minimumTrackTintColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="focusChange:" destination="4st-wb-WTp" eventType="valueChanged" id="UpS-sj-Kib"/>
+                        </connections>
+                    </slider>
+                    <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V7w-Cq-1lg" customClass="PTFocusMarkView" customModule="Thundershot" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    </view>
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zq7-fb-DB1">
                         <rect key="frame" x="0.0" y="44" width="320" height="392"/>
                         <subviews>
                             <view opaque="NO" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="QQW-fZ-65E">
@@ -137,7 +162,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLq-EM-4o3" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
                                                     <rect key="frame" x="67" y="160" width="187" height="72"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Swipe down to hide  Use sliders to adjust parameters. Sliders appear when manual adjustment is enabled."/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Swipe up to hide  Use sliders to adjust parameters. Sliders appear when manual adjustment is enabled."/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="color">
                                                             <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </userDefinedRuntimeAttribute>
@@ -147,7 +172,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIn-GY-n6G" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                                                    <rect key="frame" x="147" y="8" width="27" height="15"/>
+                                                    <rect key="frame" x="187" y="8" width="27" height="15"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="text" value="Help"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="color">
@@ -182,22 +207,49 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZo-eh-1Kz" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
+                                                    <rect key="frame" x="103" y="8" width="35" height="15"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Focus"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8a-ND-gfN">
+                                                    <rect key="frame" x="149" y="325" width="22" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="QyP-hc-8cR"/>
+                                                        <constraint firstAttribute="width" constant="22" id="noG-p1-7mc"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="showRules" destination="4st-wb-WTp" eventType="touchUpInside" id="Vnw-of-t6F"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="YwJ-Ul-EfY" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="0BJ-Xd-Vco"/>
-                                                <constraint firstAttribute="bottom" secondItem="Qu4-QW-gmG" secondAttribute="bottom" constant="8" id="29q-19-fXc"/>
-                                                <constraint firstItem="mLq-EM-4o3" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="3vs-Pi-PkC"/>
-                                                <constraint firstItem="6XW-Fr-1x8" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="626-7N-xlC"/>
-                                                <constraint firstAttribute="bottom" secondItem="z7q-AI-BqL" secondAttribute="bottom" constant="8" id="7N1-Pl-fQ8"/>
-                                                <constraint firstItem="Qu4-QW-gmG" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="87A-Cb-cdg"/>
-                                                <constraint firstItem="mLq-EM-4o3" firstAttribute="centerY" secondItem="jbk-VP-fnB" secondAttribute="centerY" id="BEd-5r-7W3"/>
-                                                <constraint firstAttribute="trailing" secondItem="EW5-c3-yV2" secondAttribute="trailing" constant="8" id="FFa-cd-NmH"/>
-                                                <constraint firstItem="GIn-GY-n6G" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="TJU-HV-CfS"/>
-                                                <constraint firstItem="GIn-GY-n6G" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="UqN-kW-wTH"/>
-                                                <constraint firstItem="YwJ-Ul-EfY" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="Uzs-lb-vLH"/>
-                                                <constraint firstItem="z7q-AI-BqL" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="jhs-Tk-W0E"/>
-                                                <constraint firstAttribute="trailing" secondItem="6XW-Fr-1x8" secondAttribute="trailing" constant="8" id="s6W-Hf-f1a"/>
-                                                <constraint firstAttribute="bottom" secondItem="EW5-c3-yV2" secondAttribute="bottom" constant="8" id="wQe-oR-eGU"/>
+                                                <constraint firstItem="EZo-eh-1Kz" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" constant="-40" placeholder="YES" id="0X6-bc-iwc"/>
+                                                <constraint firstItem="Qu4-QW-gmG" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="1OQ-yU-qIN"/>
+                                                <constraint firstItem="EZo-eh-1Kz" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="35J-No-LTU"/>
+                                                <constraint firstAttribute="bottom" secondItem="EW5-c3-yV2" secondAttribute="bottom" constant="8" id="5on-9S-W0f"/>
+                                                <constraint firstItem="YwJ-Ul-EfY" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="8FE-IJ-85c"/>
+                                                <constraint firstItem="6XW-Fr-1x8" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="DZC-WF-9GF"/>
+                                                <constraint firstItem="Qu4-QW-gmG" firstAttribute="top" secondItem="d8a-ND-gfN" secondAttribute="bottom" constant="8" id="Ha1-Gb-pnl"/>
+                                                <constraint firstItem="YwJ-Ul-EfY" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="LWa-bc-pKZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="6XW-Fr-1x8" secondAttribute="trailing" constant="8" id="M9u-wl-u9g"/>
+                                                <constraint firstItem="mLq-EM-4o3" firstAttribute="centerY" secondItem="jbk-VP-fnB" secondAttribute="centerY" id="NbW-4G-hFS"/>
+                                                <constraint firstAttribute="trailing" secondItem="EW5-c3-yV2" secondAttribute="trailing" constant="8" id="PvX-q8-org"/>
+                                                <constraint firstItem="mLq-EM-4o3" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="WpZ-Wg-pZm"/>
+                                                <constraint firstAttribute="bottom" secondItem="Qu4-QW-gmG" secondAttribute="bottom" constant="8" id="cN2-G6-GMx"/>
+                                                <constraint firstItem="d8a-ND-gfN" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="i4g-MX-FtX"/>
+                                                <constraint firstItem="GIn-GY-n6G" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" constant="40" placeholder="YES" id="kpV-jJ-dJn"/>
+                                                <constraint firstItem="GIn-GY-n6G" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="tEX-st-StL"/>
+                                                <constraint firstItem="z7q-AI-BqL" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="weS-GV-06n"/>
+                                                <constraint firstAttribute="bottom" secondItem="z7q-AI-BqL" secondAttribute="bottom" constant="8" id="zse-xk-5Tn"/>
                                             </constraints>
                                         </view>
                                         <blurEffect style="light"/>
@@ -206,10 +258,10 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="j0E-Nr-nnP" firstAttribute="leading" secondItem="QQW-fZ-65E" secondAttribute="leading" id="1sy-yt-ZI0"/>
-                                    <constraint firstAttribute="trailing" secondItem="j0E-Nr-nnP" secondAttribute="trailing" id="HiA-2O-nO8"/>
-                                    <constraint firstItem="j0E-Nr-nnP" firstAttribute="top" secondItem="QQW-fZ-65E" secondAttribute="top" id="RHB-rQ-AxZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="j0E-Nr-nnP" secondAttribute="bottom" id="rIL-5r-ifN"/>
+                                    <constraint firstItem="j0E-Nr-nnP" firstAttribute="width" secondItem="QQW-fZ-65E" secondAttribute="width" id="1Jd-8m-om1"/>
+                                    <constraint firstItem="j0E-Nr-nnP" firstAttribute="centerX" secondItem="QQW-fZ-65E" secondAttribute="centerX" id="LES-ad-bzs"/>
+                                    <constraint firstItem="j0E-Nr-nnP" firstAttribute="centerY" secondItem="QQW-fZ-65E" secondAttribute="centerY" id="qdB-M6-klZ"/>
+                                    <constraint firstItem="j0E-Nr-nnP" firstAttribute="height" secondItem="QQW-fZ-65E" secondAttribute="height" id="zyu-qq-TXd"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="2WI-Eb-Ij1" appends="YES" id="daN-y3-tO1"/>
@@ -218,38 +270,59 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="QQW-fZ-65E" secondAttribute="trailing" id="Hfj-MH-mzJ"/>
-                            <constraint firstAttribute="bottom" secondItem="QQW-fZ-65E" secondAttribute="bottom" id="STJ-gj-tbW"/>
-                            <constraint firstItem="QQW-fZ-65E" firstAttribute="top" secondItem="zq7-fb-DB1" secondAttribute="top" id="WDg-Rl-T7U"/>
-                            <constraint firstItem="QQW-fZ-65E" firstAttribute="leading" secondItem="zq7-fb-DB1" secondAttribute="leading" id="mUn-el-izR"/>
+                            <constraint firstItem="QQW-fZ-65E" firstAttribute="width" secondItem="zq7-fb-DB1" secondAttribute="width" id="MQm-zh-tTV"/>
+                            <constraint firstItem="QQW-fZ-65E" firstAttribute="centerY" secondItem="zq7-fb-DB1" secondAttribute="centerY" id="NzI-6p-yrW"/>
+                            <constraint firstItem="QQW-fZ-65E" firstAttribute="centerX" secondItem="zq7-fb-DB1" secondAttribute="centerX" id="nFV-6a-4Vv"/>
+                            <constraint firstItem="QQW-fZ-65E" firstAttribute="height" secondItem="zq7-fb-DB1" secondAttribute="height" id="udl-kR-knH"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Qdv-9v-cne" appends="YES" id="q1W-4m-SYl"/>
-                            <outletCollection property="gestureRecognizers" destination="il0-cn-uxX" appends="YES" id="Dpp-gv-7E9"/>
-                        </connections>
                     </view>
                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="yIg-Qe-0Q6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="eBr-i8-9s2"/>
+                        </constraints>
                         <items>
-                            <barButtonItem style="plain" id="U8Z-t9-Mla">
-                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" id="r2t-uw-9Ix" customClass="UIDeselectableSegmentedControl">
-                                    <rect key="frame" x="16" y="8" width="176" height="29"/>
+                            <barButtonItem style="plain" id="Ehb-Sy-3Pd">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="a6Z-Mo-oVG" customClass="PTMultipleStateButton" customModule="Thundershot" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="11" width="46" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="Auto"/>
-                                        <segment title="Torch"/>
-                                        <segment title="Flash"/>
-                                        <segment title="Off"/>
-                                    </segments>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <state key="normal" title="Off" image="Light Bulb White">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="Light Bulb Yellow">
+                                        <color key="titleColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="selectedState">
+                                            <integer key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="semicolonSeparatedStateLabels" value="Auto;Torch;Flash;Off"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="flashLightSwitchClick:" destination="4st-wb-WTp" eventType="valueChanged" id="wXX-Jh-P3Y"/>
+                                        <action selector="flashLightSwitchClick:" destination="4st-wb-WTp" eventType="touchUpInside" id="3YZ-RP-upJ"/>
                                     </connections>
-                                </segmentedControl>
+                                </button>
                             </barButtonItem>
                             <barButtonItem style="plain" systemItem="flexibleSpace" id="Qav-4v-45K"/>
+                            <barButtonItem style="plain" id="Zna-kb-kN6">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Gye-ma-bxx" customClass="UISwitchButton" customModule="Thundershot" customModuleProvider="target">
+                                    <rect key="frame" x="118" y="11" width="22" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="Shutter White"/>
+                                    <state key="selected" image="Shutter Yellow"/>
+                                    <connections>
+                                        <action selector="focusSwitchChange:" destination="4st-wb-WTp" eventType="valueChanged" id="6E8-El-uQ1"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="ndR-MR-bXE"/>
                             <barButtonItem style="plain" id="1a6-NZ-FKt">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="j5y-WF-Cxs" customClass="UISwitchButton" customModule="Thundershot" customModuleProvider="target">
-                                    <rect key="frame" x="223" y="11" width="22" height="22"/>
+                                    <rect key="frame" x="197" y="11" width="22" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <state key="normal" title="?"/>
@@ -284,6 +357,9 @@
                     </toolbar>
                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="M91-Jf-xei">
                         <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="Oq5-6o-huL"/>
+                        </constraints>
                         <items>
                             <barButtonItem style="plain" id="Pyx-n0-jJe">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="HsH-RA-ltn" customClass="UISwitchButton" customModule="Thundershot" customModuleProvider="target">
@@ -298,7 +374,6 @@
                                     </state>
                                     <connections>
                                         <action selector="exposureSwitchValueChanged:" destination="4st-wb-WTp" eventType="valueChanged" id="wlC-xX-RE9"/>
-                                        <action selector="layout" destination="4st-wb-WTp" eventType="valueChanged" id="LAd-tE-L3J"/>
                                     </connections>
                                 </button>
                             </barButtonItem>
@@ -328,7 +403,6 @@
                                     <state key="normal" image="Lightning White"/>
                                     <state key="selected" image="Lightning Yellow"/>
                                     <connections>
-                                        <action selector="layout" destination="4st-wb-WTp" eventType="valueChanged" id="LGq-vv-QTi"/>
                                         <action selector="switchLightningDetection:" destination="4st-wb-WTp" eventType="valueChanged" id="Jon-75-bTC"/>
                                     </connections>
                                 </button>
@@ -342,35 +416,49 @@
                 </accessibility>
                 <gestureRecognizers/>
                 <constraints>
-                    <constraint firstItem="zq7-fb-DB1" firstAttribute="centerY" secondItem="NTV-Uo-mmO" secondAttribute="centerY" id="1QD-jJ-v6S"/>
-                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="centerY" secondItem="NTV-Uo-mmO" secondAttribute="centerY" id="2gi-lM-wtG"/>
-                    <constraint firstItem="nnN-1P-Shq" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leadingMargin" id="3mn-lB-0BL"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="nnN-1P-Shq" secondAttribute="trailing" id="99F-qt-fsb"/>
-                    <constraint firstItem="M91-Jf-xei" firstAttribute="top" secondItem="Une-Hu-lmp" secondAttribute="bottom" constant="8" id="CA0-8h-OuY"/>
-                    <constraint firstItem="d35-w8-OoI" firstAttribute="centerY" secondItem="M91-Jf-xei" secondAttribute="centerY" id="CWm-xu-jDW"/>
-                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="Cvv-Lq-Nza"/>
-                    <constraint firstItem="Une-Hu-lmp" firstAttribute="top" secondItem="I24-UF-CoI" secondAttribute="bottom" constant="8" symbolic="YES" id="ELY-H8-zzZ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="d35-w8-OoI" secondAttribute="trailing" constant="91" id="Gyo-Sa-9hf"/>
-                    <constraint firstItem="bmD-oT-dvF" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leadingMargin" id="Jln-eS-mDV"/>
-                    <constraint firstItem="M91-Jf-xei" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="LKB-3R-Fjw"/>
-                    <constraint firstItem="nnN-1P-Shq" firstAttribute="top" secondItem="yIg-Qe-0Q6" secondAttribute="bottom" constant="8" id="OeK-UW-zIT"/>
-                    <constraint firstItem="zq7-fb-DB1" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="VYC-1a-XN5"/>
-                    <constraint firstItem="I24-UF-CoI" firstAttribute="top" secondItem="bmD-oT-dvF" secondAttribute="bottom" constant="8" symbolic="YES" id="aWF-2b-WVn"/>
-                    <constraint firstItem="yIg-Qe-0Q6" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="bE9-BG-ruH"/>
-                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="bmP-Bh-FQM"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="bmD-oT-dvF" secondAttribute="trailing" id="dRD-JN-99r"/>
-                    <constraint firstItem="M91-Jf-xei" firstAttribute="top" secondItem="bmD-oT-dvF" secondAttribute="bottom" priority="500" constant="8" id="eum-Wc-Q7B"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="I24-UF-CoI" secondAttribute="trailing" id="fnP-xd-Uqd"/>
-                    <constraint firstItem="M91-Jf-xei" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="ghk-2A-HYC"/>
-                    <constraint firstItem="zq7-fb-DB1" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="hBV-ok-IMb"/>
-                    <constraint firstItem="yIg-Qe-0Q6" firstAttribute="top" secondItem="jgq-5t-6TZ" secondAttribute="bottom" id="iBK-tf-HaA"/>
-                    <constraint firstItem="yIg-Qe-0Q6" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="l52-rm-E92"/>
-                    <constraint firstItem="Une-Hu-lmp" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leadingMargin" id="p4e-Hv-Dbm"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Une-Hu-lmp" secondAttribute="trailing" id="p9P-kq-x1C"/>
-                    <constraint firstItem="M91-Jf-xei" firstAttribute="bottom" secondItem="aQW-l3-1aJ" secondAttribute="top" id="tUJ-oy-EeJ"/>
-                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="height" secondItem="NTV-Uo-mmO" secondAttribute="height" id="uRI-fO-Rne"/>
-                    <constraint firstItem="I24-UF-CoI" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leadingMargin" id="xUm-F7-ZNN"/>
-                    <constraint firstItem="M91-Jf-xei" firstAttribute="top" secondItem="zq7-fb-DB1" secondAttribute="bottom" id="zNn-fx-pol"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Une-Hu-lmp" secondAttribute="trailing" constant="-4" id="14U-DI-3Kj"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="2Jr-8I-R6u"/>
+                    <constraint firstItem="nnN-1P-Shq" firstAttribute="width" secondItem="Une-Hu-lmp" secondAttribute="width" id="2mV-wa-LRV"/>
+                    <constraint firstItem="V7w-Cq-1lg" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="3bo-qb-nFe"/>
+                    <constraint firstItem="yIg-Qe-0Q6" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="4wt-bQ-UW3"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="centerY" secondItem="NTV-Uo-mmO" secondAttribute="centerY" priority="750" id="6V0-D7-dEn"/>
+                    <constraint firstItem="bmD-oT-dvF" firstAttribute="width" secondItem="Une-Hu-lmp" secondAttribute="width" id="AMF-w7-voq"/>
+                    <constraint firstItem="d35-w8-OoI" firstAttribute="centerY" secondItem="M91-Jf-xei" secondAttribute="centerY" id="Cyz-zO-Fdd"/>
+                    <constraint firstItem="Une-Hu-lmp" firstAttribute="top" secondItem="I24-UF-CoI" secondAttribute="bottom" constant="8" id="FnN-bE-3lx"/>
+                    <constraint firstItem="M91-Jf-xei" firstAttribute="top" secondItem="Une-Hu-lmp" secondAttribute="bottom" constant="8" id="Fyx-aH-Bs9"/>
+                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="centerY" secondItem="NTV-Uo-mmO" secondAttribute="centerY" id="HWb-fs-GbK"/>
+                    <constraint firstItem="NQv-ye-Jfg" firstAttribute="top" secondItem="nnN-1P-Shq" secondAttribute="bottom" constant="8" id="HhC-6y-VBp"/>
+                    <constraint firstItem="nnN-1P-Shq" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="J34-7O-21u"/>
+                    <constraint firstItem="NQv-ye-Jfg" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="Kqg-io-N6Q"/>
+                    <constraint firstItem="I24-UF-CoI" firstAttribute="top" secondItem="bmD-oT-dvF" secondAttribute="bottom" constant="8" id="OJo-4J-1XK"/>
+                    <constraint firstItem="V7w-Cq-1lg" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="Q41-zU-qRB"/>
+                    <constraint firstItem="M91-Jf-xei" firstAttribute="top" secondItem="479-yZ-D09" secondAttribute="bottom" id="RTb-gK-cJi"/>
+                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="VAu-bg-kuF"/>
+                    <constraint firstItem="479-yZ-D09" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="VDB-Fn-MZY"/>
+                    <constraint firstItem="d35-w8-OoI" firstAttribute="centerX" secondItem="M91-Jf-xei" secondAttribute="centerX" id="Vzt-k1-ukc"/>
+                    <constraint firstItem="bmD-oT-dvF" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="W0x-D5-XwB"/>
+                    <constraint firstItem="Une-Hu-lmp" firstAttribute="leading" secondItem="NTV-Uo-mmO" secondAttribute="leadingMargin" constant="-4" id="X3C-Q3-Ear"/>
+                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="dOz-RM-UhQ"/>
+                    <constraint firstItem="479-yZ-D09" firstAttribute="top" secondItem="yIg-Qe-0Q6" secondAttribute="bottom" id="f9U-RH-fgN"/>
+                    <constraint firstItem="NQv-ye-Jfg" firstAttribute="top" secondItem="yIg-Qe-0Q6" secondAttribute="bottom" priority="500" constant="8" id="gGm-S7-fkV"/>
+                    <constraint firstItem="I24-UF-CoI" firstAttribute="width" secondItem="Une-Hu-lmp" secondAttribute="width" id="gMD-oO-vL2"/>
+                    <constraint firstItem="yIg-Qe-0Q6" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="gaE-VX-haz"/>
+                    <constraint firstItem="nnN-1P-Shq" firstAttribute="top" secondItem="yIg-Qe-0Q6" secondAttribute="bottom" constant="8" id="gbz-ON-qor"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="gsP-TT-dj7"/>
+                    <constraint firstItem="NQv-ye-Jfg" firstAttribute="width" secondItem="Une-Hu-lmp" secondAttribute="width" id="iAH-3Y-EeI"/>
+                    <constraint firstItem="I24-UF-CoI" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="lV2-bW-YuV"/>
+                    <constraint firstItem="M91-Jf-xei" firstAttribute="top" secondItem="bmD-oT-dvF" secondAttribute="bottom" priority="500" constant="8" id="nz0-gA-DmU"/>
+                    <constraint firstItem="479-yZ-D09" firstAttribute="centerY" secondItem="NTV-Uo-mmO" secondAttribute="centerY" id="oBK-m2-tCS"/>
+                    <constraint firstItem="V7w-Cq-1lg" firstAttribute="centerY" secondItem="NTV-Uo-mmO" secondAttribute="centerY" id="oGm-W2-XAS"/>
+                    <constraint firstItem="Aga-MZ-Zx1" firstAttribute="top" secondItem="M91-Jf-xei" secondAttribute="bottom" id="oQX-dX-fME"/>
+                    <constraint firstItem="yIg-Qe-0Q6" firstAttribute="top" secondItem="xTx-X1-bhR" secondAttribute="bottom" id="qwk-st-6hB"/>
+                    <constraint firstItem="Une-Hu-lmp" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="r7p-Jy-SnX"/>
+                    <constraint firstItem="479-yZ-D09" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="t7r-k2-Udk"/>
+                    <constraint firstItem="Uo6-x5-HnT" firstAttribute="height" secondItem="NTV-Uo-mmO" secondAttribute="height" id="tUh-li-1DA"/>
+                    <constraint firstItem="V7w-Cq-1lg" firstAttribute="height" secondItem="NTV-Uo-mmO" secondAttribute="height" id="woR-mw-29I"/>
+                    <constraint firstItem="M91-Jf-xei" firstAttribute="centerX" secondItem="NTV-Uo-mmO" secondAttribute="centerX" id="wy6-2D-1yv"/>
+                    <constraint firstItem="zq7-fb-DB1" firstAttribute="height" secondItem="NTV-Uo-mmO" secondAttribute="height" constant="-88" id="y8D-4D-d1w"/>
+                    <constraint firstItem="M91-Jf-xei" firstAttribute="width" secondItem="NTV-Uo-mmO" secondAttribute="width" id="yyz-c0-GRL"/>
                 </constraints>
             </view>
             <extendedEdge key="edgesForExtendedLayout"/>
@@ -381,21 +469,32 @@
                 <outlet property="activity" destination="d35-w8-OoI" id="fqw-TY-hTm"/>
                 <outlet property="bottomBar" destination="M91-Jf-xei" id="pDT-h5-8rw"/>
                 <outlet property="cameraButton" destination="e5k-Hv-8PM" id="cvc-ZE-Dgm"/>
-                <outlet property="constraintToDisable" destination="aWF-2b-WVn" id="HQx-Aa-Bfu"/>
+                <outlet property="doubleTapGestureRecognizer" destination="il0-cn-uxX" id="nEx-Mt-D2v"/>
                 <outlet property="exampleView" destination="Uo6-x5-HnT" id="OJN-sr-5sn"/>
                 <outlet property="exposureLabel" destination="z7q-AI-BqL" id="dyn-1E-8R3"/>
                 <outlet property="exposureSlider" destination="I24-UF-CoI" id="car-Av-n37"/>
                 <outlet property="exposureSwitch" destination="HsH-RA-ltn" id="Tb5-R5-WLA"/>
-                <outlet property="flashLightSwitch" destination="r2t-uw-9Ix" id="Oqy-tG-A0C"/>
+                <outlet property="flashLightSwitch" destination="a6Z-Mo-oVG" id="kff-wd-CN8"/>
                 <outlet property="flashlightLabel" destination="YwJ-Ul-EfY" id="oYO-Mv-kpR"/>
+                <outlet property="focusConstraint" destination="HhC-6y-VBp" id="Uen-B1-QEW"/>
+                <outlet property="focusLabel" destination="EZo-eh-1Kz" id="TJI-vs-41r"/>
+                <outlet property="focusMarkView" destination="V7w-Cq-1lg" id="ADX-q9-Bj1"/>
+                <outlet property="focusSlider" destination="NQv-ye-Jfg" id="4SJ-ZN-EKt"/>
+                <outlet property="focusSwitch" destination="Gye-ma-bxx" id="Kl3-TI-sJo"/>
                 <outlet property="gainSlider" destination="Une-Hu-lmp" id="bKT-4H-cA4"/>
                 <outlet property="helpButton" destination="j5y-WF-Cxs" id="2mi-VP-03O"/>
                 <outlet property="helpLabel" destination="GIn-GY-n6G" id="W3a-ur-sYu"/>
                 <outlet property="helpView" destination="zq7-fb-DB1" id="AMm-WL-0O9"/>
+                <outlet property="helpViewConstraintCenterY" destination="6V0-D7-dEn" id="EzY-rg-atY"/>
                 <outlet property="imageView" destination="NTV-Uo-mmO" id="eNk-od-1nS"/>
                 <outlet property="lightningLabel" destination="EW5-c3-yV2" id="64L-Nj-Ak9"/>
                 <outlet property="lightningSwitch" destination="jPi-mg-bTC" id="jTl-ib-eKa"/>
+                <outlet property="rulesButton" destination="d8a-ND-gfN" id="Yt2-td-iNF"/>
+                <outlet property="rulesView" destination="Uxm-oq-Fph" id="vnz-jB-Rrj"/>
                 <outlet property="sensitivity" destination="bmD-oT-dvF" id="TDn-jA-gKf"/>
+                <outlet property="sensitivityConstraint" destination="OJo-4J-1XK" id="7XP-Bb-YLi"/>
+                <outlet property="singleTapGestureRecognizer" destination="Qdv-9v-cne" id="P0J-9C-QRf"/>
+                <outlet property="swipeGestureRecognizer" destination="2WI-Eb-Ij1" id="yWG-X9-ODh"/>
                 <outlet property="takeAPhotoLabel" destination="Qu4-QW-gmG" id="128-Ie-Iul"/>
                 <outlet property="topBar" destination="yIg-Qe-0Q6" id="mDU-Qi-fR8"/>
                 <outlet property="useSlidersLabel" destination="mLq-EM-4o3" id="JcW-gu-ajN"/>
@@ -403,7 +502,7 @@
                 <outlet property="whiteSlider" destination="nnN-1P-Shq" id="Dcd-O1-7k9"/>
                 <outlet property="whiteSwitch" destination="P7w-QD-Z3t" id="BEo-wy-JTn"/>
             </connections>
-            <point key="canvasLocation" x="-83" y="259"/>
+            <point key="canvasLocation" x="-78" y="237"/>
         </viewController>
         <window opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" visibleAtLaunch="YES" id="12">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -417,16 +516,127 @@
                 <action selector="tap:" destination="4st-wb-WTp" id="Adi-bg-SeE"/>
             </connections>
         </tapGestureRecognizer>
-        <swipeGestureRecognizer direction="down" id="2WI-Eb-Ij1">
+        <swipeGestureRecognizer direction="up" id="2WI-Eb-Ij1">
             <connections>
                 <action selector="closeHelp" destination="4st-wb-WTp" id="dBT-Ja-XNG"/>
             </connections>
         </swipeGestureRecognizer>
-        <tapGestureRecognizer numberOfTapsRequired="2" id="il0-cn-uxX">
+        <tapGestureRecognizer delaysTouchesBegan="YES" numberOfTapsRequired="2" id="il0-cn-uxX">
             <connections>
                 <action selector="doubleTap:" destination="4st-wb-WTp" id="RR2-xi-wiO"/>
             </connections>
         </tapGestureRecognizer>
+        <view contentMode="scaleToFill" id="Uxm-oq-Fph">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSm-dc-tDC">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Thundershot">
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="14" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" is a camera app with lightning detection. It allows you to take amazing thunderstorm photos. ">
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="How it works?">
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="14" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">Thundershot works by comparing the brightness of each frame with the previous one. If the difference is large enough, the app takes two photos. The best results can be achieved with a tripod or another fixed mount.  </string>
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Safety rules">
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="14" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">For your safety, don't try to take photos outside in the thunderstorm, especially in open places. Remember that your life is more important than a good photo.</string>
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZk-L8-RSo">
+                    <rect key="frame" x="145" y="442" width="30" height="30"/>
+                    <state key="normal" title="OK">
+                        <color key="titleColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="acceptRules" destination="4st-wb-WTp" eventType="touchUpInside" id="mmi-r0-I9D"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="mSm-dc-tDC" firstAttribute="width" secondItem="Uxm-oq-Fph" secondAttribute="width" id="1Jg-84-jiv"/>
+                <constraint firstItem="zZk-L8-RSo" firstAttribute="top" secondItem="mSm-dc-tDC" secondAttribute="bottom" constant="-38" id="4Z8-2e-zGN"/>
+                <constraint firstItem="zZk-L8-RSo" firstAttribute="centerX" secondItem="mSm-dc-tDC" secondAttribute="centerX" id="Qdo-jG-TJs"/>
+                <constraint firstItem="mSm-dc-tDC" firstAttribute="centerX" secondItem="Uxm-oq-Fph" secondAttribute="centerX" id="Xqr-SX-KHW"/>
+                <constraint firstItem="mSm-dc-tDC" firstAttribute="height" secondItem="Uxm-oq-Fph" secondAttribute="height" id="wCD-jd-muB"/>
+                <constraint firstItem="mSm-dc-tDC" firstAttribute="centerY" secondItem="Uxm-oq-Fph" secondAttribute="centerY" id="zi7-Qg-zFc"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="94" y="836"/>
+        </view>
     </objects>
     <resources>
         <image name="Brightness White" width="20" height="20"/>
@@ -434,7 +644,11 @@
         <image name="Camera White" width="25" height="25"/>
         <image name="Camera Yellow" width="25" height="25"/>
         <image name="IMG_0136" width="852" height="640"/>
+        <image name="Light Bulb White" width="20" height="20"/>
+        <image name="Light Bulb Yellow" width="20" height="20"/>
         <image name="Lightning White" width="20" height="20"/>
         <image name="Lightning Yellow" width="20" height="20"/>
+        <image name="Shutter White" width="20" height="20"/>
+        <image name="Shutter Yellow" width="20" height="20"/>
     </resources>
 </document>

@@ -24,7 +24,7 @@ public class PTSliderWithRotatableLabel : UISlider {
 		}
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		minLabel.font = UIFont(name: "Helvetica", size: 12)
 		maxLabel.font = UIFont(name: "Helvetica", size: 12)
 		minLabel.textColor = UIColor(white: 1, alpha: 1)

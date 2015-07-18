@@ -11,11 +11,11 @@
 #include <math.h>
 
 
-// TODO: show focus points
-// TODO: manual focus (really?)
-// TODO: show help on first launch
-// TODO: check image orientation
-// TOOD: check UI on iPad
+// TODO: 2. show help on first launch
+// TODO: 6. fix exposure after switching to auto
+// TODO: 3. info button location on rotation
+// TODO: 4. sizetofit and line count on swipe label
+// TODO: 5. fix RotatableLabel layout or revert and change animation
 
 static double f(double x) {
 	return cbrt(x);
@@ -27,6 +27,7 @@ static double inversef(double y) {
 
 
 @interface ThundershotAVController () <AVCaptureVideoDataOutputSampleBufferDelegate>
+@property (nonatomic, strong) IBOutlet UIView *rulesView;
 @property (nonatomic, strong) UIView* flashView;
 @property (nonatomic) bool firstFrame;
 @property (nonatomic) float prev_brightness;
@@ -46,7 +47,7 @@ static double inversef(double y) {
 @property (strong, nonatomic) AVCaptureVideoDataOutput *captureOutput;
 @property (strong, nonatomic) AVCaptureStillImageOutput *photoOutput;
 @property (strong, nonatomic) IBOutlet PTSliderWithValue *whiteSlider;
-@property (strong, nonatomic) IBOutlet UIDeselectableSegmentedControl *flashLightSwitch;
+@property (strong, nonatomic) IBOutlet PTMultipleStateButton *flashLightSwitch;
 @property (strong, nonatomic) IBOutlet UISwitchButton *exposureSwitch;
 @property (strong, nonatomic) IBOutlet UISwitchButton *whiteSwitch;
 @property (strong, nonatomic) IBOutlet UISwitchButton *lightningSwitch;
@@ -55,9 +56,20 @@ static double inversef(double y) {
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (strong, nonatomic) IBOutlet UIView *helpView;
 @property (strong, nonatomic) IBOutlet UIImageView *exampleView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintToDisable;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *sensitivityConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *focusConstraint;
 @property (strong, nonatomic) IBOutlet UIButton *helpButton;
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
+@property (strong, nonatomic) IBOutlet PTSliderWithValue *focusSlider;
+@property (strong, nonatomic) IBOutlet UISwitchButton *focusSwitch;
+@property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGestureRecognizer;
+@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *singleTapGestureRecognizer;
+@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapGestureRecognizer;
+@property (strong, nonatomic) NSLayoutConstraint *helpViewConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *helpViewConstraintCenterY;
+@property (strong, nonatomic) AVCaptureDevice *device;
+@property (strong, nonatomic) IBOutlet UIButton *rulesButton;
+@property (strong, nonatomic) IBOutlet PTFocusMarkView *focusMarkView;
 
 
 // Help labels
@@ -68,6 +80,7 @@ static double inversef(double y) {
 @property (strong, nonatomic) IBOutlet PTRotatableLabel *exposureLabel;
 @property (strong, nonatomic) IBOutlet PTRotatableLabel *flashlightLabel;
 @property (strong, nonatomic) IBOutlet PTRotatableLabel *lightningLabel;
+@property (strong, nonatomic) IBOutlet PTRotatableLabel *focusLabel;
 
 
 - (void)setupCapture;
@@ -84,6 +97,14 @@ enum FlashSwitchSection {
 
 @implementation ThundershotAVController
 
+- (IBAction)showRules {
+	[self.view addSubview:self.rulesView];
+}
+
+- (IBAction)acceptRules {
+	[self.rulesView removeFromSuperview];
+}
+
 - (BOOL)shouldAutorotate {
 	return NO;
 }
@@ -93,25 +114,34 @@ enum FlashSwitchSection {
 }
 
 - (IBAction)closeHelp {
-	self.helpButton.selected = false;
-	self.helpView.hidden = true;
+	self.helpButton.selected = NO;
+	[UIView animateWithDuration:.3 animations:^{
+		self.helpViewConstraint.active = YES;
+		self.helpViewConstraintCenterY.active = NO;
+		[self.view layoutIfNeeded];
+	} completion:^(BOOL finished) {
+	}];
 }
 
 - (IBAction)openHelp {
-	self.helpView.hidden = !self.helpButton.selected;
+	[UIView animateWithDuration:.3 animations:^{
+		self.helpViewConstraint.active = !self.helpButton.selected;
+		self.helpViewConstraintCenterY.active = self.helpButton.selected;
+		[self.view layoutIfNeeded];
+	} completion:^(BOOL finished) {
+	}];
 }
 
-- (IBAction)flashLightSwitchClick:(UIDeselectableSegmentedControl*)sender {
-	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-	[device lockForConfiguration:nil];
-	[device setTorchMode:(sender.selectedSegmentIndex == kFlashSwitchSectionTorch) ? AVCaptureTorchModeOn : AVCaptureTorchModeOff];
-	switch (sender.selectedSegmentIndex) {
-		case kFlashSwitchSectionAuto: [device setFlashMode:AVCaptureFlashModeAuto]; break;
+- (IBAction)flashLightSwitchClick:(PTMultipleStateButton*)sender {
+	[self.self.device lockForConfiguration:nil];
+	[self.self.device setTorchMode:(sender.selectedState == kFlashSwitchSectionTorch) ? AVCaptureTorchModeOn : AVCaptureTorchModeOff];
+	switch (sender.selectedState) {
+		case kFlashSwitchSectionAuto: [self.self.device setFlashMode:AVCaptureFlashModeAuto]; break;
 		case kFlashSwitchSectionTorch:
-		case kFlashSwitchSectionOff: [device setFlashMode:AVCaptureFlashModeOff]; break;
-		case kFlashSwitchSectionOn: [device setFlashMode:AVCaptureFlashModeOn]; break;
+		case kFlashSwitchSectionOff: [self.self.device setFlashMode:AVCaptureFlashModeOff]; break;
+		case kFlashSwitchSectionOn: [self.self.device setFlashMode:AVCaptureFlashModeOn]; break;
 	}
-	[device unlockForConfiguration];
+	[self.self.device unlockForConfiguration];
 }
 
 
@@ -120,64 +150,64 @@ enum FlashSwitchSection {
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)  name:UIDeviceOrientationDidChangeNotification  object:nil];
 	
-	self.firstFrame = true;
-	self.isDetecting = false;
-	self.isFirst = true;
+	self.firstFrame = YES;
+	self.isDetecting = NO;
+	self.isFirst = YES;
 	self.saveOperationsCount = 0;
 	
-	self.helpView.hidden = !self.helpButton.selected;
+	self.focusConstraint.active = NO;
+	self.sensitivityConstraint.active = NO;
+	self.helpViewConstraint = [NSLayoutConstraint constraintWithItem:self.helpView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.topBar attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+	self.helpViewConstraintCenterY.active = NO;
+	[self.view addConstraint:self.helpViewConstraint];
+	self.helpViewConstraint.priority = 1000;
+	self.helpViewConstraint.active = YES;
 	
 	self.exposureLabel	.label.textAlignment = NSTextAlignmentLeft;
 	self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentCenter;
 	self.lightningLabel	.label.textAlignment = NSTextAlignmentRight;
-	self.flashlightLabel.label.textAlignment = NSTextAlignmentLeft;
-	self.helpLabel		.label.textAlignment = NSTextAlignmentCenter;
-	self.wbLabel		.label.textAlignment = NSTextAlignmentRight;
 	self.useSlidersLabel.label.textAlignment = NSTextAlignmentCenter;
 	
 	[self setupCapture];
 	
-	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-	[device lockForConfiguration:nil];
+	[self.device lockForConfiguration:nil];
 	
-	if ([device hasTorch] && [device hasFlash]) { // FIXME: бывают ли устройства без вспышки, но с фонариком?
-		self.flashLightSwitch.right = NO;
-		self.flashLightSwitch.image = [UIImage imageNamed:@"Light Bulb White"];
-		[self.flashLightSwitch setTitles:@"Auto", @"Torch", @"Flash", @"Off", nil];
-		self.flashLightSwitch.selectedSegmentIndex = kFlashSwitchSectionOff;
-	}
-	else
-		self.flashLightSwitch.enabled = false;
+	self.flashLightSwitch.enabled = [self.device hasTorch] && [self.device hasFlash];
 	
-	if ([device isExposureModeSupported:AVCaptureExposureModeCustom]) {
-		self.gainSlider.minimumValue = device.activeFormat.minISO;
-		self.gainSlider.maximumValue = device.activeFormat.maxISO;
+	if ([self.device isExposureModeSupported:AVCaptureExposureModeCustom]) {
+		self.gainSlider.minimumValue = self.device.activeFormat.minISO;
+		self.gainSlider.maximumValue = self.device.activeFormat.maxISO;
 		
 		self.gainSlider.toStringLambda = ^NSString*(float v) {
 			return [NSString stringWithFormat:@"ISO\n%d", (int)v];
 		};
 		
-		self.timescale = device.activeFormat.minExposureDuration.timescale;
+		self.timescale = self.device.activeFormat.minExposureDuration.timescale;
 		
 		// 1 / minvalue = value / timescale
 		
-		//self.exposureSlider.minValue = (double)device.activeFormat.minExposureDuration.timescale / (double)device.activeFormat.minExposureDuration.value;
+		//self.exposureSlider.minValue = (double)self.device.activeFormat.minExposureDuration.timescale / (double)self.device.activeFormat.minExposureDuration.value;
 		
-		self.exposureSlider.minValue = f(device.activeFormat.minExposureDuration.value);
+		self.exposureSlider.minValue = f(self.device.activeFormat.minExposureDuration.value);
 		self.exposureSlider.maxValue = f(
-										 MIN((long double)device.activeFormat.maxExposureDuration.value / (long double)device.activeFormat.maxExposureDuration.timescale, 0.2) * (long double)self.timescale
+										 MIN((long double)self.device.activeFormat.maxExposureDuration.value / (long double)self.device.activeFormat.maxExposureDuration.timescale, 0.2) * (long double)self.timescale
 										 );
 		
 		self.exposureSlider.toStringLambda = ^NSString*(float v) {
 			return [NSString stringWithFormat:@"Exposure\n1/%d", (int)((double)self.timescale / inversef(v))];
 		};
 		
+		self.focusSlider.toStringLambda = ^NSString*(float v) {
+			return [NSString stringWithFormat:@"Focus\n%.2f", v];
+		};
 		
 	}
 	else
-		self.exposureSwitch.enabled = false;
+		self.exposureSwitch.enabled = NO;
 	
-	if ([device isWhiteBalanceModeSupported:AVCaptureWhiteBalanceModeLocked]) {
+	self.focusSwitch.enabled = [self.device isFocusModeSupported:AVCaptureFocusModeLocked];
+	
+	if ([self.device isWhiteBalanceModeSupported:AVCaptureWhiteBalanceModeLocked]) {
 		self.whiteSlider.minimumValue = 2500;
 		self.whiteSlider.maximumValue = 20000;
 		self.whiteSlider.toStringLambda = ^NSString*(float v) {
@@ -185,9 +215,9 @@ enum FlashSwitchSection {
 		};
 	}
 	else
-		self.whiteSwitch.enabled = false;
+		self.whiteSwitch.enabled = NO;
 	
-	[device unlockForConfiguration];
+	[self.device unlockForConfiguration];
 	
 	for (AVCaptureConnection *connection in self.photoOutput.connections)
 	{
@@ -203,90 +233,105 @@ enum FlashSwitchSection {
 	
 	if (self.videoConnection)
 		self.exampleView.hidden = YES;
+	
+	self.rulesView.frame = self.view.bounds;
+	[self.view addSubview:self.rulesView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	[self orientationChanged:nil];
 	self.flashView = [[UIView alloc] initWithFrame:self.view.frame];
 	self.flashView.backgroundColor = [UIColor whiteColor];
-	self.flashView.hidden = true;
+	self.flashView.hidden = YES;
 	[self.view addSubview:self.flashView];
+	[self.singleTapGestureRecognizer requireGestureRecognizerToFail:self.doubleTapGestureRecognizer];
 }
 
 - (IBAction)tap:(UITapGestureRecognizer*)sender {
-	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-	if ([device isFocusModeSupported:AVCaptureFocusModeAutoFocus] &&
-		[device isFocusPointOfInterestSupported])
+	if ([self.device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus] &&
+		[self.device isFocusPointOfInterestSupported])
 	{
-		[device lockForConfiguration:nil];
-		[device setFocusPointOfInterest:[self.layer captureDevicePointOfInterestForPoint:[sender locationInView:self.view]]];
-		[device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
-		[device unlockForConfiguration];
+		[self.device lockForConfiguration:nil];
+		[self.device setFocusPointOfInterest:[self.layer captureDevicePointOfInterestForPoint:[sender locationInView:self.view]]];
+		[self.device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+		[self.device unlockForConfiguration];
+		self.focusMarkView.point = [sender locationInView:self.view];
+		self.focusMarkView.hidden = NO;
+		self.focusMarkView.willHide = NO;
+		// show until a change
 	}
 }
 - (IBAction)doubleTap:(UITapGestureRecognizer *)sender {
-	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-	if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus] &&
-		[device isFocusPointOfInterestSupported])
+	if ([self.device isFocusModeSupported:AVCaptureFocusModeAutoFocus] &&
+		[self.device isFocusPointOfInterestSupported])
 	{
-		[device lockForConfiguration:nil];
-		[device setFocusPointOfInterest:[self.layer captureDevicePointOfInterestForPoint:[sender locationInView:self.view]]];
-		[device setFocusMode:AVCaptureFocusModeAutoFocus];
-		[device unlockForConfiguration];
+		[self.device lockForConfiguration:nil];
+		[self.device setFocusPointOfInterest:[self.layer captureDevicePointOfInterestForPoint:[sender locationInView:self.view]]];
+		[self.device setFocusMode:AVCaptureFocusModeAutoFocus];
+		[self.device unlockForConfiguration];
+		self.focusMarkView.point = [sender locationInView:self.view];
+		self.focusMarkView.hidden = NO;
+		self.focusMarkView.willHide = YES;
+		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC);
+		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+			if (self.focusMarkView.willHide)
+				self.focusMarkView.hidden = YES;
+		});
 	}
-	
 }
 
-- (IBAction)layout {
-	self.constraintToDisable.active = self.exposureSwitch.selected; // 0 - auto, 1 - manual
+- (void)layoutWithContinueBlock:(void(^)(BOOL))block {
+	[UIView animateWithDuration:.3 animations:^{
+		self.sensitivityConstraint.active = self.exposureSwitch.selected; // 0 - auto, 1 - manual
+		self.focusConstraint.active = self.whiteSwitch.selected;
+		[self.view layoutIfNeeded];
+	} completion:block];
 }
 
 - (IBAction)switchLightningDetection:(id)sender {
 	UISwitchButton* sw = sender;
 	self.isDetecting = sw.selected;
 	self.sensitivity.hidden = !sw.selected;
-	self.flashLightSwitch.enabled = !sw.selected;
+	self.flashLightSwitch.enabled = !sw.selected && [self.device hasFlash] && [self.device hasTorch];
 	if (self.isDetecting) {
-		self.firstFrame = true;
-		self.flashLightSwitch.selectedSegmentIndex = kFlashSwitchSectionOff; // disable flashlight
+		self.firstFrame = YES;
+		self.flashLightSwitch.selectedState = kFlashSwitchSectionOff; // disable flashlight
 	}
 }
 
 - (IBAction)exposureSwitchValueChanged:(UISwitchButton *)sender {
-	AVCaptureDevice* device;
-	switch (sender.selected) {
-		case 0:
-			self.exposureSlider.hidden = self.gainSlider.hidden = YES;
-			device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-			[device lockForConfiguration:nil];
-			[device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-			[device unlockForConfiguration];
-			break;
-			
-		case 1:
-			device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-			self.exposureSlider.value = f((double)device.exposureDuration.value * (double)self.timescale / (double)device.exposureDuration.timescale);
-			self.gainSlider.value = device.ISO;
+	if (sender.selected) {
+		[self layoutWithContinueBlock:^(BOOL finished){
+			self.exposureSlider.value = f((double)self.device.exposureDuration.value * (double)self.timescale / (double)self.device.exposureDuration.timescale);
+			self.gainSlider.value = self.device.ISO;
 			self.exposureSlider.hidden = self.gainSlider.hidden = NO;
 			[self.exposureSlider sendActionsForControlEvents:UIControlEventValueChanged];
 			[self.gainSlider sendActionsForControlEvents:UIControlEventValueChanged];
 			[self exposureChange:sender];
-			break;
+		}];
+
+	}
+	else {
+		self.exposureSlider.hidden = self.gainSlider.hidden = YES;
+		[self.device lockForConfiguration:nil];
+		[self.device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+		[self.device unlockForConfiguration];
+		[self layoutWithContinueBlock:nil];
 	}
 }
 
 - (IBAction)exposureChange:(id)sender {
-	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-	[device lockForConfiguration:nil];
+	[self.device lockForConfiguration:nil];
 	CMTime s = { ceil(inversef(self.exposureSlider.value)), self.timescale, 1, 0};
 	
 	
-	if (s.value / s.timescale < device.activeFormat.minExposureDuration.value / device.activeFormat.minExposureDuration.timescale)
-		s = device.activeFormat.minExposureDuration;
+	if (s.value / s.timescale < self.device.activeFormat.minExposureDuration.value / self.device.activeFormat.minExposureDuration.timescale)
+		s = self.device.activeFormat.minExposureDuration;
 	
-	if (s.value / s.timescale > device.activeFormat.maxExposureDuration.value / device.activeFormat.maxExposureDuration.timescale)
-		s = device.activeFormat.maxExposureDuration;
-	[device setExposureModeCustomWithDuration:s ISO:self.gainSlider.value completionHandler:^void(CMTime s){
+	if (s.value / s.timescale > self.device.activeFormat.maxExposureDuration.value / self.device.activeFormat.maxExposureDuration.timescale)
+		s = self.device.activeFormat.maxExposureDuration;
+	[self.device setExposureModeCustomWithDuration:s ISO:self.gainSlider.value completionHandler:^void(CMTime s){
 		AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 		[device unlockForConfiguration];
 	}];
@@ -294,41 +339,70 @@ enum FlashSwitchSection {
 
 
 - (IBAction)whiteSwitchValueChanged:(UISwitchButton *)sender {
-	AVCaptureDevice* device;
-	switch (sender.selected) {
-		case 0:
-			device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-			[device lockForConfiguration:nil];
-			self.whiteSlider.hidden = YES;
-			
-			[device setWhiteBalanceMode:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance];
-			[device unlockForConfiguration];
-			break;
-			
-		case 1:
+	if (sender.selected) {
+		[self layoutWithContinueBlock:^(BOOL finished) {
 			self.whiteSlider.hidden = NO;
 			[self whiteChange:sender];
-			break;
+		}];
 	}
+	else {
+		self.whiteSlider.hidden = YES;
+		[self.device lockForConfiguration:nil];
+		[self.device setWhiteBalanceMode:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance];
+		[self.device unlockForConfiguration];
+		[self layoutWithContinueBlock:nil];
+	}
+	
+	
+	
 }
 
 #define clamp(m, value, M) (MIN((M), MAX((m), (value))))
 
 - (IBAction)whiteChange:(id)sender {
-	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-	[device lockForConfiguration:nil];
+	[self.device lockForConfiguration:nil];
 	
 	AVCaptureWhiteBalanceTemperatureAndTintValues tt;
 	tt.tint = 0.0f;
 	tt.temperature = self.whiteSlider.value;
 	
-	AVCaptureWhiteBalanceGains gains = [device deviceWhiteBalanceGainsForTemperatureAndTintValues:tt];
+	AVCaptureWhiteBalanceGains gains = [self.device deviceWhiteBalanceGainsForTemperatureAndTintValues:tt];
 	
-	gains.redGain = clamp(1, gains.redGain, device.maxWhiteBalanceGain);
-	gains.blueGain = clamp(1, gains.blueGain, device.maxWhiteBalanceGain);
-	gains.greenGain = clamp(1, gains.greenGain, device.maxWhiteBalanceGain);
+	gains.redGain = clamp(1, gains.redGain, self.device.maxWhiteBalanceGain);
+	gains.blueGain = clamp(1, gains.blueGain, self.device.maxWhiteBalanceGain);
+	gains.greenGain = clamp(1, gains.greenGain, self.device.maxWhiteBalanceGain);
 	
-	[device setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:gains completionHandler:^(CMTime syncTime) {
+	[self.device setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:gains completionHandler:^(CMTime syncTime) {
+		AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+		[device unlockForConfiguration];
+	}];
+}
+
+- (IBAction)focusSwitchChange: (UISwitchButton*)sender {
+	[self.device lockForConfiguration:nil];
+	if (sender.selected) {
+		self.focusSlider.value = self.device.lensPosition;
+		[self.device setFocusModeLockedWithLensPosition:AVCaptureLensPositionCurrent completionHandler:^(CMTime syncTime) {
+			AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+			[device unlockForConfiguration];
+		}];
+		self.focusSlider.hidden = NO;
+		self.focusMarkView.hidden = YES;
+	}
+	else {
+		[self.device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+		[self.device setFocusPointOfInterest:CGPointMake(0.5f, 0.5f)];
+		[self.device unlockForConfiguration];
+		self.focusMarkView.point = self.view.center;
+		self.focusMarkView.hidden = NO;
+		self.focusMarkView.willHide = NO;
+		self.focusSlider.hidden = YES;
+	}
+}
+
+- (IBAction)focusChange:(PTSliderWithValue*)sender {
+	[self.device lockForConfiguration:nil];
+	[self.device setFocusModeLockedWithLensPosition:sender.value completionHandler:^(CMTime syncTime) {
 		AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 		[device unlockForConfiguration];
 	}];
@@ -336,14 +410,14 @@ enum FlashSwitchSection {
 
 - (void)flashScreen {
 	self.flashView.alpha = 1.f;
-	self.flashView.hidden = false;
+	self.flashView.hidden = NO;
 	
 	[UIView animateWithDuration:1.f
 					 animations:^{
 						 self.flashView.alpha = 0.f;
 					 }
 					 completion:^(BOOL finished){
-						 self.flashView.hidden = true;
+						 self.flashView.hidden = YES;
 					 }
 	 ];
 }
@@ -397,13 +471,10 @@ enum FlashSwitchSection {
 
 - (void)setupCapture {
 	/*We setup the input*/
-	AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+	self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	self.colorSpace = CGColorSpaceCreateDeviceRGB(); // FIXME: never released
 	
-	AVCaptureDeviceInput *captureInput = [AVCaptureDeviceInput
-										  deviceInputWithDevice:device
-										  error:nil];
-	
+	AVCaptureDeviceInput *captureInput = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:nil];
 	
 	/*We setup the output*/
 	self.captureOutput = [[AVCaptureVideoDataOutput alloc] init];
@@ -446,7 +517,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	if (!self.isDetecting) return;
 	/*if (saveNext) {
 	 [self captureOutputHigh:captureOutput didOutputSampleBuffer:sampleBuffer fromConnection:connection];
-	 saveNext = false;
+	 saveNext = NO;
 	 return;
 	 }*/
 	
@@ -470,7 +541,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 		
 		if (self.firstFrame) {
 			self.prev_brightness = avg_brightness;
-			self.firstFrame = false;
+			self.firstFrame = NO;
 		}
 		// sensitivity = -threshold
 		else if (avg_brightness - self.prev_brightness >= -self.sensitivity.value) {
@@ -510,38 +581,57 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 			CVPixelBufferUnlockBaseAddress(imageBuffer,0);
 		}
 		self.prev_brightness = avg_brightness;
-		self.isFirst = false;
+		self.isFirst = NO;
 	}
 }
 
 - (void) orientationChanged:(NSNotification *)notif {
 	// Calculate rotation angle
 	CGFloat angle;
+	NSString *direction;
 	switch ([[UIDevice currentDevice] orientation]) {
 		case UIDeviceOrientationPortraitUpsideDown:
 			angle = M_PI;
 			self.orientation = UIInterfaceOrientationPortraitUpsideDown;
+			self.exposureLabel	.label.textAlignment = NSTextAlignmentRight;
+			self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentCenter;
+			self.lightningLabel	.label.textAlignment = NSTextAlignmentLeft;
+			direction = @"down";
 			break;
 		case UIDeviceOrientationLandscapeLeft:
 			angle = M_PI_2;
 			self.orientation = UIInterfaceOrientationLandscapeLeft;
+			self.lightningLabel	.label.textAlignment = NSTextAlignmentRight;
+			self.exposureLabel	.label.textAlignment = NSTextAlignmentRight;
+			self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentRight;
+			direction = @"right";
 			break;
 		case UIDeviceOrientationLandscapeRight:
 			angle = - M_PI_2;
 			self.orientation = UIInterfaceOrientationLandscapeRight;
+			self.exposureLabel	.label.textAlignment = NSTextAlignmentLeft;
+			self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentLeft;
+			self.lightningLabel	.label.textAlignment = NSTextAlignmentLeft;
+			direction = @"left";
 			break;
 		case UIDeviceOrientationPortrait:
 			angle = 0;
 			self.orientation = UIInterfaceOrientationPortrait;
+			self.exposureLabel	.label.textAlignment = NSTextAlignmentLeft;
+			self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentCenter;
+			self.lightningLabel	.label.textAlignment = NSTextAlignmentRight;
+			direction = @"up";
 			break;
 		default:
 			return;
 	}
 	
+	self.useSlidersLabel.text = [NSString stringWithFormat:@"Swipe %@ to hide\n\nUse sliders to adjust parameters.\nSliders appear when\nmanual adjustment is enabled.", direction];
+	
 	CGAffineTransform t = CGAffineTransformMakeRotation(angle);
 	[UIView animateWithDuration:.3 animations:^{
 		// segmented control
-		self.flashLightSwitch.transform = t;
+		self.flashLightSwitch.orientation = self.orientation;
 		
 		// buttons
 		self.whiteSwitch.transform = t;
@@ -549,12 +639,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 		self.lightningSwitch.transform = t;
 		self.helpButton.transform = t;
 		self.cameraButton.transform = t;
+		self.focusSwitch.transform = t;
+		self.rulesButton.transform = t;
 		
 		// sliders
 		self.exposureSlider.labelTransform = t;
 		self.gainSlider.labelTransform = t;
 		self.whiteSlider.labelTransform = t;
 		self.sensitivity.labelTransform = t;
+		self.focusSlider.labelTransform = t;
 		
 		// help labels
 		self.wbLabel.labelTransform = t;
@@ -564,6 +657,24 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 		self.exposureLabel.labelTransform = t;
 		self.flashlightLabel.labelTransform = t;
 		self.lightningLabel.labelTransform = t;
+		self.focusLabel.labelTransform = t;
+		
+		// coordinates
+		for (NSLayoutConstraint* c in self.focusLabel.constraints)
+			if (c.firstAttribute == NSLayoutAttributeCenterX) {
+				[self.focusLabel removeConstraint:c];
+				break;
+			}
+		
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.focusLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.focusSwitch attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+		
+		for (NSLayoutConstraint* c in self.helpLabel.constraints)
+			if (c.firstAttribute == NSLayoutAttributeCenterX) {
+				[self.helpLabel removeConstraint:c];
+				break;
+			}
+		
+		[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.helpButton attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
 		
 	} completion:^(BOOL finished) {
 	}];

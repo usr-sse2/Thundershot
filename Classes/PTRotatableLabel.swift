@@ -20,7 +20,7 @@ public class PTRotatableLabel: UIView {
 		set (newText) {
 			label.text = newText
 			label.numberOfLines = (newText != nil ? newText!.characters
-				.filter({$0 ==  "\n"}).count : 0)
+				.filter({$0 ==  "\u{00002028}"}).count + 1 : 0)
 			sizeToFit()
 		}
 	}
@@ -65,31 +65,55 @@ public class PTRotatableLabel: UIView {
 		}
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		label = UILabel()
+		label.textAlignment = NSTextAlignment.Center
+		label.translatesAutoresizingMaskIntoConstraints = false
 		super.init(coder: aDecoder)
+		self.translatesAutoresizingMaskIntoConstraints = false
+		self.addConstraint(NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0))
+		self.addConstraint(NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0))
 		self.addSubview(label)
 		sizeToFit()
 	}
 	
 	override public init(frame : CGRect) {
 		label = UILabel()
+		label.textAlignment = NSTextAlignment.Center
 		super.init(frame : frame)
 		self.addSubview(label)
 		sizeToFit()
 	}
 	
 	public override func sizeToFit() {
-		label.sizeToFit()
-		label.frame = CGRectMake(0, 0, label.frame.width, label.frame.height)
-		frame = CGRectMake(frame.origin.x, frame.origin.y, label.frame.width, label.frame.height)
 		for c in self.constraints {
 			if c.firstItem === self as AnyObject && c.secondItem === nil {
 				self.removeConstraint(c)
 			}
 		}
-		self.addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: frame.width))
-		self.addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: frame.height))
+		for c in self.constraints {
+			if c.firstItem === label as AnyObject && c.secondItem === nil {
+				self.removeConstraint(c)
+			}
+		}
+		
+		label.translatesAutoresizingMaskIntoConstraints = true
+		label.sizeToFit()
+		label.translatesAutoresizingMaskIntoConstraints = false
+		
+		for c in self.constraints {
+			if c.firstItem === label as AnyObject && c.secondItem === nil {
+				self.removeConstraint(c)
+			}
+		}
+		
+		//label
+		self.addConstraint(NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: label.frame.width))
+		self.addConstraint(NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: label.frame.height))
+		
+		// self
+		self.addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: label.frame.width))
+		self.addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: label.frame.height))
 	}
 	
 	public override func layoutIfNeeded() {
