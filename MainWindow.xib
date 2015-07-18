@@ -123,102 +123,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="392"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YwJ-Ul-EfY" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8" width="55" height="15"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Flashlight"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6XW-Fr-1x8" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                                                    <rect key="frame" x="231" y="8" width="81" height="15"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="White balance"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EW5-c3-yV2" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                                                    <rect key="frame" x="258" y="355" width="54" height="29"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Lightning detection"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLq-EM-4o3" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                                                    <rect key="frame" x="67" y="160" width="187" height="72"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Swipe up to hide  Use sliders to adjust parameters. Sliders appear when manual adjustment is enabled."/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIn-GY-n6G" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                                                    <rect key="frame" x="187" y="8" width="27" height="15"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Help"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qu4-QW-gmG" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                                                    <rect key="frame" x="138" y="355" width="44" height="29"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Take a photo"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7q-AI-BqL" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="355" width="53" height="29"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Exposure and ISO"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZo-eh-1Kz" customClass="PTRotatableLabel" customModule="Thundershot" customModuleProvider="target">
-                                                    <rect key="frame" x="103" y="8" width="35" height="15"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="Focus"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                            <real key="value" value="12"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8a-ND-gfN">
                                                     <rect key="frame" x="149" y="325" width="22" height="22"/>
                                                     <constraints>
@@ -230,26 +134,74 @@
                                                         <action selector="showRules" destination="4st-wb-WTp" eventType="touchUpInside" id="Vnw-of-t6F"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flashlight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQP-ra-8U1">
+                                                    <rect key="frame" x="8" y="8" width="55" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCH-Ye-uZg">
+                                                    <rect key="frame" x="112" y="8" width="35" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhP-6K-4RG">
+                                                    <rect key="frame" x="177" y="8" width="27" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White balance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lg2-CH-Q6T">
+                                                    <rect key="frame" x="231" y="8" width="81" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to hide  Tap once to set autofocus target Double-tap to focus and lock" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dE6-jx-9FN">
+                                                    <rect key="frame" x="68" y="167" width="185" height="58"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lightning detection" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZY-ay-hAx">
+                                                    <rect key="frame" x="258" y="355" width="54" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a photo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL9-Sm-voK">
+                                                    <rect key="frame" x="138" y="355" width="44" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exposure and ISO" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ba-KY-DKa">
+                                                    <rect key="frame" x="8" y="355" width="53" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="EZo-eh-1Kz" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" constant="-40" placeholder="YES" id="0X6-bc-iwc"/>
-                                                <constraint firstItem="Qu4-QW-gmG" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="1OQ-yU-qIN"/>
-                                                <constraint firstItem="EZo-eh-1Kz" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="35J-No-LTU"/>
-                                                <constraint firstAttribute="bottom" secondItem="EW5-c3-yV2" secondAttribute="bottom" constant="8" id="5on-9S-W0f"/>
-                                                <constraint firstItem="YwJ-Ul-EfY" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="8FE-IJ-85c"/>
-                                                <constraint firstItem="6XW-Fr-1x8" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="DZC-WF-9GF"/>
-                                                <constraint firstItem="Qu4-QW-gmG" firstAttribute="top" secondItem="d8a-ND-gfN" secondAttribute="bottom" constant="8" id="Ha1-Gb-pnl"/>
-                                                <constraint firstItem="YwJ-Ul-EfY" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="LWa-bc-pKZ"/>
-                                                <constraint firstAttribute="trailing" secondItem="6XW-Fr-1x8" secondAttribute="trailing" constant="8" id="M9u-wl-u9g"/>
-                                                <constraint firstItem="mLq-EM-4o3" firstAttribute="centerY" secondItem="jbk-VP-fnB" secondAttribute="centerY" id="NbW-4G-hFS"/>
-                                                <constraint firstAttribute="trailing" secondItem="EW5-c3-yV2" secondAttribute="trailing" constant="8" id="PvX-q8-org"/>
-                                                <constraint firstItem="mLq-EM-4o3" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="WpZ-Wg-pZm"/>
-                                                <constraint firstAttribute="bottom" secondItem="Qu4-QW-gmG" secondAttribute="bottom" constant="8" id="cN2-G6-GMx"/>
+                                                <constraint firstAttribute="trailing" secondItem="lg2-CH-Q6T" secondAttribute="trailing" constant="8" id="1yI-Wu-VcV"/>
+                                                <constraint firstItem="iCH-Ye-uZg" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="112" placeholder="YES" id="9DP-gU-3ro"/>
+                                                <constraint firstItem="dE6-jx-9FN" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="EHM-6w-UVE"/>
+                                                <constraint firstAttribute="bottom" secondItem="7ba-KY-DKa" secondAttribute="bottom" constant="8" id="JBB-qI-o9Q"/>
+                                                <constraint firstItem="IQP-ra-8U1" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="MQW-Hn-llH"/>
+                                                <constraint firstAttribute="bottom" secondItem="CL9-Sm-voK" secondAttribute="bottom" constant="8" id="VeG-fR-eb8"/>
+                                                <constraint firstAttribute="bottom" secondItem="1ZY-ay-hAx" secondAttribute="bottom" constant="8" id="WGv-Qo-12w"/>
+                                                <constraint firstAttribute="trailing" secondItem="1ZY-ay-hAx" secondAttribute="trailing" constant="8" id="YI8-xx-mbv"/>
+                                                <constraint firstItem="CL9-Sm-voK" firstAttribute="top" secondItem="d8a-ND-gfN" secondAttribute="bottom" constant="8" symbolic="YES" id="hTr-Wo-9CV"/>
                                                 <constraint firstItem="d8a-ND-gfN" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="i4g-MX-FtX"/>
-                                                <constraint firstItem="GIn-GY-n6G" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" constant="40" placeholder="YES" id="kpV-jJ-dJn"/>
-                                                <constraint firstItem="GIn-GY-n6G" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="tEX-st-StL"/>
-                                                <constraint firstItem="z7q-AI-BqL" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="weS-GV-06n"/>
-                                                <constraint firstAttribute="bottom" secondItem="z7q-AI-BqL" secondAttribute="bottom" constant="8" id="zse-xk-5Tn"/>
+                                                <constraint firstItem="lg2-CH-Q6T" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="jKs-sz-UYc"/>
+                                                <constraint firstItem="IQP-ra-8U1" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="jRk-mG-gD8"/>
+                                                <constraint firstItem="IhP-6K-4RG" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="mbT-Wq-nYh"/>
+                                                <constraint firstItem="7ba-KY-DKa" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="prV-Ab-Kii"/>
+                                                <constraint firstAttribute="trailing" secondItem="IhP-6K-4RG" secondAttribute="trailing" constant="116" placeholder="YES" id="uSQ-mD-m0x"/>
+                                                <constraint firstItem="CL9-Sm-voK" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="wVK-wF-kt4"/>
+                                                <constraint firstItem="iCH-Ye-uZg" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="wbc-5S-9bR"/>
+                                                <constraint firstItem="dE6-jx-9FN" firstAttribute="centerY" secondItem="jbk-VP-fnB" secondAttribute="centerY" id="yCf-HL-n1K"/>
                                             </constraints>
                                         </view>
                                         <blurEffect style="light"/>
@@ -471,34 +423,27 @@
                 <outlet property="cameraButton" destination="e5k-Hv-8PM" id="cvc-ZE-Dgm"/>
                 <outlet property="doubleTapGestureRecognizer" destination="il0-cn-uxX" id="nEx-Mt-D2v"/>
                 <outlet property="exampleView" destination="Uo6-x5-HnT" id="OJN-sr-5sn"/>
-                <outlet property="exposureLabel" destination="z7q-AI-BqL" id="dyn-1E-8R3"/>
                 <outlet property="exposureSlider" destination="I24-UF-CoI" id="car-Av-n37"/>
                 <outlet property="exposureSwitch" destination="HsH-RA-ltn" id="Tb5-R5-WLA"/>
                 <outlet property="flashLightSwitch" destination="a6Z-Mo-oVG" id="kff-wd-CN8"/>
-                <outlet property="flashlightLabel" destination="YwJ-Ul-EfY" id="oYO-Mv-kpR"/>
                 <outlet property="focusConstraint" destination="HhC-6y-VBp" id="Uen-B1-QEW"/>
-                <outlet property="focusLabel" destination="EZo-eh-1Kz" id="TJI-vs-41r"/>
+                <outlet property="focusLabel" destination="iCH-Ye-uZg" id="ydA-s3-MdN"/>
                 <outlet property="focusMarkView" destination="V7w-Cq-1lg" id="ADX-q9-Bj1"/>
                 <outlet property="focusSlider" destination="NQv-ye-Jfg" id="4SJ-ZN-EKt"/>
                 <outlet property="focusSwitch" destination="Gye-ma-bxx" id="Kl3-TI-sJo"/>
                 <outlet property="gainSlider" destination="Une-Hu-lmp" id="bKT-4H-cA4"/>
                 <outlet property="helpButton" destination="j5y-WF-Cxs" id="2mi-VP-03O"/>
-                <outlet property="helpLabel" destination="GIn-GY-n6G" id="W3a-ur-sYu"/>
+                <outlet property="helpLabel" destination="IhP-6K-4RG" id="oGQ-gs-FuT"/>
                 <outlet property="helpView" destination="zq7-fb-DB1" id="AMm-WL-0O9"/>
                 <outlet property="helpViewConstraintCenterY" destination="6V0-D7-dEn" id="EzY-rg-atY"/>
                 <outlet property="imageView" destination="NTV-Uo-mmO" id="eNk-od-1nS"/>
-                <outlet property="lightningLabel" destination="EW5-c3-yV2" id="64L-Nj-Ak9"/>
                 <outlet property="lightningSwitch" destination="jPi-mg-bTC" id="jTl-ib-eKa"/>
-                <outlet property="rulesButton" destination="d8a-ND-gfN" id="Yt2-td-iNF"/>
                 <outlet property="rulesView" destination="Uxm-oq-Fph" id="vnz-jB-Rrj"/>
                 <outlet property="sensitivity" destination="bmD-oT-dvF" id="TDn-jA-gKf"/>
                 <outlet property="sensitivityConstraint" destination="OJo-4J-1XK" id="7XP-Bb-YLi"/>
                 <outlet property="singleTapGestureRecognizer" destination="Qdv-9v-cne" id="P0J-9C-QRf"/>
                 <outlet property="swipeGestureRecognizer" destination="2WI-Eb-Ij1" id="yWG-X9-ODh"/>
-                <outlet property="takeAPhotoLabel" destination="Qu4-QW-gmG" id="128-Ie-Iul"/>
                 <outlet property="topBar" destination="yIg-Qe-0Q6" id="mDU-Qi-fR8"/>
-                <outlet property="useSlidersLabel" destination="mLq-EM-4o3" id="JcW-gu-ajN"/>
-                <outlet property="wbLabel" destination="6XW-Fr-1x8" id="6L2-b2-tD8"/>
                 <outlet property="whiteSlider" destination="nnN-1P-Shq" id="Dcd-O1-7k9"/>
                 <outlet property="whiteSwitch" destination="P7w-QD-Z3t" id="BEo-wy-JTn"/>
             </connections>

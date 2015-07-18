@@ -11,11 +11,7 @@
 #include <math.h>
 
 
-// TODO: 2. show help on first launch
 // TODO: 6. fix exposure after switching to auto
-// TODO: 3. info button location on rotation
-// TODO: 4. sizetofit and line count on swipe label
-// TODO: 5. fix RotatableLabel layout or revert and change animation
 
 static double f(double x) {
 	return cbrt(x);
@@ -68,19 +64,12 @@ static double inversef(double y) {
 @property (strong, nonatomic) NSLayoutConstraint *helpViewConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *helpViewConstraintCenterY;
 @property (strong, nonatomic) AVCaptureDevice *device;
-@property (strong, nonatomic) IBOutlet UIButton *rulesButton;
 @property (strong, nonatomic) IBOutlet PTFocusMarkView *focusMarkView;
 
 
 // Help labels
-@property (strong, nonatomic) IBOutlet PTRotatableLabel *wbLabel;
-@property (strong, nonatomic) IBOutlet PTRotatableLabel *useSlidersLabel;
-@property (strong, nonatomic) IBOutlet PTRotatableLabel *helpLabel;
-@property (strong, nonatomic) IBOutlet PTRotatableLabel *takeAPhotoLabel;
-@property (strong, nonatomic) IBOutlet PTRotatableLabel *exposureLabel;
-@property (strong, nonatomic) IBOutlet PTRotatableLabel *flashlightLabel;
-@property (strong, nonatomic) IBOutlet PTRotatableLabel *lightningLabel;
-@property (strong, nonatomic) IBOutlet PTRotatableLabel *focusLabel;
+@property (strong, nonatomic) IBOutlet UILabel *helpLabel;
+@property (strong, nonatomic) IBOutlet UILabel *focusLabel;
 
 
 - (void)setupCapture;
@@ -102,6 +91,9 @@ enum FlashSwitchSection {
 }
 
 - (IBAction)acceptRules {
+	NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+	[defaults setObject:[NSNumber numberWithBool:YES] forKey:@"hideRules"];
+	[defaults synchronize];
 	[self.rulesView removeFromSuperview];
 }
 
@@ -133,20 +125,25 @@ enum FlashSwitchSection {
 }
 
 - (IBAction)flashLightSwitchClick:(PTMultipleStateButton*)sender {
-	[self.self.device lockForConfiguration:nil];
-	[self.self.device setTorchMode:(sender.selectedState == kFlashSwitchSectionTorch) ? AVCaptureTorchModeOn : AVCaptureTorchModeOff];
+	[self.device lockForConfiguration:nil];
+	[self.device setTorchMode:(sender.selectedState == kFlashSwitchSectionTorch) ? AVCaptureTorchModeOn : AVCaptureTorchModeOff];
 	switch (sender.selectedState) {
-		case kFlashSwitchSectionAuto: [self.self.device setFlashMode:AVCaptureFlashModeAuto]; break;
+		case kFlashSwitchSectionAuto: [self.device setFlashMode:AVCaptureFlashModeAuto]; break;
 		case kFlashSwitchSectionTorch:
-		case kFlashSwitchSectionOff: [self.self.device setFlashMode:AVCaptureFlashModeOff]; break;
-		case kFlashSwitchSectionOn: [self.self.device setFlashMode:AVCaptureFlashModeOn]; break;
+		case kFlashSwitchSectionOff: [self.device setFlashMode:AVCaptureFlashModeOff]; break;
+		case kFlashSwitchSectionOn: [self.device setFlashMode:AVCaptureFlashModeOn]; break;
 	}
-	[self.self.device unlockForConfiguration];
+	[self.device unlockForConfiguration];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	
+	
+	NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+	BOOL hideRules = [(NSNumber*)[defaults objectForKey:@"hideRules"] boolValue];
+	
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)  name:UIDeviceOrientationDidChangeNotification  object:nil];
 	
@@ -162,11 +159,6 @@ enum FlashSwitchSection {
 	[self.view addConstraint:self.helpViewConstraint];
 	self.helpViewConstraint.priority = 1000;
 	self.helpViewConstraint.active = YES;
-	
-	self.exposureLabel	.label.textAlignment = NSTextAlignmentLeft;
-	self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentCenter;
-	self.lightningLabel	.label.textAlignment = NSTextAlignmentRight;
-	self.useSlidersLabel.label.textAlignment = NSTextAlignmentCenter;
 	
 	[self setupCapture];
 	
@@ -234,8 +226,10 @@ enum FlashSwitchSection {
 	if (self.videoConnection)
 		self.exampleView.hidden = YES;
 	
-	self.rulesView.frame = self.view.bounds;
-	[self.view addSubview:self.rulesView];
+	if (!hideRules) {
+		self.rulesView.frame = self.view.bounds;
+		[self.view addSubview:self.rulesView];
+	}
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -424,7 +418,6 @@ enum FlashSwitchSection {
 
 - (UIImage*)orientedImageFromImage:(CGImageRef)image {
 	UIImageOrientation imageOrientation = UIImageOrientationRight;
-	// FIXME: image orientation
 	switch (self.orientation) {
 		case UIInterfaceOrientationPortraitUpsideDown:
 			imageOrientation = UIImageOrientationLeft;
@@ -508,8 +501,6 @@ enum FlashSwitchSection {
 }
 
 
-#pragma mark -
-#pragma mark AVCaptureSession delegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	   fromConnection:(AVCaptureConnection *)connection
@@ -588,45 +579,26 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 - (void) orientationChanged:(NSNotification *)notif {
 	// Calculate rotation angle
 	CGFloat angle;
-	NSString *direction;
 	switch ([[UIDevice currentDevice] orientation]) {
 		case UIDeviceOrientationPortraitUpsideDown:
 			angle = M_PI;
 			self.orientation = UIInterfaceOrientationPortraitUpsideDown;
-			self.exposureLabel	.label.textAlignment = NSTextAlignmentRight;
-			self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentCenter;
-			self.lightningLabel	.label.textAlignment = NSTextAlignmentLeft;
-			direction = @"down";
 			break;
 		case UIDeviceOrientationLandscapeLeft:
 			angle = M_PI_2;
 			self.orientation = UIInterfaceOrientationLandscapeLeft;
-			self.lightningLabel	.label.textAlignment = NSTextAlignmentRight;
-			self.exposureLabel	.label.textAlignment = NSTextAlignmentRight;
-			self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentRight;
-			direction = @"right";
 			break;
 		case UIDeviceOrientationLandscapeRight:
 			angle = - M_PI_2;
 			self.orientation = UIInterfaceOrientationLandscapeRight;
-			self.exposureLabel	.label.textAlignment = NSTextAlignmentLeft;
-			self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentLeft;
-			self.lightningLabel	.label.textAlignment = NSTextAlignmentLeft;
-			direction = @"left";
 			break;
 		case UIDeviceOrientationPortrait:
 			angle = 0;
 			self.orientation = UIInterfaceOrientationPortrait;
-			self.exposureLabel	.label.textAlignment = NSTextAlignmentLeft;
-			self.takeAPhotoLabel.label.textAlignment = NSTextAlignmentCenter;
-			self.lightningLabel	.label.textAlignment = NSTextAlignmentRight;
-			direction = @"up";
 			break;
 		default:
 			return;
 	}
-	
-	self.useSlidersLabel.text = [NSString stringWithFormat:@"Swipe %@ to hide\n\nUse sliders to adjust parameters.\nSliders appear when\nmanual adjustment is enabled.", direction];
 	
 	CGAffineTransform t = CGAffineTransformMakeRotation(angle);
 	[UIView animateWithDuration:.3 animations:^{
@@ -640,7 +612,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 		self.helpButton.transform = t;
 		self.cameraButton.transform = t;
 		self.focusSwitch.transform = t;
-		self.rulesButton.transform = t;
 		
 		// sliders
 		self.exposureSlider.labelTransform = t;
@@ -648,16 +619,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 		self.whiteSlider.labelTransform = t;
 		self.sensitivity.labelTransform = t;
 		self.focusSlider.labelTransform = t;
-		
-		// help labels
-		self.wbLabel.labelTransform = t;
-		self.useSlidersLabel.labelTransform = t;
-		self.helpLabel.labelTransform = t;
-		self.takeAPhotoLabel.labelTransform = t;
-		self.exposureLabel.labelTransform = t;
-		self.flashlightLabel.labelTransform = t;
-		self.lightningLabel.labelTransform = t;
-		self.focusLabel.labelTransform = t;
 		
 		// coordinates
 		for (NSLayoutConstraint* c in self.focusLabel.constraints)
