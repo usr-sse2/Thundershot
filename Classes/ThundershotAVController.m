@@ -11,8 +11,6 @@
 #include <math.h>
 
 
-// TODO: 6. fix exposure after switching to auto
-
 static double f(double x) {
 	return cbrt(x);
 }
@@ -24,6 +22,7 @@ static double inversef(double y) {
 
 @interface ThundershotAVController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 @property (nonatomic, strong) IBOutlet UIView *rulesView;
+@property (nonatomic, strong) IBOutlet UILabel *rulesLabel;
 @property (nonatomic, strong) UIView* flashView;
 @property (nonatomic) bool firstFrame;
 @property (nonatomic) float prev_brightness;
@@ -160,6 +159,12 @@ enum FlashSwitchSection {
 	self.helpViewConstraint.priority = 1000;
 	self.helpViewConstraint.active = YES;
 	
+	self.flashLightSwitch.semicolonSeparatedStateLabels = NSLocalizedString(@"FlashlightStates", @"auto,torch,flash,off");
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Rules" ofType:@"rtf"];
+	NSData *data = [NSData dataWithContentsOfFile:filePath];
+	self.rulesLabel.attributedText = [[NSAttributedString alloc] initWithData:data options:@{NSDocumentTypeDocumentAttribute:NSRTFTextDocumentType} documentAttributes:nil error:nil];
+
+	
 	[self setupCapture];
 	
 	[self.device lockForConfiguration:nil];
@@ -186,11 +191,11 @@ enum FlashSwitchSection {
 										 );
 		
 		self.exposureSlider.toStringLambda = ^NSString*(float v) {
-			return [NSString stringWithFormat:@"Exposure\n1/%d", (int)((double)self.timescale / inversef(v))];
+			return [NSString stringWithFormat:NSLocalizedString(@"ExposureFormat", @"for slider lambda; 1/%d sec"), (int)((double)self.timescale / inversef(v))];
 		};
 		
 		self.focusSlider.toStringLambda = ^NSString*(float v) {
-			return [NSString stringWithFormat:@"Focus\n%.2f", v];
+			return [NSString stringWithFormat:NSLocalizedString(@"FocusFormat", @"for slider lambda; %.2f"), v];
 		};
 		
 	}
@@ -203,7 +208,7 @@ enum FlashSwitchSection {
 		self.whiteSlider.minimumValue = 2500;
 		self.whiteSlider.maximumValue = 20000;
 		self.whiteSlider.toStringLambda = ^NSString*(float v) {
-			return [NSString stringWithFormat:@"Temperature\n%d K", (int)roundf(v)];
+			return [NSString stringWithFormat:NSLocalizedString(@"TemperatureFormat", @"for slider lambda; %d K"), (int)roundf(v)];
 		};
 	}
 	else

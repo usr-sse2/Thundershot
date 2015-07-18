@@ -11,7 +11,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		435D984B11D2089A009ADC4F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435D984A11D2089A009ADC4F /* AVFoundation.framework */; };
 		438CE3BC11D2717800CF55BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438CE3BB11D2717800CF55BC /* CoreGraphics.framework */; };
 		438CE3DF11D2718600CF55BC /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438CE3DE11D2718600CF55BC /* CoreVideo.framework */; };
@@ -19,16 +18,17 @@
 		438CE43111D2766D00CF55BC /* ThundershotAVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438CE43011D2766D00CF55BC /* ThundershotAVController.m */; };
 		43D32BCE11D341F400AFA790 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D32BCD11D341F400AFA790 /* QuartzCore.framework */; };
 		43D32E3011D3A1DB00AFA790 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D32E2F11D3A1DB00AFA790 /* AudioToolbox.framework */; };
+		4C2C003F1B5A886600C196DF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C00411B5A886600C196DF /* Localizable.strings */; };
+		4C2C00451B5A8B7600C196DF /* Rules.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C00471B5A8B7600C196DF /* Rules.rtf */; };
 		4C483B321B591A2800643E2D /* PTFocusMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C483B311B591A2800643E2D /* PTFocusMarkView.swift */; };
 		4C5049A017A3A5AC000902CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C50499F17A3A5AC000902CA /* Images.xcassets */; };
-		4C8F1FB419BE15ED009F626A /* 1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8F1FB319BE15ED009F626A /* 1024x768.png */; };
+		4C8DC7DF1B5A725A002EEEC5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DC7DE1B5A725A002EEEC5 /* Launch Screen.storyboard */; };
+		4C8DC7E01B5A76DA002EEEC5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DC7E21B5A76DA002EEEC5 /* MainWindow.xib */; };
+		4C8DC7E71B5A7A6C002EEEC5 /* Thundershot-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DC7E91B5A7A6C002EEEC5 /* Thundershot-InfoPlist.strings */; };
 		4C925FC8199F4053004DD40D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C925FC7199F4053004DD40D /* ImageIO.framework */; };
 		4C925FCA199F411F004DD40D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C925FC9199F411F004DD40D /* MobileCoreServices.framework */; };
 		4C9C01A51B3E7B9A00DF24A4 /* UIImage+TextWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C01A41B3E7B9A00DF24A4 /* UIImage+TextWithImage.m */; };
 		4CA113A117AE722500D9B349 /* UIButtonRight.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA113A017AE722400D9B349 /* UIButtonRight.m */; };
-		4CAA72CB19B36782001CAA73 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAA72CA19B36782001CAA73 /* Default-568h@2x.png */; };
-		4CAF0DE61B412A8400DA3A0F /* PTRotatableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAF0DE51B412A8400DA3A0F /* PTRotatableLabel.swift */; };
-		4CAF0DE81B4144C900DA3A0F /* PTRotatableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAF0DE71B4144C900DA3A0F /* PTRotatableContainer.swift */; };
 		4CC3D34A1B456C60004E54D8 /* PTMultipleStateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3D3491B456C60004E54D8 /* PTMultipleStateButton.swift */; };
 		4CD3E5021B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3E5011B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift */; };
 		4CD9D2091B1EF2C200AF641D /* PTSliderWithValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9D2081B1EF2C200AF641D /* PTSliderWithValue.swift */; };
@@ -42,7 +42,6 @@
 		1D3623240D0F684500981E51 /* ThundershotAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThundershotAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* ThundershotAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThundershotAppDelegate.m; sourceTree = "<group>"; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Thundershot_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thundershot_Prefix.pch; sourceTree = "<group>"; };
 		430C1F0912197A2C00102B33 /* Thundershot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thundershot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,19 +53,23 @@
 		438CE43011D2766D00CF55BC /* ThundershotAVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThundershotAVController.m; sourceTree = "<group>"; };
 		43D32BCD11D341F400AFA790 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		43D32E2F11D3A1DB00AFA790 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4C2C00401B5A886600C196DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C2C00421B5A886A00C196DF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C2C00461B5A8B7600C196DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Base.lproj/Rules.rtf; sourceTree = "<group>"; };
+		4C2C00481B5A8C6500C196DF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ru; path = ru.lproj/Rules.rtf; sourceTree = "<group>"; };
 		4C483B311B591A2800643E2D /* PTFocusMarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTFocusMarkView.swift; sourceTree = "<group>"; };
 		4C50499F17A3A5AC000902CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Thundershot/Images.xcassets; sourceTree = "<group>"; };
 		4C5049A317A3A728000902CA /* Thundershot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Thundershot; sourceTree = "<group>"; };
-		4C8F1FB319BE15ED009F626A /* 1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1024x768.png; sourceTree = "<group>"; };
+		4C8DC7DE1B5A725A002EEEC5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		4C8DC7E11B5A76DA002EEEC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		4C8DC7E41B5A7A05002EEEC5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MainWindow.strings; sourceTree = "<group>"; };
+		4C8DC7E81B5A7A6C002EEEC5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "ru.lproj/Thundershot-InfoPlist.strings"; sourceTree = "<group>"; };
 		4C925FC7199F4053004DD40D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		4C925FC9199F411F004DD40D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4C9C01A31B3E7B9A00DF24A4 /* UIImage+TextWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TextWithImage.h"; sourceTree = "<group>"; };
 		4C9C01A41B3E7B9A00DF24A4 /* UIImage+TextWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TextWithImage.m"; sourceTree = "<group>"; };
 		4CA1139F17AE722400D9B349 /* UIButtonRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonRight.h; sourceTree = "<group>"; };
 		4CA113A017AE722400D9B349 /* UIButtonRight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonRight.m; sourceTree = "<group>"; };
-		4CAA72CA19B36782001CAA73 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4CAF0DE51B412A8400DA3A0F /* PTRotatableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTRotatableLabel.swift; sourceTree = "<group>"; };
-		4CAF0DE71B4144C900DA3A0F /* PTRotatableContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTRotatableContainer.swift; sourceTree = "<group>"; };
 		4CC3D3491B456C60004E54D8 /* PTMultipleStateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTMultipleStateButton.swift; sourceTree = "<group>"; };
 		4CD3E5011B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTSliderWithRotatableLabel.swift; sourceTree = "<group>"; };
 		4CD9D2071B1EF2C100AF641D /* Thundershot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thundershot-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -117,8 +120,6 @@
 				4CD9D2081B1EF2C200AF641D /* PTSliderWithValue.swift */,
 				4CE13CAF1B3FF97F000F6A07 /* UISwitchButton.swift */,
 				4CD3E5011B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift */,
-				4CAF0DE51B412A8400DA3A0F /* PTRotatableLabel.swift */,
-				4CAF0DE71B4144C900DA3A0F /* PTRotatableContainer.swift */,
 				4CC3D3491B456C60004E54D8 /* PTMultipleStateButton.swift */,
 				4C483B311B591A2800643E2D /* PTFocusMarkView.swift */,
 			);
@@ -136,8 +137,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				4CAA72CA19B36782001CAA73 /* Default-568h@2x.png */,
-				4C8F1FB319BE15ED009F626A /* 1024x768.png */,
 				4C5049A317A3A728000902CA /* Thundershot */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -160,9 +159,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C8DC7E91B5A7A6C002EEEC5 /* Thundershot-InfoPlist.strings */,
 				4C50499F17A3A5AC000902CA /* Images.xcassets */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				4C8DC7E21B5A76DA002EEEC5 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Thundershot-Info.plist */,
+				4C8DC7DE1B5A725A002EEEC5 /* Launch Screen.storyboard */,
+				4C2C00411B5A886600C196DF /* Localizable.strings */,
+				4C2C00471B5A8B7600C196DF /* Rules.rtf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -243,10 +247,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				4C8F1FB419BE15ED009F626A /* 1024x768.png in Resources */,
+				4C2C003F1B5A886600C196DF /* Localizable.strings in Resources */,
+				4C8DC7E71B5A7A6C002EEEC5 /* Thundershot-InfoPlist.strings in Resources */,
+				4C8DC7E01B5A76DA002EEEC5 /* MainWindow.xib in Resources */,
 				4C5049A017A3A5AC000902CA /* Images.xcassets in Resources */,
-				4CAA72CB19B36782001CAA73 /* Default-568h@2x.png in Resources */,
+				4C2C00451B5A8B7600C196DF /* Rules.rtf in Resources */,
+				4C8DC7DF1B5A725A002EEEC5 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,9 +266,7 @@
 				4CC3D34A1B456C60004E54D8 /* PTMultipleStateButton.swift in Sources */,
 				4CD3E5021B4023BE00FFB811 /* PTSliderWithRotatableLabel.swift in Sources */,
 				4CE13CB01B3FF97F000F6A07 /* UISwitchButton.swift in Sources */,
-				4CAF0DE61B412A8400DA3A0F /* PTRotatableLabel.swift in Sources */,
 				4C9C01A51B3E7B9A00DF24A4 /* UIImage+TextWithImage.m in Sources */,
-				4CAF0DE81B4144C900DA3A0F /* PTRotatableContainer.swift in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				4C483B321B591A2800643E2D /* PTFocusMarkView.swift in Sources */,
 				4CD9D2091B1EF2C200AF641D /* PTSliderWithValue.swift in Sources */,
@@ -274,6 +278,44 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4C2C00411B5A886600C196DF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C2C00401B5A886600C196DF /* Base */,
+				4C2C00421B5A886A00C196DF /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4C2C00471B5A8B7600C196DF /* Rules.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C2C00461B5A8B7600C196DF /* Base */,
+				4C2C00481B5A8C6500C196DF /* ru */,
+			);
+			name = Rules.rtf;
+			sourceTree = "<group>";
+		};
+		4C8DC7E21B5A76DA002EEEC5 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C8DC7E11B5A76DA002EEEC5 /* Base */,
+				4C8DC7E41B5A7A05002EEEC5 /* ru */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		4C8DC7E91B5A7A6C002EEEC5 /* Thundershot-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C8DC7E81B5A7A6C002EEEC5 /* ru */,
+			);
+			name = "Thundershot-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -334,7 +376,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -350,7 +392,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;

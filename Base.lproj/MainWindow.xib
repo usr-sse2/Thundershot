@@ -124,7 +124,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8a-ND-gfN">
-                                                    <rect key="frame" x="149" y="325" width="22" height="22"/>
+                                                    <rect key="frame" x="149" y="303" width="22" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="QyP-hc-8cR"/>
                                                         <constraint firstAttribute="width" constant="22" id="noG-p1-7mc"/>
@@ -134,25 +134,25 @@
                                                         <action selector="showRules" destination="4st-wb-WTp" eventType="touchUpInside" id="Vnw-of-t6F"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flashlight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQP-ra-8U1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flashlight" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQP-ra-8U1">
                                                     <rect key="frame" x="8" y="8" width="55" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCH-Ye-uZg">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCH-Ye-uZg">
                                                     <rect key="frame" x="112" y="8" width="35" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhP-6K-4RG">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhP-6K-4RG">
                                                     <rect key="frame" x="177" y="8" width="27" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White balance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lg2-CH-Q6T">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White balance" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lg2-CH-Q6T">
                                                     <rect key="frame" x="231" y="8" width="81" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -164,19 +164,19 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lightning detection" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZY-ay-hAx">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lightning detection" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZY-ay-hAx">
                                                     <rect key="frame" x="258" y="355" width="54" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a photo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL9-Sm-voK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a photo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL9-Sm-voK">
                                                     <rect key="frame" x="138" y="355" width="44" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exposure and ISO" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ba-KY-DKa">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exposure and ISO" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ba-KY-DKa">
                                                     <rect key="frame" x="8" y="355" width="53" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -192,7 +192,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="CL9-Sm-voK" secondAttribute="bottom" constant="8" id="VeG-fR-eb8"/>
                                                 <constraint firstAttribute="bottom" secondItem="1ZY-ay-hAx" secondAttribute="bottom" constant="8" id="WGv-Qo-12w"/>
                                                 <constraint firstAttribute="trailing" secondItem="1ZY-ay-hAx" secondAttribute="trailing" constant="8" id="YI8-xx-mbv"/>
-                                                <constraint firstItem="CL9-Sm-voK" firstAttribute="top" secondItem="d8a-ND-gfN" secondAttribute="bottom" constant="8" symbolic="YES" id="hTr-Wo-9CV"/>
+                                                <constraint firstItem="CL9-Sm-voK" firstAttribute="top" secondItem="d8a-ND-gfN" secondAttribute="bottom" constant="30" id="hTr-Wo-9CV"/>
                                                 <constraint firstItem="d8a-ND-gfN" firstAttribute="centerX" secondItem="jbk-VP-fnB" secondAttribute="centerX" id="i4g-MX-FtX"/>
                                                 <constraint firstItem="lg2-CH-Q6T" firstAttribute="top" secondItem="jbk-VP-fnB" secondAttribute="top" constant="8" id="jKs-sz-UYc"/>
                                                 <constraint firstItem="IQP-ra-8U1" firstAttribute="leading" secondItem="jbk-VP-fnB" secondAttribute="leading" constant="8" id="jRk-mG-gD8"/>
@@ -438,6 +438,7 @@
                 <outlet property="helpViewConstraintCenterY" destination="6V0-D7-dEn" id="EzY-rg-atY"/>
                 <outlet property="imageView" destination="NTV-Uo-mmO" id="eNk-od-1nS"/>
                 <outlet property="lightningSwitch" destination="jPi-mg-bTC" id="jTl-ib-eKa"/>
+                <outlet property="rulesLabel" destination="45w-JS-gJb" id="Zoy-G9-cNe"/>
                 <outlet property="rulesView" destination="Uxm-oq-Fph" id="vnz-jB-Rrj"/>
                 <outlet property="sensitivity" destination="bmD-oT-dvF" id="TDn-jA-gKf"/>
                 <outlet property="sensitivityConstraint" destination="OJo-4J-1XK" id="7XP-Bb-YLi"/>
@@ -452,9 +453,9 @@
         <window opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" visibleAtLaunch="YES" id="12">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="475" y="237"/>
         </window>
         <tapGestureRecognizer id="Qdv-9v-cne">
             <connections>
@@ -475,48 +476,45 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSm-dc-tDC">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45w-JS-gJb">
+                    <rect key="frame" x="0.0" y="-1" width="320" height="481"/>
                     <attributedString key="attributedText">
                         <fragment content="Thundershot">
                             <attributes>
-                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="NSColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="14" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                         <fragment content=" is a camera app with lightning detection. It allows you to take amazing thunderstorm photos. ">
                             <attributes>
-                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="NSBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="14" name="HelveticaNeue"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                         <fragment content=" ">
                             <attributes>
-                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="NSBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="NSColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="14" name="HelveticaNeue"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                         <fragment content="How it works?">
                             <attributes>
-                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="NSColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="14" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                         <fragment content=" ">
                             <attributes>
-                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="NSBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="NSColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="14" name="HelveticaNeue"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
@@ -524,24 +522,23 @@
                         <fragment>
                             <string key="content">Thundershot works by comparing the brightness of each frame with the previous one. If the difference is large enough, the app takes two photos. The best results can be achieved with a tripod or another fixed mount.  </string>
                             <attributes>
-                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="NSBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="14" name="HelveticaNeue"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                         <fragment content="Safety rules">
                             <attributes>
-                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="NSColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="14" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                         <fragment content=" ">
                             <attributes>
-                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="NSBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="NSColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="14" name="HelveticaNeue"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -550,16 +547,16 @@
                         <fragment>
                             <string key="content">For your safety, don't try to take photos outside in the thunderstorm, especially in open places. Remember that your life is more important than a good photo.</string>
                             <attributes>
-                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="NSBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="14" name="HelveticaNeue"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                     </attributedString>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZk-L8-RSo">
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZk-L8-RSo">
                     <rect key="frame" x="145" y="442" width="30" height="30"/>
                     <state key="normal" title="OK">
                         <color key="titleColor" red="1" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -569,14 +566,12 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="mSm-dc-tDC" firstAttribute="width" secondItem="Uxm-oq-Fph" secondAttribute="width" id="1Jg-84-jiv"/>
-                <constraint firstItem="zZk-L8-RSo" firstAttribute="top" secondItem="mSm-dc-tDC" secondAttribute="bottom" constant="-38" id="4Z8-2e-zGN"/>
-                <constraint firstItem="zZk-L8-RSo" firstAttribute="centerX" secondItem="mSm-dc-tDC" secondAttribute="centerX" id="Qdo-jG-TJs"/>
-                <constraint firstItem="mSm-dc-tDC" firstAttribute="centerX" secondItem="Uxm-oq-Fph" secondAttribute="centerX" id="Xqr-SX-KHW"/>
-                <constraint firstItem="mSm-dc-tDC" firstAttribute="height" secondItem="Uxm-oq-Fph" secondAttribute="height" id="wCD-jd-muB"/>
-                <constraint firstItem="mSm-dc-tDC" firstAttribute="centerY" secondItem="Uxm-oq-Fph" secondAttribute="centerY" id="zi7-Qg-zFc"/>
+                <constraint firstItem="45w-JS-gJb" firstAttribute="centerY" secondItem="Uxm-oq-Fph" secondAttribute="centerY" id="Fos-T2-k7r"/>
+                <constraint firstItem="45w-JS-gJb" firstAttribute="height" secondItem="Uxm-oq-Fph" secondAttribute="height" id="hS8-Kb-gsQ"/>
+                <constraint firstItem="45w-JS-gJb" firstAttribute="centerX" secondItem="Uxm-oq-Fph" secondAttribute="centerX" id="kvX-wF-e39"/>
+                <constraint firstItem="45w-JS-gJb" firstAttribute="width" secondItem="Uxm-oq-Fph" secondAttribute="width" id="pre-M8-sBL"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>

@@ -1,0 +1,53 @@
+/* Class = "UILabel"; text = "Lightning
+detection"; ObjectID = "1ZY-ay-hAx"; */
+"1ZY-ay-hAx.text" = "Обнаружение
+молний";
+
+/* Class = "UILabel"; text = "Exposure
+and ISO"; ObjectID = "7ba-KY-DKa"; */
+"7ba-KY-DKa.text" = "Экспозиция
+и ISO";
+
+/* Class = "UILabel"; text = "Take
+a photo"; ObjectID = "CL9-Sm-voK"; */
+"CL9-Sm-voK.text" = "Снять
+фото";
+
+/* Class = "UILabel"; text = "Flashlight"; ObjectID = "IQP-ra-8U1"; */
+"IQP-ra-8U1.text" = "Вспышка";
+
+/* Class = "UILabel"; text = "Help"; ObjectID = "IhP-6K-4RG"; */
+"IhP-6K-4RG.text" = "Справка";
+
+/* Class = "UIButton"; normalTitle = "WB"; ObjectID = "P7w-QD-Z3t"; */
+"P7w-QD-Z3t.normalTitle" = "WB";
+
+/* Class = "UIButton"; selectedTitle = "WB"; ObjectID = "P7w-QD-Z3t"; */
+"P7w-QD-Z3t.selectedTitle" = "WB";
+
+/* Class = "UIButton"; normalTitle = "Off"; ObjectID = "a6Z-Mo-oVG"; */
+"a6Z-Mo-oVG.normalTitle" = "Выкл.";
+
+/* Class = "UILabel"; text = "Swipe up to hide
+
+Tap once to set autofocus target
+Double-tap to focus and lock"; ObjectID = "dE6-jx-9FN"; */
+"dE6-jx-9FN.text" = "Смахните вверх, чтобы скрыть
+
+Коснитесь один раз,
+чтобы задать цель автофокуса
+Коснитесь два раза,
+чтобы сфокусировать и зафиксировать";
+
+/* Class = "UILabel"; text = "Focus"; ObjectID = "iCH-Ye-uZg"; */
+"iCH-Ye-uZg.text" = "Фокус";
+
+/* Class = "UIButton"; normalTitle = "?"; ObjectID = "j5y-WF-Cxs"; */
+"j5y-WF-Cxs.normalTitle" = "?";
+
+/* Class = "UILabel"; text = "White balance"; ObjectID = "lg2-CH-Q6T"; */
+"lg2-CH-Q6T.text" = "Баланс
+белого";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "zZk-L8-RSo"; */
+"zZk-L8-RSo.normalTitle" = "OK";
